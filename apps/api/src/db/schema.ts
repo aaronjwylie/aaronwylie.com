@@ -1,0 +1,77 @@
+import {
+  pgTable,
+  serial,
+  text,
+  varchar,
+  boolean,
+  integer,
+  timestamp,
+  jsonb,
+  index,
+} from 'drizzle-orm/pg-core';
+
+/**
+ * Projects shown on the portfolio. The website renders this straight from the
+ * API, so the API — not a hardcoded array in the frontend — is the source of truth.
+ */
+export const projects = pgTable(
+  'projects',
+  {
+    id: serial('id').primaryKey(),
+    slug: varchar('slug', { length: 96 }).notNull().unique(),
+    title: varchar('title', { length: 160 }).notNull(),
+    tagline: varchar('tagline', { length: 240 }).notNull(),
+    description: text('description').notNull(),
+    // e.g. ["TypeScript", "Node.js", "Postgres"]
+    techStack: jsonb('tech_stack').$type<string[]>().notNull().default([]),
+    role: varchar('role', { length: 120 }),
+    // Freeform link map: { github, live, appStore, playStore, press: [...] }
+    links: jsonb('links').$type<Record<string, unknown>>().notNull().default({}),
+    // Higher = shown first. The flagship (APPIX) gets the highest.
+    featured: boolean('featured').notNull().default(false),
+    sortOrder: integer('sort_order').notNull().default(0),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    featuredIdx: index('projects_featured_idx').on(t.featured, t.sortOrder),
+  }),
+);
+
+/**
+ * Contact form submissions. Persisted so nothing is lost even before email is wired.
+ */
+export const contactMessages = pgTable('contact_messages', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 120 }).notNull(),
+  email: varchar('email', { length: 254 }).notNull(),
+  message: text('message').notNull(),
+  // Light abuse forensics without storing anything sensitive.
+  userAgent: varchar('user_agent', { length: 512 }),
+  handled: boolean('handled').notNull().default(false),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+});
+
+/**
+ * One row per page view — powers the live "visitor stats" widget that
+ * demonstrates the site is backed by a real, queryable database.
+ */
+export const pageViews = pgTable(
+  'page_views',
+  {
+    id: serial('id').primaryKey(),
+    path: varchar('path', { length: 512 }).notNull(),
+    // Coarse day bucket (YYYY-MM-DD) for cheap grouping.
+    day: varchar('day', { length: 10 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    dayIdx: index('page_views_day_idx').on(t.day),
+    pathIdx: index('page_views_path_idx').on(t.path),
+  }),
+);
+
+export type Project = typeof projects.$inferSelect;
+export type NewProject = typeof projects.$inferInsert;
+export type ContactMessage = typeof contactMessages.$inferSelect;
+export type PageView = typeof pageViews.$inferSelect;
