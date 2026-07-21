@@ -20,6 +20,7 @@ const TECH_GROUPS: { category: string; items: string[] }[] = [
       'WebRTC',
       'BLE',
       'Firmware',
+      'ESP32',
       'Raspberry Pi',
       'Arduino',
       'BeagleBone',
