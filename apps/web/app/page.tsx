@@ -136,8 +136,8 @@ export default async function HomePage() {
           <BriefcaseIcon className="h-4 w-4" /> How I can help
         </p>
         <p className="mb-6 max-w-2xl text-slate-400">
-          Available for freelance and full-time work, remotely worldwide. A few of the ways I
-          <span className="whitespace-nowrap">can help:</span>        </p>
+          Available for freelance and full-time work, remotely worldwide. A few of the{' '}
+          <span className="whitespace-nowrap">ways I can help:</span>        </p>
         <Services />
       </section>
 
@@ -264,8 +264,10 @@ export default async function HomePage() {
         <p className="section-label mb-4 flex items-center gap-2">
           <MailIcon className="h-4 w-4" /> Get in touch
         </p>
-        <h2 className="mb-6 max-w-xl text-2xl font-bold text-white">
-          Hiring for a front-end, back-end or full-stack role? Send a message - it goes straight into the API.
+        <h2 className="mb-6 max-w-2xl text-2xl font-bold text-white">
+          Hiring for a front-end, back-end or full-stack role?
+          <br />
+          Send a message - it goes straight into the API.
         </h2>
         <div className="max-w-2xl">
           <ContactForm />
