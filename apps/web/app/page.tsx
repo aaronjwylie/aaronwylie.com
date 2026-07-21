@@ -147,6 +147,13 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
+        <p className="mt-6 text-slate-400">
+          Don&apos;t see your project&apos;s technology here?{' '}
+          <Link href="/#contact" className="font-medium text-accent hover:underline">
+            Try me
+          </Link>{' '}
+          - I pick up new stacks fast and I&apos;ll get it done.
+        </p>
       </section>
 
       {/* ---------- Tools ---------- */}
