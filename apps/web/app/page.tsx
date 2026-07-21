@@ -11,7 +11,7 @@ const TECH_GROUPS: { category: string; items: string[] }[] = [
   { category: 'Frontend', items: ['React', 'React Native', 'Next.js', 'HTML', 'CSS', 'Tailwind CSS', 'Bootstrap'] },
   { category: 'Backend', items: ['Node.js', 'Fastify', 'Django', 'REST APIs', 'WebSockets'] },
   { category: 'Databases', items: ['PostgreSQL', 'MySQL', 'SQL Server', 'MongoDB', 'Redis'] },
-  { category: 'DevOps & Cloud', items: ['Docker', 'Kubernetes', 'nginx', 'Apache Tomcat', 'Linux', 'CI/CD', 'AWS', 'DigitalOcean', 'Hetzner'] },
+  { category: 'DevOps & Cloud', items: ['DevOps', 'SRE', 'Docker', 'Kubernetes', 'nginx', 'Apache Tomcat', 'Linux', 'CI/CD', 'Dynatrace', 'AWS', 'DigitalOcean', 'Hetzner'] },
   {
     category: 'Platforms & more',
     items: [

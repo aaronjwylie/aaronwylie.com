@@ -8,3 +8,10 @@ pgdata/
 .env
 .env.*
 !.env.example
+
+# Guard against stray files accidentally synced from a parent directory.
+wrld-*
+containerd/
+portfolio/
+*.pdf
+design-assets/
