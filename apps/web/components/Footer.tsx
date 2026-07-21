@@ -27,6 +27,7 @@ export function Footer() {
         <nav className="flex flex-wrap gap-x-5 gap-y-2 border-t border-white/5 pt-5 text-sm text-slate-500">
           <Link href="/blog" className="hover:text-accent">Writing</Link>
           <Link href="/tools" className="hover:text-accent">Tools</Link>
+          <Link href="/status" className="hover:text-accent">Live status</Link>
           <Link href="/faq" className="hover:text-accent">FAQ</Link>
           <Link href="/uses" className="hover:text-accent">Uses</Link>
           <Link href="/resume" className="hover:text-accent">Résumé</Link>

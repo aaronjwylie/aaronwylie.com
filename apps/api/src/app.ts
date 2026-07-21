@@ -60,8 +60,10 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(rateLimit, {
     max: 120,
     timeWindow: '1 minute',
-    // Allow docs/metrics scraping without counting against callers.
-    allowList: (req) => req.url.startsWith('/docs') || req.url === '/metrics',
+    // Allow docs/metrics scraping and the live dashboard's polling without
+    // counting against callers.
+    allowList: (req) =>
+      req.url.startsWith('/docs') || req.url === '/metrics' || req.url === '/observability',
   });
   await app.register(metricsPlugin);
   await app.register(websocket);

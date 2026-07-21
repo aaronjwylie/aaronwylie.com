@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getProjects, getStats, apiUrl } from '@/lib/api';
+import { AVAILABILITY } from '@/lib/availability';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
 import { ContactCallout } from '@/components/ContactCallout';
@@ -71,6 +72,26 @@ export default async function HomePage() {
         <div className="container-page">
           <div className="flex flex-col-reverse items-start gap-10 md:flex-row md:items-center md:justify-between">
             <div className="flex-1">
+              <a
+                href="#contact"
+                className={`mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium transition ${
+                  AVAILABILITY.available
+                    ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20'
+                    : 'border-white/15 bg-white/5 text-slate-300 hover:bg-white/10'
+                }`}
+              >
+                <span className="relative flex h-2 w-2">
+                  {AVAILABILITY.available && (
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  )}
+                  <span
+                    className={`relative inline-flex h-2 w-2 rounded-full ${
+                      AVAILABILITY.available ? 'bg-emerald-500' : 'bg-slate-400'
+                    }`}
+                  />
+                </span>
+                {AVAILABILITY.available ? AVAILABILITY.label : AVAILABILITY.unavailableLabel}
+              </a>
               <p className="section-label mb-4">Front End · Back End · Full-Stack Developer</p>
               <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-6xl">
                 I build <span className="gradient-text">software that ships</span> - front to back,
