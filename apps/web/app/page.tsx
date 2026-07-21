@@ -9,7 +9,7 @@ import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon, CodeIcon } fr
 const TECH_GROUPS: { category: string; items: string[] }[] = [
   { category: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Java', 'Objective-C', 'SQL', 'Bash'] },
   { category: 'Frontend', items: ['React', 'React Native', 'Next.js', 'Tailwind CSS'] },
-  { category: 'Backend', items: ['Node.js', 'Fastify', 'REST APIs', 'WebSockets'] },
+  { category: 'Backend', items: ['Node.js', 'Fastify', 'Django', 'REST APIs', 'WebSockets'] },
   { category: 'Databases', items: ['PostgreSQL', 'MySQL', 'Redis'] },
   { category: 'DevOps & Cloud', items: ['Docker', 'Kubernetes', 'nginx', 'Linux', 'CI/CD', 'DigitalOcean'] },
   { category: 'Platforms & more', items: ['WordPress', 'WebRTC', 'BLE'] },
