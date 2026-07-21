@@ -18,6 +18,7 @@ import { contactRoutes } from './routes/contact.js';
 import { statsRoutes } from './routes/stats.js';
 import { inspectRoutes } from './routes/inspect.js';
 import { breachRoutes } from './routes/breach.js';
+import { monitorRoutes } from './routes/monitors.js';
 
 /**
  * Build a fully-configured Fastify instance. Kept separate from `index.ts` so
@@ -90,6 +91,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(statsRoutes);
   await app.register(inspectRoutes);
   await app.register(breachRoutes);
+  await app.register(monitorRoutes);
 
   app.get('/', { schema: { hide: true } }, async () => ({
     name: 'portfolio-api',

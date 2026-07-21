@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { SVGProps } from 'react';
-import { TerminalIcon, ShieldIcon } from '@/components/icons';
+import { TerminalIcon, ShieldIcon, ActivityIcon } from '@/components/icons';
 
 export const metadata: Metadata = {
   title: 'Developer Tools',
@@ -33,6 +33,13 @@ const TOOLS: Tool[] = [
     desc: 'Check if a password appears in a known data breach - privately. Hashed in your browser, only a 5-char prefix is sent (k-anonymity).',
     Icon: ShieldIcon,
     gradient: 'from-emerald-500 to-teal-600',
+  },
+  {
+    href: '/tools/status',
+    title: 'Live Status Monitor',
+    desc: 'A real uptime monitor - endpoints checked every 60s with uptime % and response-time history. Add any URL to watch it live for 24h.',
+    Icon: ActivityIcon,
+    gradient: 'from-amber-500 to-orange-600',
   },
 ];
 

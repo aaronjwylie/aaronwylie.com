@@ -71,6 +71,43 @@ export const pageViews = pgTable(
   }),
 );
 
+/**
+ * Uptime monitors — a URL the status-page tool watches. Seeded "permanent"
+ * monitors track my own infra; visitor-added ones are ephemeral (expiresAt).
+ */
+export const monitors = pgTable(
+  'monitors',
+  {
+    id: serial('id').primaryKey(),
+    url: text('url').notNull().unique(),
+    host: varchar('host', { length: 255 }).notNull(),
+    permanent: boolean('permanent').notNull().default(false),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    // null for permanent monitors; a timestamp for ephemeral visitor-added ones.
+    expiresAt: timestamp('expires_at', { withTimezone: true }),
+  },
+  (t) => ({ expiresIdx: index('monitors_expires_idx').on(t.expiresAt) }),
+);
+
+/** One row per uptime check (time-series). */
+export const monitorChecks = pgTable(
+  'monitor_checks',
+  {
+    id: serial('id').primaryKey(),
+    monitorId: integer('monitor_id')
+      .notNull()
+      .references(() => monitors.id, { onDelete: 'cascade' }),
+    checkedAt: timestamp('checked_at', { withTimezone: true }).notNull().defaultNow(),
+    ok: boolean('ok').notNull(),
+    statusCode: integer('status_code'),
+    responseMs: integer('response_ms'),
+  },
+  (t) => ({ mIdx: index('monitor_checks_monitor_idx').on(t.monitorId, t.checkedAt) }),
+);
+
+export type Monitor = typeof monitors.$inferSelect;
+export type MonitorCheck = typeof monitorChecks.$inferSelect;
+
 export type Project = typeof projects.$inferSelect;
 export type NewProject = typeof projects.$inferInsert;
 export type ContactMessage = typeof contactMessages.$inferSelect;
