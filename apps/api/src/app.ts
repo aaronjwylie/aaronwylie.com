@@ -76,6 +76,9 @@ export async function buildApp(): Promise<FastifyInstance> {
           'form and the live visitor stats are served from here. Try the endpoints below.',
         version: '1.0.0',
       },
+      // Public base path so Swagger "Try it out" targets the right URL (nginx
+      // serves the API under /api in production).
+      servers: [{ url: env.API_PUBLIC_PATH }],
       tags: [
         { name: 'projects', description: 'Portfolio projects' },
         { name: 'tools', description: 'Useful tools for visitors' },

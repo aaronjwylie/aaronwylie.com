@@ -25,6 +25,10 @@ const EnvSchema = z.object({
   // (test mode only sends to the Resend account owner); switch to
   // contact@aaronwylie.com once the domain is verified in Resend.
   CONTACT_FROM_EMAIL: z.string().default('Portfolio Contact <onboarding@resend.dev>'),
+  // Public base path the API is reachable at (nginx serves it under /api in
+  // production; it's at the root in local dev). Used for the OpenAPI server URL
+  // so Swagger "Try it out" hits the right URL.
+  API_PUBLIC_PATH: z.string().default('/'),
 });
 
 const parsed = EnvSchema.safeParse(process.env);

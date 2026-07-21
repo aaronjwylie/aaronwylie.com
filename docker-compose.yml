@@ -34,6 +34,7 @@ services:
       RESEND_API_KEY: ${RESEND_API_KEY:-}
       CONTACT_TO_EMAIL: ${CONTACT_TO_EMAIL:-aaronwyliework@gmail.com}
       CONTACT_FROM_EMAIL: "${CONTACT_FROM_EMAIL:-Portfolio Contact <onboarding@resend.dev>}"
+      API_PUBLIC_PATH: ${API_PUBLIC_PATH:-/}
     # Apply migrations + seed, then start the server.
     command: sh -c "node dist/db/migrate.js && node dist/db/seed.js && node dist/index.js"
     ports:
