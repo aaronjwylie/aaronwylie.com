@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 const SITE_URL = 'https://aaronwylie.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ['', '/architecture', '/tools/inspector'];
+  const routes = ['', '/architecture', '/tools', '/tools/inspector', '/tools/password-check'];
   return routes.map((path) => ({
     url: `${SITE_URL}${path}`,
     changeFrequency: path === '' ? 'weekly' : 'monthly',

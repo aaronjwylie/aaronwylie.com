@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getProjects, getStats, apiUrl } from '@/lib/api';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
-import { StarIcon, LayersIcon, MailIcon, TerminalIcon } from '@/components/icons';
+import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon } from '@/components/icons';
 
 // Render on every request so live visitor stats and project edits are always
 // current. For a low-traffic portfolio this is cheap; switch to `revalidate`
@@ -108,24 +108,36 @@ export default async function HomePage() {
 
       {/* ---------- Tools ---------- */}
       <section className="container-page py-10">
-        <p className="section-label mb-4 flex items-center gap-2">
-          <TerminalIcon className="h-4 w-4" /> Tools you can use
-        </p>
-        <div className="card flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-accent-cyan to-accent-violet">
-                <TerminalIcon className="h-6 w-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white">Endpoint Inspector</h3>
+        <div className="mb-4 flex items-center justify-between">
+          <p className="section-label flex items-center gap-2">
+            <TerminalIcon className="h-4 w-4" /> Tools you can use
+          </p>
+          <Link href="/tools" className="text-sm font-semibold text-accent hover:underline">
+            See all →
+          </Link>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <Link href="/tools/inspector" className="card group">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600">
+              <TerminalIcon className="h-6 w-6 text-white" />
             </div>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-400">
-              Check any URL&apos;s HTTP status, response time, TLS certificate and security-header
-              grade - a free developer tool, served by my own API and safe against SSRF.
+            <h3 className="mb-1 text-lg font-bold text-white group-hover:text-accent">
+              Endpoint Inspector
+            </h3>
+            <p className="text-sm leading-relaxed text-slate-400">
+              Status, response time, TLS certificate and a security-header grade for any URL.
             </p>
-          </div>
-          <Link href="/tools/inspector" className="btn-primary shrink-0">
-            Try the Inspector →
+          </Link>
+          <Link href="/tools/password-check" className="card group">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600">
+              <ShieldIcon className="h-6 w-6 text-white" />
+            </div>
+            <h3 className="mb-1 text-lg font-bold text-white group-hover:text-accent">
+              Password Breach Checker
+            </h3>
+            <p className="text-sm leading-relaxed text-slate-400">
+              See if a password appears in a known breach - privately, via k-anonymity.
+            </p>
           </Link>
         </div>
       </section>

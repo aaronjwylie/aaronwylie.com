@@ -15,7 +15,7 @@ export function Nav() {
           <Link href="/architecture" className="text-slate-300 hover:text-white">
             Architecture
           </Link>
-          <Link href="/tools/inspector" className="text-slate-300 hover:text-white">
+          <Link href="/tools" className="text-slate-300 hover:text-white">
             Tools
           </Link>
           <a

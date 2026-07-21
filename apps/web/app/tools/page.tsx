@@ -1,0 +1,65 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import type { SVGProps } from 'react';
+import { TerminalIcon, ShieldIcon } from '@/components/icons';
+
+export const metadata: Metadata = {
+  title: 'Developer Tools',
+  description:
+    'A small suite of free, backend-powered developer tools built by Aaron Wylie - endpoint ' +
+    'inspector, password breach checker, and more.',
+  alternates: { canonical: '/tools' },
+};
+
+type Tool = {
+  href: string;
+  title: string;
+  desc: string;
+  Icon: (p: SVGProps<SVGSVGElement>) => JSX.Element;
+  gradient: string;
+};
+
+const TOOLS: Tool[] = [
+  {
+    href: '/tools/inspector',
+    title: 'Endpoint Inspector',
+    desc: 'HTTP status, response time, redirect chain, TLS certificate and a security-header grade for any URL. SSRF-safe.',
+    Icon: TerminalIcon,
+    gradient: 'from-cyan-500 to-sky-600',
+  },
+  {
+    href: '/tools/password-check',
+    title: 'Password Breach Checker',
+    desc: 'Check if a password appears in a known data breach - privately. Hashed in your browser, only a 5-char prefix is sent (k-anonymity).',
+    Icon: ShieldIcon,
+    gradient: 'from-emerald-500 to-teal-600',
+  },
+];
+
+export default function ToolsPage() {
+  return (
+    <div className="container-page py-16">
+      <p className="section-label mb-4">Tools</p>
+      <h1 className="mb-3 text-4xl font-extrabold text-white">Developer tools</h1>
+      <p className="mb-10 max-w-2xl text-lg text-slate-400">
+        A small suite of free tools, each served by my own API. Built to be genuinely useful - and
+        to show the backend behind them.
+      </p>
+
+      <div className="grid gap-6 sm:grid-cols-2">
+        {TOOLS.map((t) => (
+          <Link key={t.href} href={t.href} className="card group">
+            <div
+              className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${t.gradient}`}
+            >
+              <t.Icon className="h-7 w-7 text-white" />
+            </div>
+            <h2 className="mb-2 text-xl font-bold text-white group-hover:text-accent">{t.title}</h2>
+            <p className="text-sm leading-relaxed text-slate-400">{t.desc}</p>
+            <span className="mt-4 inline-block text-sm font-semibold text-accent">Open →</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}

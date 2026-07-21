@@ -82,3 +82,11 @@ export const StarIcon = (p: IconProps) => (
     <path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.6 6.8 19.2l1-5.8L3.5 9.2l5.9-.9L12 3Z" />
   </Svg>
 );
+
+// Shield — security / password.
+export const ShieldIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M12 3 5 6v5c0 4.4 3 7.8 7 9 4-1.2 7-4.6 7-9V6l-7-3Z" />
+    <path d="m9.2 12 2 2 3.6-3.8" />
+  </Svg>
+);
