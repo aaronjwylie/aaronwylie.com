@@ -1,13 +1,32 @@
 'use client';
 
 import Script from 'next/script';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 
 /**
- * Google Analytics 4. Rendered only when NEXT_PUBLIC_GA_ID is set, so the site
- * ships zero tracking until a Measurement ID is configured. Loads after the page
- * is interactive so it never blocks rendering.
+ * Google Analytics 4. Rendered from the root layout, so it loads on every page
+ * (including all /tools/* pages). The gtag `config` tracks the initial/direct
+ * page view; the effect below sends a page_view on client-side route changes so
+ * SPA navigations between pages are counted too.
  */
 export function Analytics({ gaId }: { gaId: string }) {
+  const pathname = usePathname();
+  const first = useRef(true);
+
+  useEffect(() => {
+    if (first.current) {
+      first.current = false; // initial view is handled by gtag('config')
+      return;
+    }
+    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+    w.gtag?.('event', 'page_view', {
+      page_path: pathname,
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  }, [pathname]);
+
   return (
     <>
       <Script
