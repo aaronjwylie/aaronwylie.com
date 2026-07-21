@@ -97,8 +97,10 @@ const seedProjects: NewProject[] = [
       'and services layer: a WebRTC SFU that fans out low-latency broadcasts to many concurrent ' +
       'viewers, server-side recording and HLS pipelines for replay, and a geo-spatial, map-based ' +
       'discovery system that places live streams on an interactive map in real time over ' +
-      'WebSockets. It is TypeScript across a Node.js API and React Native + web clients, backed ' +
-      'by Postgres, with containerized media servers and RTMP ingest for external broadcasters. ' +
+      'WebSockets. It ships on iOS, Android and web - TypeScript across a Node.js API, native ' +
+      'iOS and Android apps (React Native) and a web client, plus a robust web-based ' +
+      'administration portal for operations, moderation and configuration - all backed by ' +
+      'Postgres, with containerized media servers and RTMP ingest for external broadcasters. ' +
       'The interesting work has been in real-time media: connection resilience and reconnection, ' +
       'video orientation and codec correctness across devices, and keeping viewer fan-out ' +
       'performant as concurrency grows.',
