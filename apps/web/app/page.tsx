@@ -221,6 +221,12 @@ export default async function HomePage() {
           </a>{' '}
           - I pick up new stacks fast and I&apos;ll get it done.
         </p>
+        <p className="mt-3 text-sm text-slate-500">
+          Curious about my day-to-day setup?{' '}
+          <Link href="/uses" className="font-medium text-accent hover:underline">
+            See what I use →
+          </Link>
+        </p>
       </section>
 
       {/* ---------- Tools ---------- */}
@@ -269,6 +275,12 @@ export default async function HomePage() {
           <br />
           Send a message - it goes straight into the API.
         </h2>
+        <p className="mb-6 max-w-2xl text-slate-400">
+          Have a question before reaching out?{' '}
+          <Link href="/faq" className="font-medium text-accent hover:underline">
+            Read the FAQ →
+          </Link>
+        </p>
         <div className="max-w-2xl">
           <ContactForm />
         </div>
