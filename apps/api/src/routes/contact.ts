@@ -21,6 +21,10 @@ export async function contactRoutes(fastify: FastifyInstance) {
           name: z.string().min(1).max(120),
           email: z.string().email().max(254),
           message: z.string().min(10).max(5000),
+          // Optional project-budget band chosen from the form dropdown.
+          budget: z
+            .enum(['under_10k', '10k_50k', '50k_100k', 'over_100k', 'unsure'])
+            .optional(),
           // Honeypot: real users leave this empty; bots tend to fill every field.
           // Accept any value here so the handler can silently drop it - a 400 would
           // tell the bot it was detected.
@@ -33,7 +37,7 @@ export async function contactRoutes(fastify: FastifyInstance) {
       },
     },
     async (request, reply) => {
-      const { name, email, message, website } = request.body;
+      const { name, email, message, budget, website } = request.body;
       if (website) {
         // Honeypot tripped - pretend success, store nothing.
         return reply.code(201).send({ ok: true as const, id: 0 });
@@ -44,13 +48,14 @@ export async function contactRoutes(fastify: FastifyInstance) {
           name,
           email,
           message,
+          budget: budget ?? null,
           userAgent: request.headers['user-agent']?.slice(0, 512) ?? null,
         })
         .returning({ id: contactMessages.id });
       request.log.info({ contactId: row!.id }, 'contact message received');
       // Fire-and-forget email notification; the message is already persisted.
       void sendContactNotification(
-        { id: row!.id, name, email, message },
+        { id: row!.id, name, email, message, budget: budget ?? null },
         request.log,
       );
       return reply.code(201).send({ ok: true as const, id: row!.id });
@@ -73,6 +78,7 @@ export async function contactRoutes(fastify: FastifyInstance) {
                 name: z.string(),
                 email: z.string(),
                 message: z.string(),
+                budget: z.string().nullable(),
                 handled: z.boolean(),
                 createdAt: z.date(),
               }),
@@ -92,6 +98,7 @@ export async function contactRoutes(fastify: FastifyInstance) {
           name: contactMessages.name,
           email: contactMessages.email,
           message: contactMessages.message,
+          budget: contactMessages.budget,
           handled: contactMessages.handled,
           createdAt: contactMessages.createdAt,
         })

@@ -28,6 +28,42 @@ describe('contact', () => {
     expect(res.json().id).toBeGreaterThan(0);
   });
 
+  it('accepts and stores an optional budget band', async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/contact',
+      payload: {
+        name: 'Casey',
+        email: 'casey@example.com',
+        message: 'We have a project with a real budget.',
+        budget: '50k_100k',
+      },
+    });
+    expect(res.statusCode).toBe(201);
+
+    const auth = await app.inject({
+      method: 'GET',
+      url: '/contact',
+      headers: { 'x-admin-token': env.ADMIN_TOKEN },
+    });
+    const stored = auth.json().data.find((m: { email: string }) => m.email === 'casey@example.com');
+    expect(stored.budget).toBe('50k_100k');
+  });
+
+  it('rejects an unknown budget band', async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/contact',
+      payload: {
+        name: 'Jane',
+        email: 'jane@example.com',
+        message: 'A long enough message here.',
+        budget: 'a_zillion_dollars',
+      },
+    });
+    expect(res.statusCode).toBe(400);
+  });
+
   it('rejects an invalid email', async () => {
     const res = await app.inject({
       method: 'POST',
@@ -71,7 +107,7 @@ describe('contact', () => {
       headers: { 'x-admin-token': env.ADMIN_TOKEN },
     });
     expect(auth.statusCode).toBe(200);
-    // One real message persisted above (honeypot + invalid ones excluded).
-    expect(auth.json().data.length).toBe(1);
+    // Two real messages persisted above (honeypot + invalid ones excluded).
+    expect(auth.json().data.length).toBe(2);
   });
 });

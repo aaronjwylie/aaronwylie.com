@@ -6,6 +6,21 @@ export interface ContactNotification {
   name: string;
   email: string;
   message: string;
+  budget?: string | null;
+}
+
+/** Human-readable label for a stored budget token. */
+const BUDGET_LABELS: Record<string, string> = {
+  under_10k: 'Under $10,000',
+  '10k_50k': '$10,000 - $50,000',
+  '50k_100k': '$50,000 - $100,000',
+  over_100k: 'Over $100,000',
+  unsure: "Don't know yet",
+};
+
+function budgetLabel(token?: string | null): string | null {
+  if (!token) return null;
+  return BUDGET_LABELS[token] ?? token;
 }
 
 /** Escape user-supplied text before embedding it in the notification HTML. */
@@ -28,12 +43,15 @@ export async function sendContactNotification(
 ): Promise<void> {
   if (!env.RESEND_API_KEY) return;
 
+  const budget = budgetLabel(msg.budget);
+
   const html =
     `<div style="font-family:system-ui,-apple-system,sans-serif;line-height:1.5;color:#111">` +
     `<h2 style="margin:0 0 12px">New portfolio contact message</h2>` +
     `<p style="margin:4px 0"><strong>Name:</strong> ${esc(msg.name)}</p>` +
     `<p style="margin:4px 0"><strong>Email:</strong> ` +
     `<a href="mailto:${esc(msg.email)}">${esc(msg.email)}</a></p>` +
+    (budget ? `<p style="margin:4px 0"><strong>Budget:</strong> ${esc(budget)}</p>` : '') +
     `<p style="margin:12px 0 4px"><strong>Message:</strong></p>` +
     `<p style="white-space:pre-wrap;margin:0;padding:12px;background:#f4f4f5;border-radius:8px">${esc(msg.message)}</p>` +
     `<hr style="border:none;border-top:1px solid #e4e4e7;margin:16px 0">` +
@@ -42,7 +60,9 @@ export async function sendContactNotification(
 
   const text =
     `New portfolio contact message\n\n` +
-    `Name: ${msg.name}\nEmail: ${msg.email}\n\nMessage:\n${msg.message}\n\n` +
+    `Name: ${msg.name}\nEmail: ${msg.email}\n` +
+    (budget ? `Budget: ${budget}\n` : '') +
+    `\nMessage:\n${msg.message}\n\n` +
     `— aaronwylie.com contact form (id ${msg.id})`;
 
   try {

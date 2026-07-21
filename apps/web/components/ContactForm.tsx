@@ -21,6 +21,8 @@ export function ContactForm() {
         body: JSON.stringify({
           name: form.get('name'),
           email: form.get('email'),
+          // Omit budget entirely when left on the blank default.
+          ...(form.get('budget') ? { budget: form.get('budget') } : {}),
           message: form.get('message'),
           website: form.get('website'), // honeypot
         }),
@@ -76,6 +78,23 @@ export function ContactForm() {
           />
         </label>
       </div>
+      <label className="block text-sm">
+        <span className="mb-1 block text-slate-300">
+          Project budget <span className="text-slate-500">(optional)</span>
+        </span>
+        <select
+          name="budget"
+          defaultValue=""
+          className="w-full rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-white focus:border-accent focus:outline-none"
+        >
+          <option value="">Select a range…</option>
+          <option value="under_10k">Under $10,000</option>
+          <option value="10k_50k">$10,000 - $50,000</option>
+          <option value="50k_100k">$50,000 - $100,000</option>
+          <option value="over_100k">Over $100,000</option>
+          <option value="unsure">Don&apos;t know yet</option>
+        </select>
+      </label>
       <label className="block text-sm">
         <span className="mb-1 block text-slate-300">Message</span>
         <textarea

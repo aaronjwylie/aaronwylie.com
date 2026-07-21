@@ -46,6 +46,8 @@ export const contactMessages = pgTable('contact_messages', {
   name: varchar('name', { length: 120 }).notNull(),
   email: varchar('email', { length: 254 }).notNull(),
   message: text('message').notNull(),
+  // Optional project-budget band selected on the form (token, e.g. "10k_50k").
+  budget: varchar('budget', { length: 40 }),
   // Light abuse forensics without storing anything sensitive.
   userAgent: varchar('user_agent', { length: 512 }),
   handled: boolean('handled').notNull().default(false),
