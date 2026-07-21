@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getProjects, getStats, apiUrl } from '@/lib/api';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
+import { StarIcon, LayersIcon, MailIcon } from '@/components/icons';
 
 // Render on every request so live visitor stats and project edits are always
 // current. For a low-traffic portfolio this is cheap; switch to `revalidate`
@@ -76,14 +77,18 @@ export default async function HomePage() {
       {/* ---------- Flagship ---------- */}
       {flagship && (
         <section className="container-page py-10">
-          <p className="section-label mb-4">Flagship project</p>
+          <p className="section-label mb-4 flex items-center gap-2">
+            <StarIcon className="h-4 w-4" /> Flagship project
+          </p>
           <ProjectCard project={flagship} />
         </section>
       )}
 
       {/* ---------- Other projects ---------- */}
       <section id="projects" className="container-page py-10 scroll-mt-20">
-        <p className="section-label mb-4">More projects</p>
+        <p className="section-label mb-4 flex items-center gap-2">
+          <LayersIcon className="h-4 w-4" /> More projects
+        </p>
         <div className="grid gap-6 md:grid-cols-2">
           {rest.map((p) => (
             <ProjectCard key={p.slug} project={p} />
@@ -99,7 +104,9 @@ export default async function HomePage() {
 
       {/* ---------- Contact ---------- */}
       <section id="contact" className="container-page py-16 scroll-mt-20">
-        <p className="section-label mb-4">Get in touch</p>
+        <p className="section-label mb-4 flex items-center gap-2">
+          <MailIcon className="h-4 w-4" /> Get in touch
+        </p>
         <h2 className="mb-6 max-w-xl text-2xl font-bold text-white">
           Hiring for a front-end, back-end or full-stack role? Send a message - it goes straight into the API.
         </h2>

@@ -1,6 +1,18 @@
+import type { SVGProps } from 'react';
 import type { Project } from '@/lib/api';
 import { apiUrl } from '@/lib/api';
 import { VideoEmbed } from './VideoEmbed';
+import { BroadcastIcon, ServerIcon, VideoIcon, ActivityIcon, LayersIcon } from './icons';
+
+// A distinct gradient + icon per project so the grid reads as covers, not text blocks.
+type CardStyle = { gradient: string; Icon: (p: SVGProps<SVGSVGElement>) => JSX.Element };
+const PROJECT_STYLE: Record<string, CardStyle> = {
+  appix: { gradient: 'from-cyan-500 via-sky-500 to-violet-600', Icon: BroadcastIcon },
+  'portfolio-api': { gradient: 'from-emerald-500 to-teal-600', Icon: ServerIcon },
+  'live-streaming-platform': { gradient: 'from-fuchsia-500 via-pink-500 to-rose-600', Icon: VideoIcon },
+  'dynatrace-observability-lab': { gradient: 'from-amber-500 to-orange-600', Icon: ActivityIcon },
+};
+const DEFAULT_STYLE: CardStyle = { gradient: 'from-slate-500 to-slate-700', Icon: LayersIcon };
 
 function linkHref(project: Project, key: string, value: unknown): string {
   const str = String(value);
@@ -27,9 +39,19 @@ export function ProjectCard({ project }: { project: Project }) {
   );
   const press = Array.isArray(links.press) ? links.press : [];
   const videos = Array.isArray(links.videos) ? links.videos : [];
+  const { gradient, Icon } = PROJECT_STYLE[project.slug] ?? DEFAULT_STYLE;
 
   return (
     <article className={`card ${project.featured ? 'ring-1 ring-accent/30' : ''}`}>
+      {/* Generative gradient cover with the project's icon */}
+      <div className={`relative -mx-6 -mt-6 mb-5 h-24 overflow-hidden rounded-t-2xl bg-gradient-to-br ${gradient}`}>
+        <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_100%_0%,rgba(255,255,255,0.28),transparent_55%)]" />
+        <Icon className="pointer-events-none absolute -right-3 -top-3 h-28 w-28 text-white/25" />
+        <div className="absolute bottom-3 left-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 backdrop-blur">
+          <Icon className="h-6 w-6 text-white" />
+        </div>
+      </div>
+
       <div className="mb-3 flex items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">

@@ -43,6 +43,41 @@ const layers = [
   },
 ];
 
+function Node({
+  title,
+  subtitle,
+  gradient,
+}: {
+  title: string;
+  subtitle: string;
+  gradient: string;
+}) {
+  return (
+    <div className="w-full rounded-xl border border-white/10 bg-ink-800/60 p-4 text-center transition hover:border-white/20">
+      <div className={`mx-auto mb-2.5 h-1.5 w-12 rounded-full bg-gradient-to-r ${gradient}`} />
+      <div className="font-bold text-white">{title}</div>
+      <div className="mt-1 text-xs leading-relaxed text-slate-400">{subtitle}</div>
+    </div>
+  );
+}
+
+function Connector({ label }: { label?: string }) {
+  return (
+    <div className="flex flex-col items-center py-1.5">
+      <div className="h-5 w-px bg-gradient-to-b from-accent-cyan/60 to-accent-violet/60" />
+      {label && (
+        <span className="my-1 rounded-full border border-white/10 bg-ink-800 px-2 py-0.5 text-[10px] uppercase tracking-wider text-slate-400">
+          {label}
+        </span>
+      )}
+      <div className="h-5 w-px bg-gradient-to-b from-accent-cyan/60 to-accent-violet/60" />
+      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-accent-violet/70" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </div>
+  );
+}
+
 export default function ArchitecturePage() {
   return (
     <div className="container-page py-16">
@@ -54,30 +89,35 @@ export default function ArchitecturePage() {
       </p>
 
       {/* Request-flow diagram */}
-      <div className="card mb-12 overflow-x-auto">
-        <pre className="font-mono text-xs leading-relaxed text-slate-300 sm:text-sm">{`
-  Browser
-     │  HTTPS
-     ▼
-  ┌─────────────┐     reverse proxy (TLS, routing)
-  │    nginx    │
-  └─────┬───────┘
-        ├──────────────► ┌──────────────────┐   Server Components
-        │   /            │  Next.js (web)   │   fetch live data
-        │                └────────┬─────────┘
-        │   /api/*                │  HTTP (JSON)
-        ▼                         ▼
-  ┌────────────────────────────────────────┐
-  │        Fastify API (TypeScript)         │
-  │  Zod validation · OpenAPI · rate-limit  │
-  │  /health · /ready · /metrics (Prom)     │
-  └───────────────────┬────────────────────┘
-                      │  SQL (Drizzle)
-                      ▼
-              ┌───────────────┐
-              │   Postgres    │
-              └───────────────┘
-`}</pre>
+      <div className="card mb-12">
+        <div className="mx-auto flex max-w-xl flex-col items-center">
+          <Node title="Browser" subtitle="The visitor's device" gradient="from-slate-500 to-slate-600" />
+          <Connector label="HTTPS" />
+          <Node
+            title="nginx"
+            subtitle="Reverse proxy · TLS · security headers · www → apex"
+            gradient="from-cyan-500 to-sky-600"
+          />
+          <Connector />
+          <div className="grid w-full gap-4 sm:grid-cols-2">
+            <Node
+              title="Next.js — web"
+              subtitle="SSR · React · renders from the API over HTTP/JSON"
+              gradient="from-violet-500 to-fuchsia-600"
+            />
+            <Node
+              title="Fastify — API"
+              subtitle="Zod · OpenAPI · rate-limit · /health · /metrics"
+              gradient="from-emerald-500 to-teal-600"
+            />
+          </div>
+          <Connector label="SQL · Drizzle" />
+          <Node
+            title="PostgreSQL"
+            subtitle="Projects · contact messages · analytics"
+            gradient="from-indigo-500 to-blue-600"
+          />
+        </div>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
