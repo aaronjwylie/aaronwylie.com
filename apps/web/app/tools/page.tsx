@@ -31,11 +31,25 @@ type Tool = {
 
 const TOOLS: Tool[] = [
   {
-    href: '/tools/inspector',
-    title: 'Endpoint Inspector',
-    desc: 'HTTP status, response time, redirect chain, TLS certificate and a security-header grade for any URL. SSRF-safe.',
-    Icon: TerminalIcon,
-    gradient: 'from-cyan-500 to-sky-600',
+    href: '/tools/shortener',
+    title: 'URL Shortener',
+    desc: 'Shorten a link and track clicks - total, a 7-day trend and top referrers, computed in SQL. Links show a safe destination preview before redirecting.',
+    Icon: LinkIcon,
+    gradient: 'from-rose-500 to-pink-600',
+  },
+  {
+    href: '/tools/qr',
+    title: 'QR Code Generator',
+    desc: 'Turn any URL or text into a crisp QR code, generated server-side. Download as SVG or PNG.',
+    Icon: QrIcon,
+    gradient: 'from-teal-500 to-emerald-600',
+  },
+  {
+    href: '/tools/dns',
+    title: 'DNS & WHOIS Lookup',
+    desc: 'Resolve a domain’s DNS records (A, AAAA, CNAME, MX, NS, TXT) and registration details (registrar, created, expiry) via RDAP.',
+    Icon: GlobeIcon,
+    gradient: 'from-sky-500 to-cyan-600',
   },
   {
     href: '/tools/password-check',
@@ -52,20 +66,6 @@ const TOOLS: Tool[] = [
     gradient: 'from-amber-500 to-orange-600',
   },
   {
-    href: '/tools/webhook',
-    title: 'Webhook / Request Inspector',
-    desc: 'Get a unique URL and watch incoming HTTP requests land in real time over a WebSocket - method, headers, query and body.',
-    Icon: ZapIcon,
-    gradient: 'from-fuchsia-500 to-purple-600',
-  },
-  {
-    href: '/tools/shortener',
-    title: 'URL Shortener',
-    desc: 'Shorten a link and track clicks - total, a 7-day trend and top referrers, computed in SQL. Links show a safe destination preview before redirecting.',
-    Icon: LinkIcon,
-    gradient: 'from-rose-500 to-pink-600',
-  },
-  {
     href: '/tools/secret',
     title: 'One-Time Secret',
     desc: 'Share a password or note via a link that self-destructs after one view. Encrypted in your browser - the key never reaches the server.',
@@ -73,18 +73,18 @@ const TOOLS: Tool[] = [
     gradient: 'from-indigo-500 to-violet-600',
   },
   {
-    href: '/tools/dns',
-    title: 'DNS & WHOIS Lookup',
-    desc: 'Resolve a domain’s DNS records (A, AAAA, CNAME, MX, NS, TXT) and registration details (registrar, created, expiry) via RDAP.',
-    Icon: GlobeIcon,
-    gradient: 'from-sky-500 to-cyan-600',
+    href: '/tools/webhook',
+    title: 'Webhook / Request Inspector',
+    desc: 'Get a unique URL and watch incoming HTTP requests land in real time over a WebSocket - method, headers, query and body.',
+    Icon: ZapIcon,
+    gradient: 'from-fuchsia-500 to-purple-600',
   },
   {
-    href: '/tools/qr',
-    title: 'QR Code Generator',
-    desc: 'Turn any URL or text into a crisp QR code, generated server-side. Download as SVG or PNG.',
-    Icon: QrIcon,
-    gradient: 'from-teal-500 to-emerald-600',
+    href: '/tools/inspector',
+    title: 'Endpoint Inspector',
+    desc: 'HTTP status, response time, redirect chain, TLS certificate and a security-header grade for any URL. SSRF-safe.',
+    Icon: TerminalIcon,
+    gradient: 'from-cyan-500 to-sky-600',
   },
 ];
 
