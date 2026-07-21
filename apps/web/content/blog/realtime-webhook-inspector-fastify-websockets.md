@@ -10,7 +10,7 @@ Three moving parts:
 
 ## Capturing any request
 
-The key trick is accepting arbitrary bodies. By default Fastify parses JSON and rejects unknown content types — but a webhook might send form data, XML, or a raw payload. Inside the plugin, replace the parsers so every body is read as a raw string:
+The key trick is accepting arbitrary bodies. By default Fastify parses JSON and rejects unknown content types - but a webhook might send form data, XML, or a raw payload. Inside the plugin, replace the parsers so every body is read as a raw string:
 
     fastify.removeAllContentTypeParsers();
     fastify.addContentTypeParser('*', { parseAs: 'string' }, (_req, body, done) => done(null, body));
@@ -60,6 +60,6 @@ Because bins live in memory, put guards on them: cap the number of requests per 
 
 ## Why WebSockets and not polling
 
-You *could* poll a REST endpoint every few seconds, and it'd mostly work. But the whole value of a request inspector is *immediacy* — you trigger an event and see it the same instant. That's what real-time transport is for, and it's a good reminder that WebSockets aren't just for chat apps.
+You *could* poll a REST endpoint every few seconds, and it'd mostly work. But the whole value of a request inspector is *immediacy* - you trigger an event and see it the same instant. That's what real-time transport is for, and it's a good reminder that WebSockets aren't just for chat apps.
 
 *Need real-time features done right? [I'd love to help](/#contact).*

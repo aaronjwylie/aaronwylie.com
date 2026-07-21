@@ -27,7 +27,7 @@ Now a route describes itself completely:
         response: { 201: z.object({ id: z.number() }) },
       },
     }, async (req) => {
-      // req.body is fully typed — no casting, no `any`
+      // req.body is fully typed - no casting, no `any`
       const id = await createProject(req.body);
       return reply.code(201).send({ id });
     });
@@ -36,7 +36,7 @@ Three things happen for free here. The body is validated (a missing `title` retu
 
 ## The docs write themselves
 
-Point `@fastify/swagger` at the same routes with a JSON-schema transform, and every endpoint you register shows up in interactive docs — request shapes, response codes, the lot:
+Point `@fastify/swagger` at the same routes with a JSON-schema transform, and every endpoint you register shows up in interactive docs - request shapes, response codes, the lot:
 
     await app.register(swagger, { transform: jsonSchemaTransform });
     await app.register(swaggerUi, { routePrefix: '/docs' });
@@ -45,7 +45,7 @@ Add a new field to a Zod schema and the docs update on the next build. Remove on
 
 ## A subtle serialization win
 
-Serializing *through* the response schema is a quiet security feature. Say your user row has a `passwordHash` column. If your response schema doesn't list it, Zod's serializer won't emit it — even if a lazy `select *` pulls it into the object. The schema is a whitelist, not just documentation.
+Serializing *through* the response schema is a quiet security feature. Say your user row has a `passwordHash` column. If your response schema doesn't list it, Zod's serializer won't emit it - even if a lazy `select *` pulls it into the object. The schema is a whitelist, not just documentation.
 
 ## One gotcha
 
@@ -58,6 +58,6 @@ When you split routes into separate files, the type provider doesn't automatical
 
 ## Why it matters
 
-Single-source-of-truth schemas remove a whole category of "the docs said one thing, the code did another" bugs. They make refactors safe, they keep your public API honest, and they turn documentation from a chore into a side effect. On this site's own API, every project, tool, and stat endpoint is described exactly once — and the [live docs](/api/docs) are generated straight from it.
+Single-source-of-truth schemas remove a whole category of "the docs said one thing, the code did another" bugs. They make refactors safe, they keep your public API honest, and they turn documentation from a chore into a side effect. On this site's own API, every project, tool, and stat endpoint is described exactly once - and the [live docs](/api/docs) are generated straight from it.
 
 *Want an API that's this maintainable? [Let's talk](/#contact).*

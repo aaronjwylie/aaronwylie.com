@@ -14,37 +14,37 @@ There's no prize for using a trendier tool. If WordPress isn't hurting, leave it
 
 Consider a modern stack when the pain is real:
 
-- **Performance** — page loads are slow and plugin bloat makes them worse over time.
-- **Security & maintenance** — every plugin is attack surface, and update anxiety is real. WordPress and its plugins are a perennial target.
-- **Custom functionality** — you're fighting the CMS to build app-like features it was never meant for.
-- **Developer experience** — you want version control, real tests, typed code, and CI/CD instead of editing PHP through an admin panel.
+- **Performance** - page loads are slow and plugin bloat makes them worse over time.
+- **Security & maintenance** - every plugin is attack surface, and update anxiety is real. WordPress and its plugins are a perennial target.
+- **Custom functionality** - you're fighting the CMS to build app-like features it was never meant for.
+- **Developer experience** - you want version control, real tests, typed code, and CI/CD instead of editing PHP through an admin panel.
 
 ## What "modern stack" means here
 
 A common, durable target is a **decoupled** architecture:
 
-- A **frontend** framework like Next.js — fast, server-rendered pages with great SEO defaults.
+- A **frontend** framework like Next.js - fast, server-rendered pages with great SEO defaults.
 - A **real API** (say, Node/Fastify + Postgres) as the source of truth for your content and features.
 - **Everything in version control**, deployed with a repeatable pipeline instead of live edits.
 
-You can even keep WordPress purely as a headless CMS if editors love it — serve content from its REST API into a Next.js front end. Best of both worlds: familiar editing, modern delivery.
+You can even keep WordPress purely as a headless CMS if editors love it - serve content from its REST API into a Next.js front end. Best of both worlds: familiar editing, modern delivery.
 
 ## Migrating without a big-bang rewrite
 
 The mistake is trying to rebuild the whole thing at once. A calmer path:
 
 1. **Inventory the content and features.** Which pages are pure content? Which are genuine app functionality? They migrate differently.
-2. **Export the content.** WordPress content is data — pull it out via its REST API or a database export, and map it into your new content model.
-3. **Rebuild pages incrementally**, and preserve URLs. This is critical for SEO — set up redirects from old permalinks to new ones so you keep your rankings.
+2. **Export the content.** WordPress content is data - pull it out via its REST API or a database export, and map it into your new content model.
+3. **Rebuild pages incrementally**, and preserve URLs. This is critical for SEO - set up redirects from old permalinks to new ones so you keep your rankings.
 4. **Run both in parallel** behind the scenes, cut over a section at a time, and only decommission WordPress once the new site is proven.
 5. **Keep an editing story.** If editors need it, wire up a headless CMS or an admin so content changes don't require a deploy.
 
 ## What you gain
 
-Done well, the payoff is concrete: faster pages, a smaller attack surface, code you can test and review, and features that used to fight the CMS now feeling natural. You trade a familiar admin for engineering leverage — and for the right project, that trade is very much worth making.
+Done well, the payoff is concrete: faster pages, a smaller attack surface, code you can test and review, and features that used to fight the CMS now feeling natural. You trade a familiar admin for engineering leverage - and for the right project, that trade is very much worth making.
 
 ## The honest caveat
 
-Migrations have real cost and real risk, mostly around SEO and content parity. Preserve URLs, redirect everything, and verify search visibility after cutover. Rushed migrations that drop old links are how sites lose traffic — so treat the redirect map as a first-class deliverable, not an afterthought.
+Migrations have real cost and real risk, mostly around SEO and content parity. Preserve URLs, redirect everything, and verify search visibility after cutover. Rushed migrations that drop old links are how sites lose traffic - so treat the redirect map as a first-class deliverable, not an afterthought.
 
-*Thinking about moving off WordPress? [Let's talk](/#contact) — I've done this migration and can help you do it without losing what works.*
+*Thinking about moving off WordPress? [Let's talk](/#contact) - I've done this migration and can help you do it without losing what works.*

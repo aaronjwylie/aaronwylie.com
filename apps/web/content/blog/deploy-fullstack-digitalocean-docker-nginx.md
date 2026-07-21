@@ -2,10 +2,10 @@ When I put a new full-stack app online, I want three things: reproducible builds
 
 ## The pieces
 
-- **A Droplet** — a plain Ubuntu VM. Nothing special; 1 GB of RAM is enough for a small Node app plus Postgres if you add swap.
-- **Docker Compose** — the web app, the API, and the database as three services on one private network.
-- **nginx** — a reverse proxy terminating TLS and routing `/` to the web app and `/api` to the API.
-- **Let's Encrypt** — free, auto-renewing certificates.
+- **A Droplet** - a plain Ubuntu VM. Nothing special; 1 GB of RAM is enough for a small Node app plus Postgres if you add swap.
+- **Docker Compose** - the web app, the API, and the database as three services on one private network.
+- **nginx** - a reverse proxy terminating TLS and routing `/` to the web app and `/api` to the API.
+- **Let's Encrypt** - free, auto-renewing certificates.
 
 ## Bind everything to localhost
 
@@ -44,7 +44,7 @@ It provisions the certificate, rewrites your nginx config to add the 443 server 
 
 ## Wait for the database
 
-Containers start in parallel, so the API often boots before Postgres is accepting connections — and DNS for the `db` service name can even lag by a second. Rather than crash-looping, retry with backoff before running migrations:
+Containers start in parallel, so the API often boots before Postgres is accepting connections - and DNS for the `db` service name can even lag by a second. Rather than crash-looping, retry with backoff before running migrations:
 
     for (let i = 1; i <= 30; i++) {
       try { await sql`select 1`; break; }
@@ -63,6 +63,6 @@ The images rebuild, migrations run, the containers swap in, and nginx keeps serv
 
 ## Why not a managed platform?
 
-Managed platforms are great and I use them too. But a Droplet you configure yourself is cheaper, has no cold starts, and — importantly for a portfolio — *demonstrates* that you understand the whole path from a container to a public HTTPS URL. That understanding pays off the first time something breaks in production.
+Managed platforms are great and I use them too. But a Droplet you configure yourself is cheaper, has no cold starts, and - importantly for a portfolio - *demonstrates* that you understand the whole path from a container to a public HTTPS URL. That understanding pays off the first time something breaks in production.
 
-*Building something that needs to go live? [Get in touch](/#contact) — this is the kind of end-to-end work I do every week.*
+*Building something that needs to go live? [Get in touch](/#contact) - this is the kind of end-to-end work I do every week.*

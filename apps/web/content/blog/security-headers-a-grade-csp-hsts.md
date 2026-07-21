@@ -4,16 +4,16 @@ I built a tool that grades any URL's security headers, then pointed it at my own
 
 Six headers do most of the work. Here's what each one buys you.
 
-- **Strict-Transport-Security (HSTS)** — tells browsers to only ever reach you over HTTPS, defeating downgrade and cookie-stealing attacks. `max-age=31536000; includeSubDomains`.
-- **Content-Security-Policy (CSP)** — the big one. Controls where scripts, styles, images, and frames may load from. Your main defense against cross-site scripting (XSS).
-- **X-Content-Type-Options: nosniff** — stops the browser from "guessing" a response's type and, say, executing an image as a script.
-- **X-Frame-Options: SAMEORIGIN** — prevents your pages being embedded in a hostile iframe (clickjacking).
-- **Referrer-Policy: strict-origin-when-cross-origin** — stops leaking full URLs (which may contain tokens) to third parties.
-- **Permissions-Policy** — switches off browser features you don't use, like `camera=(), microphone=(), geolocation=()`.
+- **Strict-Transport-Security (HSTS)** - tells browsers to only ever reach you over HTTPS, defeating downgrade and cookie-stealing attacks. `max-age=31536000; includeSubDomains`.
+- **Content-Security-Policy (CSP)** - the big one. Controls where scripts, styles, images, and frames may load from. Your main defense against cross-site scripting (XSS).
+- **X-Content-Type-Options: nosniff** - stops the browser from "guessing" a response's type and, say, executing an image as a script.
+- **X-Frame-Options: SAMEORIGIN** - prevents your pages being embedded in a hostile iframe (clickjacking).
+- **Referrer-Policy: strict-origin-when-cross-origin** - stops leaking full URLs (which may contain tokens) to third parties.
+- **Permissions-Policy** - switches off browser features you don't use, like `camera=(), microphone=(), geolocation=()`.
 
 ## Adding them at the edge
 
-If you terminate TLS at nginx, the cleanest place to set these is the proxy — every response gets them, regardless of the app behind it:
+If you terminate TLS at nginx, the cleanest place to set these is the proxy - every response gets them, regardless of the app behind it:
 
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
     add_header X-Content-Type-Options "nosniff" always;
@@ -21,7 +21,7 @@ If you terminate TLS at nginx, the cleanest place to set these is the proxy — 
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
     add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
 
-The `always` keyword matters — without it, nginx skips the header on error responses like 404s.
+The `always` keyword matters - without it, nginx skips the header on error responses like 404s.
 
 ## CSP without breaking everything
 
@@ -37,7 +37,7 @@ A few notes from experience:
 
 ## Verify, don't assume
 
-Once it's live, check the actual response headers — `curl -I https://yoursite.com` — or run it through a header-grading tool. My site went from F to A with the block above, and I confirmed nothing broke: pages rendered, embedded videos still played, and forms still posted.
+Once it's live, check the actual response headers - `curl -I https://yoursite.com` - or run it through a header-grading tool. My site went from F to A with the block above, and I confirmed nothing broke: pages rendered, embedded videos still played, and forms still posted.
 
 ## The takeaway
 
