@@ -161,3 +161,11 @@ export const ShieldIcon = (p: IconProps) => (
     <path d="m9.2 12 2 2 3.6-3.8" />
   </Svg>
 );
+
+// Quote marks — testimonials.
+export const QuoteIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M8 7c-2.2 0-4 1.8-4 4v6h6v-6H6c0-1.1.9-2 2-2V7Z" />
+    <path d="M18 7c-2.2 0-4 1.8-4 4v6h6v-6h-4c0-1.1.9-2 2-2V7Z" />
+  </Svg>
+);
