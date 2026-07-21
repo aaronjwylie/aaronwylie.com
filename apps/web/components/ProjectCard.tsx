@@ -1,6 +1,8 @@
 import type { SVGProps } from 'react';
+import Link from 'next/link';
 import type { Project } from '@/lib/api';
 import { apiUrl } from '@/lib/api';
+import { CASE_STUDY_SLUGS } from '@/lib/caseStudies';
 import { VideoEmbed } from './VideoEmbed';
 import { BroadcastIcon, ServerIcon, VideoIcon, ActivityIcon, LayersIcon } from './icons';
 
@@ -40,6 +42,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const press = Array.isArray(links.press) ? links.press : [];
   const videos = Array.isArray(links.videos) ? links.videos : [];
   const { gradient, Icon } = PROJECT_STYLE[project.slug] ?? DEFAULT_STYLE;
+  const hasCaseStudy = CASE_STUDY_SLUGS.has(project.slug);
 
   return (
     <article className={`card ${project.featured ? 'ring-1 ring-accent/30' : ''}`}>
@@ -84,6 +87,11 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="flex flex-wrap gap-3">
+        {hasCaseStudy && (
+          <Link href={`/projects/${project.slug}`} className="btn-primary">
+            Read case study →
+          </Link>
+        )}
         {simpleLinks.map(([key, value]) => (
           <a
             key={key}
