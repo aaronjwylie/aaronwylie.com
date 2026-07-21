@@ -5,7 +5,6 @@ import { ContactForm } from '@/components/ContactForm';
 import { ContactCallout } from '@/components/ContactCallout';
 import { ByTheNumbers } from '@/components/ByTheNumbers';
 import { BrandsBand } from '@/components/BrandsBand';
-import { About } from '@/components/About';
 import { Services } from '@/components/Services';
 import { ExperienceTimeline } from '@/components/ExperienceTimeline';
 import {
@@ -16,7 +15,6 @@ import {
   ShieldIcon,
   CodeIcon,
   QrIcon,
-  UserIcon,
   BriefcaseIcon,
 } from '@/components/icons';
 
@@ -136,19 +134,6 @@ export default async function HomePage() {
         <ContactCallout />
       </div>
 
-      {/* ---------- About ---------- */}
-      <section className="container-page py-10">
-        <p className="section-label mb-4 flex items-center gap-2">
-          <UserIcon className="h-4 w-4" /> About
-        </p>
-        <About />
-        <div className="mt-6">
-          <a href="/resume" className="btn-ghost">
-            View / download résumé ↗
-          </a>
-        </div>
-      </section>
-
       {/* ---------- Services ---------- */}
       <section id="services" className="container-page py-10 scroll-mt-20">
         <p className="section-label mb-4 flex items-center gap-2">
@@ -197,6 +182,11 @@ export default async function HomePage() {
           <BriefcaseIcon className="h-4 w-4" /> Experience
         </p>
         <ExperienceTimeline />
+        <div className="mt-8">
+          <a href="/resume" className="btn-ghost">
+            View / download résumé ↗
+          </a>
+        </div>
       </section>
 
       {/* ---------- Technologies ---------- */}
