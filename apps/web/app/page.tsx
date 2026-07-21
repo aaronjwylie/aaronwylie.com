@@ -3,7 +3,7 @@ import { getProjects, getStats, apiUrl } from '@/lib/api';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
 import { ContactCallout } from '@/components/ContactCallout';
-import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon, CodeIcon } from '@/components/icons';
+import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon, CodeIcon, QrIcon } from '@/components/icons';
 
 // Technologies used across past and current work.
 const TECH_GROUPS: { category: string; items: string[] }[] = [
@@ -186,15 +186,15 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
-          <Link href="/tools/inspector" className="card group">
-            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-sky-600">
-              <TerminalIcon className="h-6 w-6 text-white" />
+          <Link href="/tools/qr" className="card group">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600">
+              <QrIcon className="h-6 w-6 text-white" />
             </div>
             <h3 className="mb-1 text-lg font-bold text-white group-hover:text-accent">
-              Endpoint Inspector
+              QR Code Generator
             </h3>
             <p className="text-sm leading-relaxed text-slate-400">
-              Status, response time, TLS certificate and a security-header grade for any URL.
+              Turn any URL or text into a crisp QR code, generated server-side. Download as SVG or PNG.
             </p>
           </Link>
           <Link href="/tools/password-check" className="card group">
