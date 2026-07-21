@@ -1,5 +1,6 @@
 import type { Project } from '@/lib/api';
 import { apiUrl } from '@/lib/api';
+import { VideoEmbed } from './VideoEmbed';
 
 function linkHref(project: Project, key: string, value: unknown): string {
   const str = String(value);
@@ -25,6 +26,7 @@ export function ProjectCard({ project }: { project: Project }) {
     ([k, v]) => k !== 'press' && typeof v === 'string',
   );
   const press = Array.isArray(links.press) ? links.press : [];
+  const videos = Array.isArray(links.videos) ? links.videos : [];
 
   return (
     <article className={`card ${project.featured ? 'ring-1 ring-accent/30' : ''}`}>
@@ -42,6 +44,14 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <p className="mb-3 font-medium text-slate-200">{project.tagline}</p>
       <p className="mb-4 text-sm leading-relaxed text-slate-400">{project.description}</p>
+
+      {videos.length > 0 && (
+        <div className="mb-4 grid gap-3 sm:grid-cols-2">
+          {videos.map((v) => (
+            <VideoEmbed key={v.vimeoId} vimeoId={v.vimeoId} title={v.title} />
+          ))}
+        </div>
+      )}
 
       <div className="mb-4 flex flex-wrap gap-2">
         {project.techStack.map((t) => (

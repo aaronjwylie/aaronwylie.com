@@ -30,6 +30,7 @@ export interface Project {
     health?: string;
     metrics?: string;
     press?: { outlet: string; url: string }[];
+    videos?: { title: string; vimeoId: string }[];
   } & Record<string, unknown>;
   featured: boolean;
   sortOrder: number;

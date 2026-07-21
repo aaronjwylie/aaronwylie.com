@@ -6,30 +6,57 @@ import { waitForDb } from './wait-for-db.js';
 /**
  * Seed the portfolio's project catalogue. Idempotent: re-running upserts by slug,
  * so it is safe to run on every deploy.
- *
- * 👉 EDIT ME: replace the APPIX links/press below with your real URLs.
  */
 const seedProjects: NewProject[] = [
   {
     slug: 'appix',
     title: 'APPIX',
-    tagline: 'A shipped mobile app — live on the App Store & Google Play, covered in the press.',
+    tagline:
+      'A patented live-experience broadcast platform — shipped to the App Store & Google Play, ' +
+      'seen by 1M+ people at events for UFC, Disney/Pixar, Red Bull and more.',
     description:
-      'APPIX is a production mobile application I designed and shipped end to end. ' +
-      'It is available to download on both major app stores and has been featured in ' +
-      'the tech press. Replace this paragraph with a crisp description of what APPIX ' +
-      'does, the scale it operates at (users, requests/day), and the backend systems ' +
-      'you built to support it — APIs, data model, auth, notifications, infrastructure.',
-    techStack: ['TypeScript', 'Node.js', 'REST API', 'Postgres', 'Mobile', 'CI/CD'],
-    role: 'Founder / Backend & Full-Stack Engineer',
+      'APPIX is a production platform I co-founded and helped build that broadcasts real-time, ' +
+      'synchronized content to audiences’ smartphones during live events — turning a crowd’s ' +
+      'phones into a coordinated second screen (synced light shows, live stats, exclusive content). ' +
+      'The patented technology delivers to devices even without cellular data or WiFi, so it keeps ' +
+      'working in congested venues or during outages. Since coming out of stealth in 2019 it has ' +
+      'reached over a million people, powering experiences for Fortune 500 clients including the UFC ' +
+      '(a custom “UFC In Action” app), Disney/Pixar’s Coco live event, Red Bull, Shaw, and a ' +
+      '55-date New Kids on the Block tour. Rated 4.0★ on the App Store.',
+    techStack: [
+      'Mobile',
+      'Real-time Broadcast',
+      'Distributed Systems',
+      'REST APIs',
+      'Cloud Infrastructure',
+      'Live Events',
+    ],
+    role: 'Co-Founder & Engineer',
     links: {
-      // 👉 Replace these placeholders with your real links.
-      appStore: 'https://apps.apple.com/app/appix',
-      playStore: 'https://play.google.com/store/apps/details?id=com.appix',
-      website: 'https://appix.example.com',
+      website: 'https://appixtech.com/',
+      appStore: 'https://apps.apple.com/us/app/appix/id1058564165',
+      playStore: 'https://play.google.com/store/apps/details?id=com.appix.appix&hl=en',
+      videos: [
+        { title: 'APPIX Anywhere', vimeoId: '521999610' },
+        { title: 'APPIX at LA Phil 100 — Hollywood Bowl', vimeoId: '375579793' },
+      ],
       press: [
-        { outlet: 'TechCrunch (example)', url: 'https://example.com/appix-press-1' },
-        { outlet: 'Local News (example)', url: 'https://example.com/appix-press-2' },
+        {
+          outlet: 'AiThority — official launch',
+          url: 'https://aithority.com/news/appix-officially-launches-incredible-broadcast-technology-that-creates-immersive-experiences-and-audience-engagement-at-concerts-and-events/',
+        },
+        {
+          outlet: 'App Developer Magazine',
+          url: 'https://appdevelopermagazine.com/business/appix/',
+        },
+        {
+          outlet: 'Nerds and Beyond — Disney/Pixar “Coco”',
+          url: 'https://www.nerdsandbeyond.com/2019/12/14/appix-teamed-up-with-disney-pixar-for-coco-live-event/',
+        },
+        {
+          outlet: 'NAI500 — special coverage',
+          url: 'https://nai500.com/blog/2020/11/whats-the-future-of-advertising-technology-nai500-special-coverage-on-appix-technologies/',
+        },
       ],
     },
     featured: true,
