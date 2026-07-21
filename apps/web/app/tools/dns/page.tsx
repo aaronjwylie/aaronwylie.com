@@ -9,8 +9,10 @@ interface DnsResult {
   registration: {
     registrar: string | null;
     created: string | null;
+    updated: string | null;
     expires: string | null;
     status: string[];
+    dnssec: boolean | null;
   } | null;
 }
 
@@ -73,10 +75,10 @@ export default function DnsPage() {
 
       {result && (
         <div className="space-y-6">
-          {result.registration && (
+          {result.registration ? (
             <div className="card">
-              <p className="section-label mb-3">Registration</p>
-              <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+              <p className="section-label mb-3">Registration (WHOIS / RDAP)</p>
+              <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm sm:grid-cols-3">
                 <div>
                   <dt className="text-slate-500">Registrar</dt>
                   <dd className="text-slate-200">{result.registration.registrar ?? '—'}</dd>
@@ -90,12 +92,37 @@ export default function DnsPage() {
                   <dd className="text-slate-200">{fmt(result.registration.expires)}</dd>
                 </div>
                 <div>
-                  <dt className="text-slate-500">Status</dt>
-                  <dd className="truncate text-slate-200" title={result.registration.status.join(', ')}>
-                    {result.registration.status[0] ?? '—'}
+                  <dt className="text-slate-500">Last updated</dt>
+                  <dd className="text-slate-200">{fmt(result.registration.updated)}</dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500">DNSSEC</dt>
+                  <dd className={result.registration.dnssec ? 'text-emerald-400' : 'text-slate-300'}>
+                    {result.registration.dnssec === null
+                      ? '—'
+                      : result.registration.dnssec
+                        ? 'Signed'
+                        : 'Unsigned'}
                   </dd>
                 </div>
               </dl>
+              {result.registration.status.length > 0 && (
+                <div className="mt-4">
+                  <dt className="mb-1.5 text-sm text-slate-500">Status</dt>
+                  <div className="flex flex-wrap gap-2">
+                    {result.registration.status.map((s) => (
+                      <span key={s} className="chip">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="card text-sm text-slate-400">
+              Registration data isn&apos;t available for this domain (the TLD may not publish RDAP, or
+              it timed out).
             </div>
           )}
 
