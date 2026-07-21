@@ -1,6 +1,6 @@
 const STATS: { value: string; label: string }[] = [
   { value: '20+', label: 'Years building software' },
-  { value: '2', label: 'Companies founded' },
+  { value: '4', label: 'Companies founded' },
   { value: '1M+', label: 'People reached (APPIX)' },
   { value: '15+', label: 'World-class brands served' },
 ];
