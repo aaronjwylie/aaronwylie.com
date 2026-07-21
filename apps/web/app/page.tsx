@@ -16,6 +16,7 @@ const TECH_GROUPS: { category: string; items: string[] }[] = [
     category: 'Platforms & more',
     items: [
       'WordPress',
+      'Joomla',
       'WebRTC',
       'BLE',
       'Firmware',
