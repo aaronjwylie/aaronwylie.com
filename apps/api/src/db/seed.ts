@@ -1,3 +1,4 @@
+import { notInArray } from 'drizzle-orm';
 import { db, sql } from './client.js';
 import { projects } from './schema.js';
 import type { NewProject } from './schema.js';
@@ -86,18 +87,25 @@ const seedProjects: NewProject[] = [
     sortOrder: 90,
   },
   {
-    slug: 'add-your-next-project',
-    title: 'Your Next Project',
-    tagline: 'A placeholder - clone this row in seed.ts to add another showcase project.',
+    slug: 'dynatrace-observability-lab',
+    title: 'Dynatrace Observability Lab',
+    tagline:
+      'A hands-on SRE lab: full-stack observability on Kubernetes with Dynatrace - ' +
+      'distributed tracing, problem detection and incident investigations.',
     description:
-      'Add a standalone backend showcase here: an auth service, a rate-limited public API, ' +
-      'a real-time system, a data pipeline - anything that demonstrates depth. Include the ' +
-      'problem, your design decisions, and links to the code and a live demo.',
-    techStack: ['TypeScript', 'Node.js'],
-    role: 'Backend Engineer',
-    links: { github: 'https://github.com/yourname/project' },
+      'A self-directed lab where I stood up a production-style stack (Node.js/Express services ' +
+      'and PostgreSQL) on a Kubernetes cluster (k3s) and instrumented it end to end with ' +
+      'Dynatrace - deploying the Dynatrace Operator and OneAgent alongside an OpenTelemetry ' +
+      'Collector for automatic APM, distributed tracing, metrics and logs. I then generated ' +
+      'realistic incidents (memory leaks, database failures, request timeouts, CPU saturation) ' +
+      'and worked the investigation flows end to end: service dependency mapping, latency ' +
+      'analysis, problem detection and root-cause analysis. It documents how I approach ' +
+      'production observability and SRE incident response.',
+    techStack: ['Dynatrace', 'Kubernetes (k3s)', 'Docker', 'OpenTelemetry', 'Node.js', 'PostgreSQL', 'SRE'],
+    role: 'Self-directed lab',
+    links: { github: 'https://github.com/aaronjwylie/dynatrace-observability-lab' },
     featured: false,
-    sortOrder: 10,
+    sortOrder: 80,
   },
 ];
 
@@ -124,6 +132,13 @@ async function main() {
       });
     console.log(`  ✓ ${p.slug}`);
   }
+  // Seed is the source of truth: remove any project no longer listed above.
+  const keep = seedProjects.map((p) => p.slug!);
+  const removed = await db
+    .delete(projects)
+    .where(notInArray(projects.slug, keep))
+    .returning({ slug: projects.slug });
+  if (removed.length) console.log(`  ✗ pruned ${removed.map((r) => r.slug).join(', ')}`);
   console.log('✔ seed complete');
   await sql.end();
 }
