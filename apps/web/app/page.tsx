@@ -13,6 +13,7 @@ const TECH_GROUPS: { category: string; items: string[] }[] = [
   { category: 'Databases', items: ['PostgreSQL', 'MySQL', 'Redis'] },
   { category: 'DevOps & Cloud', items: ['Docker', 'Kubernetes', 'nginx', 'Linux', 'CI/CD', 'AWS', 'DigitalOcean', 'Hetzner'] },
   { category: 'Platforms & more', items: ['WordPress', 'WebRTC', 'BLE'] },
+  { category: 'Tools & IDEs', items: ['VS Code', 'PyCharm', 'Git'] },
 ];
 
 // Render on every request so live visitor stats and project edits are always
