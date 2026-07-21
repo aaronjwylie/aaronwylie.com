@@ -16,6 +16,7 @@ import { healthRoutes } from './routes/health.js';
 import { projectRoutes } from './routes/projects.js';
 import { contactRoutes } from './routes/contact.js';
 import { statsRoutes } from './routes/stats.js';
+import { inspectRoutes } from './routes/inspect.js';
 
 /**
  * Build a fully-configured Fastify instance. Kept separate from `index.ts` so
@@ -68,6 +69,7 @@ export async function buildApp(): Promise<FastifyInstance> {
       },
       tags: [
         { name: 'projects', description: 'Portfolio projects' },
+        { name: 'tools', description: 'Useful tools for visitors' },
         { name: 'contact', description: 'Contact form' },
         { name: 'stats', description: 'Live visitor statistics' },
         { name: 'observability', description: 'Health & metrics' },
@@ -85,6 +87,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(projectRoutes);
   await app.register(contactRoutes);
   await app.register(statsRoutes);
+  await app.register(inspectRoutes);
 
   app.get('/', { schema: { hide: true } }, async () => ({
     name: 'portfolio-api',

@@ -15,6 +15,9 @@ export function Nav() {
           <Link href="/architecture" className="text-slate-300 hover:text-white">
             Architecture
           </Link>
+          <Link href="/tools/inspector" className="text-slate-300 hover:text-white">
+            Tools
+          </Link>
           <a
             href={`${apiUrl}/docs`}
             target="_blank"
