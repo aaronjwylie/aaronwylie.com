@@ -17,6 +17,14 @@ const EnvSchema = z.object({
   LOG_LEVEL: z
     .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'])
     .default('info'),
+  // Email (Resend). Contact-form notifications are sent only when RESEND_API_KEY
+  // is set — the form still works and persists messages without it.
+  RESEND_API_KEY: z.string().default(''),
+  CONTACT_TO_EMAIL: z.string().email().default('aaronwyliework@gmail.com'),
+  // "Display Name <address>". onboarding@resend.dev works with no domain setup
+  // (test mode only sends to the Resend account owner); switch to
+  // contact@aaronwylie.com once the domain is verified in Resend.
+  CONTACT_FROM_EMAIL: z.string().default('Portfolio Contact <onboarding@resend.dev>'),
 });
 
 const parsed = EnvSchema.safeParse(process.env);

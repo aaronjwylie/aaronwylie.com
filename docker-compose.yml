@@ -31,6 +31,9 @@ services:
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
       ADMIN_TOKEN: ${ADMIN_TOKEN:-change-me-in-production}
       LOG_LEVEL: ${LOG_LEVEL:-info}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      CONTACT_TO_EMAIL: ${CONTACT_TO_EMAIL:-aaronwyliework@gmail.com}
+      CONTACT_FROM_EMAIL: "${CONTACT_FROM_EMAIL:-Portfolio Contact <onboarding@resend.dev>}"
     # Apply migrations + seed, then start the server.
     command: sh -c "node dist/db/migrate.js && node dist/db/seed.js && node dist/index.js"
     ports:

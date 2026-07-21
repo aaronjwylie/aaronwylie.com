@@ -5,6 +5,7 @@ import { desc } from 'drizzle-orm';
 import { db } from '../db/client.js';
 import { contactMessages } from '../db/schema.js';
 import { env } from '../env.js';
+import { sendContactNotification } from '../lib/mail.js';
 
 export async function contactRoutes(fastify: FastifyInstance) {
   const app = fastify.withTypeProvider<ZodTypeProvider>();
@@ -47,6 +48,11 @@ export async function contactRoutes(fastify: FastifyInstance) {
         })
         .returning({ id: contactMessages.id });
       request.log.info({ contactId: row!.id }, 'contact message received');
+      // Fire-and-forget email notification; the message is already persisted.
+      void sendContactNotification(
+        { id: row!.id, name, email, message },
+        request.log,
+      );
       return reply.code(201).send({ ok: true as const, id: row!.id });
     },
   );
