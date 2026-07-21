@@ -4,6 +4,7 @@ import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
 import { ContactCallout } from '@/components/ContactCallout';
 import { ByTheNumbers } from '@/components/ByTheNumbers';
+import { BrandsBand } from '@/components/BrandsBand';
 import { About } from '@/components/About';
 import { Services } from '@/components/Services';
 import { ExperienceTimeline } from '@/components/ExperienceTimeline';
@@ -123,6 +124,11 @@ export default async function HomePage() {
       {/* ---------- By the numbers ---------- */}
       <div className="container-page pb-2 pt-2">
         <ByTheNumbers />
+      </div>
+
+      {/* ---------- Brands reached through APPIX ---------- */}
+      <div className="container-page py-6">
+        <BrandsBand />
       </div>
 
       {/* ---------- Contact callout ---------- */}
