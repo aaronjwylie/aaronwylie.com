@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { SVGProps } from 'react';
-import { TerminalIcon, ShieldIcon, ActivityIcon, ZapIcon } from '@/components/icons';
+import { TerminalIcon, ShieldIcon, ActivityIcon, ZapIcon, LinkIcon } from '@/components/icons';
 
 export const metadata: Metadata = {
   title: 'Developer Tools',
@@ -47,6 +47,13 @@ const TOOLS: Tool[] = [
     desc: 'Get a unique URL and watch incoming HTTP requests land in real time over a WebSocket - method, headers, query and body.',
     Icon: ZapIcon,
     gradient: 'from-fuchsia-500 to-purple-600',
+  },
+  {
+    href: '/tools/shortener',
+    title: 'URL Shortener',
+    desc: 'Shorten a link and track clicks - total, a 7-day trend and top referrers, computed in SQL. Links show a safe destination preview before redirecting.',
+    Icon: LinkIcon,
+    gradient: 'from-rose-500 to-pink-600',
   },
 ];
 

@@ -90,6 +90,14 @@ export const ZapIcon = (p: IconProps) => (
   </Svg>
 );
 
+// Chain link — URL shortener.
+export const LinkIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M9.5 13.5a3.5 3.5 0 0 0 5 0l2.5-2.5a3.5 3.5 0 0 0-5-5l-1 1" />
+    <path d="M14.5 10.5a3.5 3.5 0 0 0-5 0L7 13a3.5 3.5 0 0 0 5 5l1-1" />
+  </Svg>
+);
+
 // Shield — security / password.
 export const ShieldIcon = (p: IconProps) => (
   <Svg {...p}>

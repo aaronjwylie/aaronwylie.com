@@ -108,6 +108,30 @@ export const monitorChecks = pgTable(
 export type Monitor = typeof monitors.$inferSelect;
 export type MonitorCheck = typeof monitorChecks.$inferSelect;
 
+/** Short links + per-click analytics (URL shortener tool). */
+export const shortLinks = pgTable('short_links', {
+  id: serial('id').primaryKey(),
+  code: varchar('code', { length: 16 }).notNull().unique(),
+  url: text('url').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const linkClicks = pgTable(
+  'link_clicks',
+  {
+    id: serial('id').primaryKey(),
+    linkId: integer('link_id')
+      .notNull()
+      .references(() => shortLinks.id, { onDelete: 'cascade' }),
+    at: timestamp('at', { withTimezone: true }).notNull().defaultNow(),
+    day: varchar('day', { length: 10 }).notNull(),
+    referrer: varchar('referrer', { length: 512 }),
+  },
+  (t) => ({ linkIdx: index('link_clicks_link_idx').on(t.linkId) }),
+);
+
+export type ShortLink = typeof shortLinks.$inferSelect;
+
 export type Project = typeof projects.$inferSelect;
 export type NewProject = typeof projects.$inferInsert;
 export type ContactMessage = typeof contactMessages.$inferSelect;
