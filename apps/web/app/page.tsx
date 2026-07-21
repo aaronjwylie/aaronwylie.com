@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getProjects, getStats, apiUrl } from '@/lib/api';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
-import { StarIcon, LayersIcon, MailIcon } from '@/components/icons';
+import { StarIcon, LayersIcon, MailIcon, TerminalIcon } from '@/components/icons';
 
 // Render on every request so live visitor stats and project edits are always
 // current. For a low-traffic portfolio this is cheap; switch to `revalidate`
@@ -19,8 +19,12 @@ export default async function HomePage() {
       {/* ---------- Hero ---------- */}
       <section className="relative overflow-hidden pt-20 pb-16">
         {/* Generative glow backdrop */}
-        <div className="glow-blob left-[-8%] top-0 h-72 w-72 bg-accent-cyan/25" aria-hidden="true" />
-        <div className="glow-blob right-[-6%] top-20 h-96 w-96 bg-accent-violet/25" aria-hidden="true" />
+        <div className="glow-blob animate-drift left-[-8%] top-0 h-72 w-72 bg-accent-cyan/25" aria-hidden="true" />
+        <div
+          className="glow-blob animate-drift right-[-6%] top-20 h-96 w-96 bg-accent-violet/25"
+          style={{ animationDelay: '-8s' }}
+          aria-hidden="true"
+        />
         <div className="container-page">
           <div className="flex flex-col-reverse items-start gap-10 md:flex-row md:items-center md:justify-between">
             <div className="flex-1">
@@ -100,6 +104,30 @@ export default async function HomePage() {
             <code className="font-mono text-accent">npm run dev</code>.
           </p>
         )}
+      </section>
+
+      {/* ---------- Tools ---------- */}
+      <section className="container-page py-10">
+        <p className="section-label mb-4 flex items-center gap-2">
+          <TerminalIcon className="h-4 w-4" /> Tools you can use
+        </p>
+        <div className="card flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-accent-cyan to-accent-violet">
+                <TerminalIcon className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Endpoint Inspector</h3>
+            </div>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-400">
+              Check any URL&apos;s HTTP status, response time, TLS certificate and security-header
+              grade - a free developer tool, served by my own API and safe against SSRF.
+            </p>
+          </div>
+          <Link href="/tools/inspector" className="btn-primary shrink-0">
+            Try the Inspector →
+          </Link>
+        </div>
       </section>
 
       {/* ---------- Contact ---------- */}

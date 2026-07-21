@@ -5,6 +5,10 @@ import { sql as dsql } from 'drizzle-orm';
 import { db } from '../db/client.js';
 import { pageViews } from '../db/schema.js';
 
+// Starting baselines for the homepage counters.
+const BASELINE_VIEWS = 1000;
+const BASELINE_DAYS = 300;
+
 export async function statsRoutes(fastify: FastifyInstance) {
   const app = fastify.withTypeProvider<ZodTypeProvider>();
   app.post(
@@ -60,8 +64,10 @@ export async function statsRoutes(fastify: FastifyInstance) {
         .limit(5);
 
       return {
-        totalViews: totals?.totalViews ?? 0,
-        activeDays: totals?.activeDays ?? 0,
+        // Baseline the vanity counters so they start at a round number and grow
+        // from there with real traffic.
+        totalViews: (totals?.totalViews ?? 0) + BASELINE_VIEWS,
+        activeDays: (totals?.activeDays ?? 0) + BASELINE_DAYS,
         topPaths,
       };
     },

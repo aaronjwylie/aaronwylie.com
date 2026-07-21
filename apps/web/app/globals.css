@@ -72,3 +72,22 @@ body::before {
     @apply pointer-events-none absolute -z-10 rounded-full blur-3xl;
   }
 }
+
+/* Slow drift to give the aurora glows a bit of life. */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, -18px, 0) scale(1.08);
+  }
+}
+.animate-drift {
+  animation: drift 16s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift {
+    animation: none;
+  }
+}
