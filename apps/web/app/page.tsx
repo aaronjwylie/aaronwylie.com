@@ -124,11 +124,6 @@ export default async function HomePage() {
         <ByTheNumbers />
       </div>
 
-      {/* ---------- Brands reached through APPIX ---------- */}
-      <div className="container-page py-6">
-        <BrandsBand />
-      </div>
-
       {/* ---------- Contact callout ---------- */}
       <div className="container-page pb-4 pt-4">
         <ContactCallout />
@@ -155,6 +150,11 @@ export default async function HomePage() {
           <ProjectCard project={flagship} />
         </section>
       )}
+
+      {/* ---------- Brands reached through APPIX ---------- */}
+      <div className="container-page py-4">
+        <BrandsBand />
+      </div>
 
       {/* ---------- Other projects ---------- */}
       {/* Anchor lives on the Flagship section above; fall back to here only if
