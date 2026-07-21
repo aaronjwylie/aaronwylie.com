@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     template: '%s · Aaron Wylie',
   },
   description:
-    'Aaron Wylie is a Vancouver-based front-end, back-end and full-stack developer. ' +
-    'Builder of APPIX. This portfolio is powered by its own documented API.',
+    'Aaron Wylie is a Vancouver-based front-end, back-end and full-stack developer, working ' +
+    'remotely with clients worldwide. Builder of APPIX. This portfolio is powered by its own documented API.',
   keywords: [
     'Aaron Wylie',
     'Vancouver developer',
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
     siteName: 'Aaron Wylie',
     title: 'Aaron Wylie - Full-Stack Developer in Vancouver, Canada',
     description:
-      'Vancouver-based front-end, back-end and full-stack developer. Builder of APPIX. ' +
-      'Portfolio powered by its own API.',
+      'Vancouver-based front-end, back-end and full-stack developer, working remotely with ' +
+      'clients worldwide. Builder of APPIX. Portfolio powered by its own API.',
   },
   twitter: {
     card: 'summary_large_image',
@@ -72,7 +72,8 @@ const jsonLd = {
       url: SITE_URL,
       jobTitle: 'Full-Stack Developer',
       description:
-        'Front-end, back-end and full-stack developer based in Vancouver, Canada. Co-founder of APPIX.',
+        'Front-end, back-end and full-stack developer based in Vancouver, Canada, working ' +
+        'remotely with clients worldwide. Co-founder of APPIX.',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Vancouver',
