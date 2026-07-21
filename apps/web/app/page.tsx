@@ -27,6 +27,7 @@ const TECH_GROUPS: { category: string; items: string[] }[] = [
       'VS Code',
       'PyCharm',
       'Figma',
+      'Photoshop',
     ],
   },
 ];
