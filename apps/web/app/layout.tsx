@@ -8,12 +8,12 @@ import { ViewBeacon } from '@/components/ViewBeacon';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'Aaron Wylie - Backend Engineer',
+  title: 'Aaron Wylie - Full-Stack Developer',
   description:
-    'Backend & full-stack engineer. Builder of APPIX. This portfolio is powered by its own documented API.',
+    'Front-end, back-end & full-stack developer. Builder of APPIX. This portfolio is powered by its own documented API.',
   openGraph: {
-    title: 'Aaron Wylie - Backend Engineer',
-    description: 'Backend engineer. Builder of APPIX. Portfolio powered by its own API.',
+    title: 'Aaron Wylie - Full-Stack Developer',
+    description: 'Front-end, back-end & full-stack developer. Builder of APPIX. Portfolio powered by its own API.',
     type: 'website',
   },
 };
