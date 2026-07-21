@@ -42,6 +42,7 @@ const TECH_GROUPS: { category: string; items: string[] }[] = [
       'PyCharm',
       'Figma',
       'Photoshop',
+      'DaVinci Resolve',
     ],
   },
 ];
