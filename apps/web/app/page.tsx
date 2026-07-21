@@ -3,7 +3,17 @@ import { getProjects, getStats, apiUrl } from '@/lib/api';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
 import { ContactCallout } from '@/components/ContactCallout';
-import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon } from '@/components/icons';
+import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon, CodeIcon } from '@/components/icons';
+
+// Technologies used across past and current work.
+const TECH_GROUPS: { category: string; items: string[] }[] = [
+  { category: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'PHP'] },
+  { category: 'Frontend', items: ['React', 'React Native', 'Next.js', 'Tailwind CSS'] },
+  { category: 'Backend', items: ['Node.js', 'Fastify', 'REST APIs', 'WebSockets'] },
+  { category: 'Databases', items: ['PostgreSQL', 'MySQL', 'Redis'] },
+  { category: 'DevOps & Cloud', items: ['Docker', 'Kubernetes', 'nginx', 'Linux', 'CI/CD', 'DigitalOcean'] },
+  { category: 'Platforms & more', items: ['WordPress', 'WebRTC', 'BLE'] },
+];
 
 // Render on every request so live visitor stats and project edits are always
 // current. For a low-traffic portfolio this is cheap; switch to `revalidate`
@@ -110,6 +120,33 @@ export default async function HomePage() {
             <code className="font-mono text-accent">npm run dev</code>.
           </p>
         )}
+      </section>
+
+      {/* ---------- Technologies ---------- */}
+      <section className="container-page py-10">
+        <p className="section-label mb-4 flex items-center gap-2">
+          <CodeIcon className="h-4 w-4" /> Technologies
+        </p>
+        <p className="mb-6 max-w-2xl text-slate-400">
+          A mix of what I build with today and what I&apos;ve shipped with over the years - across
+          the front end, the back end, and the infrastructure underneath.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {TECH_GROUPS.map((g) => (
+            <div key={g.category} className="card">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-accent-cyan">
+                {g.category}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {g.items.map((t) => (
+                  <span key={t} className="chip">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ---------- Tools ---------- */}
