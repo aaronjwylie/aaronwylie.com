@@ -79,7 +79,7 @@ export function Testimonials() {
             }`}
           >
             <QuoteIcon className="mb-3 h-7 w-7 text-accent/40" />
-            <blockquote className="flex-1 text-lg leading-relaxed text-slate-200">
+            <blockquote className="flex-1 text-sm leading-relaxed text-slate-200 sm:text-base">
               {t.quote}
             </blockquote>
             <figcaption className="mt-4 border-t border-white/10 pt-4">
