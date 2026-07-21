@@ -8,9 +8,11 @@ RUN npm ci --workspace apps/web --include-workspace-root
 
 COPY apps/web apps/web
 
-# The API URL is inlined into client bundles at build time.
+# The API URL + GA id are inlined into client bundles at build time.
 ARG NEXT_PUBLIC_API_URL=http://localhost:4000
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_GA_ID=
+ENV NEXT_PUBLIC_GA_ID=$NEXT_PUBLIC_GA_ID
 RUN npm run build --workspace apps/web
 
 # ---------- runtime stage ----------

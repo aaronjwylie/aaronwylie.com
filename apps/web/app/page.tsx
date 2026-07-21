@@ -29,9 +29,9 @@ export default async function HomePage() {
                 and this site runs on it.
               </h1>
               <p className="mt-6 max-w-2xl text-lg text-slate-400">
-                I&apos;m a full-stack developer - comfortable across the front end, the back end, and
-                the infrastructure in between - with a soft spot for clean APIs and reliable data
-                models. The projects, stats and contact form below are all served by an API I built
+                I&apos;m a Vancouver-based full-stack developer - comfortable across the front end,
+                the back end, and the infrastructure in between - with a soft spot for clean APIs
+                and reliable data models. The projects, stats and contact form below are all served by an API I built
                 in TypeScript &amp; Postgres - you can{' '}
                 <a href={`${apiUrl}/docs`} target="_blank" rel="noreferrer" className="text-accent hover:underline">
                   browse its live docs
