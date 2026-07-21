@@ -91,3 +91,15 @@ body::before {
     animation: none;
   }
 }
+
+/* Print: drop the site chrome so the résumé sheet prints clean. */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+  }
+}

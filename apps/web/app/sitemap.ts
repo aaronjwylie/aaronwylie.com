@@ -5,6 +5,7 @@ const SITE_URL = 'https://aaronwylie.com';
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     '',
+    '/resume',
     '/architecture',
     '/tools',
     '/tools/inspector',

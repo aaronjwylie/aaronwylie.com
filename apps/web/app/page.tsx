@@ -3,7 +3,21 @@ import { getProjects, getStats, apiUrl } from '@/lib/api';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
 import { ContactCallout } from '@/components/ContactCallout';
-import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon, CodeIcon, QrIcon } from '@/components/icons';
+import { ByTheNumbers } from '@/components/ByTheNumbers';
+import { About } from '@/components/About';
+import { Services } from '@/components/Services';
+import { ExperienceTimeline } from '@/components/ExperienceTimeline';
+import {
+  StarIcon,
+  LayersIcon,
+  MailIcon,
+  TerminalIcon,
+  ShieldIcon,
+  CodeIcon,
+  QrIcon,
+  UserIcon,
+  BriefcaseIcon,
+} from '@/components/icons';
 
 // Technologies used across past and current work.
 const TECH_GROUPS: { category: string; items: string[] }[] = [
@@ -106,10 +120,40 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ---------- By the numbers ---------- */}
+      <div className="container-page pb-2 pt-2">
+        <ByTheNumbers />
+      </div>
+
       {/* ---------- Contact callout ---------- */}
-      <div className="container-page pb-4 pt-2">
+      <div className="container-page pb-4 pt-4">
         <ContactCallout />
       </div>
+
+      {/* ---------- About ---------- */}
+      <section className="container-page py-10">
+        <p className="section-label mb-4 flex items-center gap-2">
+          <UserIcon className="h-4 w-4" /> About
+        </p>
+        <About />
+        <div className="mt-6">
+          <a href="/resume" className="btn-ghost">
+            View / download résumé ↗
+          </a>
+        </div>
+      </section>
+
+      {/* ---------- Services ---------- */}
+      <section id="services" className="container-page py-10 scroll-mt-20">
+        <p className="section-label mb-4 flex items-center gap-2">
+          <BriefcaseIcon className="h-4 w-4" /> How I can help
+        </p>
+        <p className="mb-6 max-w-2xl text-slate-400">
+          Available for freelance and full-time work, remotely worldwide. A few of the ways I can
+          help:
+        </p>
+        <Services />
+      </section>
 
       {/* ---------- Flagship ---------- */}
       {flagship && (
@@ -139,6 +183,14 @@ export default async function HomePage() {
             <code className="font-mono text-accent">npm run dev</code>.
           </p>
         )}
+      </section>
+
+      {/* ---------- Experience ---------- */}
+      <section className="container-page py-10">
+        <p className="section-label mb-6 flex items-center gap-2">
+          <BriefcaseIcon className="h-4 w-4" /> Experience
+        </p>
+        <ExperienceTimeline />
       </section>
 
       {/* ---------- Technologies ---------- */}
