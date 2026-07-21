@@ -71,11 +71,18 @@ const seedProjects: NewProject[] = [
     title: 'This Portfolio API',
     tagline: 'The backend serving this very site - Fastify, Postgres, OpenAPI, metrics.',
     description:
-      'The site you are looking at is powered by a REST API I built in TypeScript with ' +
-      'Fastify and Drizzle/Postgres. It ships interactive OpenAPI docs, Prometheus-style ' +
-      'metrics, health checks, rate limiting and a full test suite, and is deployed with ' +
-      'Docker and CI/CD. The projects, contact form and live visitor stats you see are ' +
-      'all served by it - the portfolio is itself the demo.',
+      'The site you are looking at is powered by a REST API I built in TypeScript with Fastify and ' +
+      'Drizzle/Postgres - the projects, contact form, live visitor stats and every developer tool ' +
+      'on this site are all served by it, so the portfolio is itself the demo. Zod schemas are the ' +
+      'single source of truth: they validate incoming requests, serialize the responses, and ' +
+      'generate the interactive OpenAPI docs automatically, so the docs can never drift from the ' +
+      'code. It ships what a real production API needs - structured request-scoped logging, ' +
+      'Prometheus metrics, liveness and readiness probes, per-route rate limiting, SSRF protection ' +
+      'on outbound requests, and a full Vitest suite that runs against a real Postgres in CI. A ' +
+      'background worker drives the uptime monitor and WebSockets power the live webhook inspector. ' +
+      'The whole thing is containerized with Docker, fronted by nginx with TLS and a strict ' +
+      'security-header policy (A-graded by the site’s own inspector), and shipped with GitHub ' +
+      'Actions CI/CD.',
     techStack: ['TypeScript', 'Fastify', 'Drizzle ORM', 'Postgres', 'Docker', 'OpenAPI', 'Vitest'],
     role: 'Backend Engineer',
     links: {

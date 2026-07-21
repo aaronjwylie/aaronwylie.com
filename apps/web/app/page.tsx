@@ -22,9 +22,11 @@ const TECH_GROUPS: { category: string; items: string[] }[] = [
       'Firmware',
       'Raspberry Pi',
       'Arduino',
+      'BeagleBone',
       'Git',
       'VS Code',
       'PyCharm',
+      'Figma',
     ],
   },
 ];
@@ -94,10 +96,9 @@ export default async function HomePage() {
 
           {/* Live stats strip - proof it's backed by a real DB. */}
           {stats && (
-            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-4">
+            <dl className="mt-12 grid max-w-sm grid-cols-2 gap-4">
               <Stat label="Page views" value={stats.totalViews} />
               <Stat label="Active days" value={stats.activeDays} />
-              <Stat label="Projects" value={projects.length} />
             </dl>
           )}
         </div>
