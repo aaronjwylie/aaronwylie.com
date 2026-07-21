@@ -7,11 +7,11 @@ import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon, CodeIcon } fr
 
 // Technologies used across past and current work.
 const TECH_GROUPS: { category: string; items: string[] }[] = [
-  { category: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Java', 'Objective-C', 'SQL', 'Bash'] },
-  { category: 'Frontend', items: ['React', 'React Native', 'Next.js', 'Tailwind CSS'] },
+  { category: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Java', 'Kotlin', 'Objective-C', 'Swift', 'SQL', 'Bash'] },
+  { category: 'Frontend', items: ['React', 'React Native', 'Next.js', 'HTML', 'CSS', 'Tailwind CSS'] },
   { category: 'Backend', items: ['Node.js', 'Fastify', 'Django', 'REST APIs', 'WebSockets'] },
   { category: 'Databases', items: ['PostgreSQL', 'MySQL', 'Redis'] },
-  { category: 'DevOps & Cloud', items: ['Docker', 'Kubernetes', 'nginx', 'Linux', 'CI/CD', 'DigitalOcean'] },
+  { category: 'DevOps & Cloud', items: ['Docker', 'Kubernetes', 'nginx', 'Linux', 'CI/CD', 'AWS', 'DigitalOcean', 'Hetzner'] },
   { category: 'Platforms & more', items: ['WordPress', 'WebRTC', 'BLE'] },
 ];
 
