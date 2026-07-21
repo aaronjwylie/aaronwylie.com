@@ -90,6 +90,32 @@ export const ZapIcon = (p: IconProps) => (
   </Svg>
 );
 
+// Lock — one-time secret.
+export const LockIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <rect x="4.5" y="10" width="15" height="10" rx="2" />
+    <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+  </Svg>
+);
+
+// Globe — DNS lookup.
+export const GlobeIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
+  </Svg>
+);
+
+// QR grid — QR generator.
+export const QrIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <rect x="4" y="4" width="6" height="6" rx="1" />
+    <rect x="14" y="4" width="6" height="6" rx="1" />
+    <rect x="4" y="14" width="6" height="6" rx="1" />
+    <path d="M14 14h3v3M20 14v6M17 20h3" />
+  </Svg>
+);
+
 // Chain link — URL shortener.
 export const LinkIcon = (p: IconProps) => (
   <Svg {...p}>

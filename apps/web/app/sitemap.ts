@@ -12,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/status',
     '/tools/webhook',
     '/tools/shortener',
+    '/tools/secret',
+    '/tools/dns',
+    '/tools/qr',
   ];
   return routes.map((path) => ({
     url: `${SITE_URL}${path}`,

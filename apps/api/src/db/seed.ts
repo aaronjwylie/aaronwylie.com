@@ -120,6 +120,26 @@ const seedProjects: NewProject[] = [
     sortOrder: 85,
   },
   {
+    slug: 'developer-tools-suite',
+    title: 'Developer Tools Suite',
+    tagline:
+      'A suite of free, backend-powered developer tools built into this site - endpoint inspector, ' +
+      'uptime monitor, webhook inspector, breach checker, URL shortener and more.',
+    description:
+      'A growing collection of genuinely useful developer tools, each served by my own API - and ' +
+      'each one exercises different backend muscles. A WebSocket-based webhook inspector streams ' +
+      'incoming requests to the browser in real time; a background worker runs uptime checks every ' +
+      '60 seconds and stores the time-series; a password-breach checker uses k-anonymity so the ' +
+      'password never leaves the browser; the endpoint inspector makes SSRF-safe outbound requests ' +
+      'and parses TLS certificates; and the URL shortener computes click analytics in SQL. ' +
+      'TypeScript throughout, on Fastify + Postgres, containerized with Docker and fronted by nginx.',
+    techStack: ['TypeScript', 'Fastify', 'WebSockets', 'PostgreSQL', 'Web Crypto', 'Docker'],
+    role: 'Solo build',
+    links: { live: 'https://aaronwylie.com/tools', docs: '/docs' },
+    featured: false,
+    sortOrder: 82,
+  },
+  {
     slug: 'dynatrace-observability-lab',
     title: 'Dynatrace Observability Lab',
     tagline:

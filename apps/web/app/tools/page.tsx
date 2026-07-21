@@ -1,7 +1,16 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { SVGProps } from 'react';
-import { TerminalIcon, ShieldIcon, ActivityIcon, ZapIcon, LinkIcon } from '@/components/icons';
+import {
+  TerminalIcon,
+  ShieldIcon,
+  ActivityIcon,
+  ZapIcon,
+  LinkIcon,
+  LockIcon,
+  GlobeIcon,
+  QrIcon,
+} from '@/components/icons';
 
 export const metadata: Metadata = {
   title: 'Developer Tools',
@@ -54,6 +63,27 @@ const TOOLS: Tool[] = [
     desc: 'Shorten a link and track clicks - total, a 7-day trend and top referrers, computed in SQL. Links show a safe destination preview before redirecting.',
     Icon: LinkIcon,
     gradient: 'from-rose-500 to-pink-600',
+  },
+  {
+    href: '/tools/secret',
+    title: 'One-Time Secret',
+    desc: 'Share a password or note via a link that self-destructs after one view. Encrypted in your browser - the key never reaches the server.',
+    Icon: LockIcon,
+    gradient: 'from-indigo-500 to-violet-600',
+  },
+  {
+    href: '/tools/dns',
+    title: 'DNS & WHOIS Lookup',
+    desc: 'Resolve a domain’s DNS records (A, AAAA, CNAME, MX, NS, TXT) and registration details (registrar, created, expiry) via RDAP.',
+    Icon: GlobeIcon,
+    gradient: 'from-sky-500 to-cyan-600',
+  },
+  {
+    href: '/tools/qr',
+    title: 'QR Code Generator',
+    desc: 'Turn any URL or text into a crisp QR code, generated server-side. Download as SVG or PNG.',
+    Icon: QrIcon,
+    gradient: 'from-teal-500 to-emerald-600',
   },
 ];
 

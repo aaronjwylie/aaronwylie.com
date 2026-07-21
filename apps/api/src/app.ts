@@ -22,6 +22,9 @@ import { breachRoutes } from './routes/breach.js';
 import { monitorRoutes } from './routes/monitors.js';
 import { webhookRoutes } from './routes/webhooks.js';
 import { shortenerRoutes } from './routes/shortener.js';
+import { secretRoutes } from './routes/secrets.js';
+import { dnsRoutes } from './routes/dns.js';
+import { qrRoutes } from './routes/qr.js';
 
 /**
  * Build a fully-configured Fastify instance. Kept separate from `index.ts` so
@@ -98,6 +101,9 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(monitorRoutes);
   await app.register(webhookRoutes);
   await app.register(shortenerRoutes);
+  await app.register(secretRoutes);
+  await app.register(dnsRoutes);
+  await app.register(qrRoutes);
 
   app.get('/', { schema: { hide: true } }, async () => ({
     name: 'portfolio-api',

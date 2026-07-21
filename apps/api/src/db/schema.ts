@@ -132,6 +132,19 @@ export const linkClicks = pgTable(
 
 export type ShortLink = typeof shortLinks.$inferSelect;
 
+/** One-time secrets — server stores only ciphertext; deleted on first read. */
+export const secrets = pgTable(
+  'secrets',
+  {
+    id: varchar('id', { length: 32 }).primaryKey(),
+    ciphertext: text('ciphertext').notNull(),
+    iv: varchar('iv', { length: 64 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  },
+  (t) => ({ expiresIdx: index('secrets_expires_idx').on(t.expiresAt) }),
+);
+
 export type Project = typeof projects.$inferSelect;
 export type NewProject = typeof projects.$inferInsert;
 export type ContactMessage = typeof contactMessages.$inferSelect;
