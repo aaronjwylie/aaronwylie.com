@@ -15,21 +15,24 @@ const seedProjects: NewProject[] = [
       'A patented live-experience broadcast platform — shipped to the App Store & Google Play, ' +
       'seen by 1M+ people at events for UFC, Disney/Pixar, Red Bull and more.',
     description:
-      'APPIX is a production platform I co-founded and helped build that broadcasts real-time, ' +
-      'synchronized content to audiences’ smartphones during live events — turning a crowd’s ' +
-      'phones into a coordinated second screen (synced light shows, live stats, exclusive content). ' +
-      'The patented technology delivers to devices even without cellular data or WiFi, so it keeps ' +
-      'working in congested venues or during outages. Since coming out of stealth in 2019 it has ' +
-      'reached over a million people, powering experiences for Fortune 500 clients including the UFC ' +
-      '(a custom “UFC In Action” app), Disney/Pixar’s Coco live event, Red Bull, Shaw, and a ' +
-      '55-date New Kids on the Block tour. Rated 4.0★ on the App Store.',
+      'APPIX is a patented live-experience platform I co-founded that broadcasts real-time, ' +
+      'synchronized content to an audience’s smartphones during live events — turning a crowd’s ' +
+      'phones into a coordinated second screen (synced light shows, live stats, exclusive content), ' +
+      'even without cellular data or WiFi, so it keeps working in congested venues or during outages. ' +
+      'What I built: the control station — in Python, running on dedicated on-site hardware — that ' +
+      'drives a network of Eddystone BLE beacons (I chose Eddystone so identical signals reach iOS ' +
+      'and Android natively, with no network dependency); plus the phone-side receiver logic in ' +
+      'native Objective-C (iOS) and Java (Android) that detects the beacons and fires synchronized ' +
+      'in-app moments in real time. Since coming out of stealth in 2019, APPIX has reached over a ' +
+      'million people, powering experiences for the UFC (a custom “UFC In Action” app), Disney/Pixar’s ' +
+      'Coco live event, Red Bull, Shaw, and a 55-date New Kids on the Block tour. Rated 4.0★ on the App Store.',
     techStack: [
-      'Mobile',
-      'Real-time Broadcast',
-      'Distributed Systems',
-      'REST APIs',
-      'Cloud Infrastructure',
-      'Live Events',
+      'Python',
+      'BLE (Eddystone)',
+      'Objective-C (iOS)',
+      'Java (Android)',
+      'Embedded Hardware',
+      'Real-time Sync',
     ],
     role: 'Co-Founder & Engineer',
     links: {

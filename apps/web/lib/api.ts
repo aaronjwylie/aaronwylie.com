@@ -42,8 +42,11 @@ export interface Stats {
   topPaths: { path: string; views: number }[];
 }
 
-async function get<T>(path: string, revalidate = 60): Promise<T> {
-  const res = await fetch(`${SERVER_API_URL}${path}`, { next: { revalidate } });
+// The home page is `force-dynamic`, so fetch fresh each request — no data cache.
+// Content edits (re-seeding projects) then show up immediately. Traffic is low
+// and payloads tiny, so this is cheap.
+async function get<T>(path: string): Promise<T> {
+  const res = await fetch(`${SERVER_API_URL}${path}`, { cache: 'no-store' });
   if (!res.ok) throw new Error(`API ${path} failed: ${res.status}`);
   return res.json() as Promise<T>;
 }
@@ -59,7 +62,7 @@ export async function getProjects(): Promise<Project[]> {
 
 export async function getStats(): Promise<Stats | null> {
   try {
-    return await get<Stats>('/stats', 30);
+    return await get<Stats>('/stats');
   } catch {
     return null;
   }
