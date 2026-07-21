@@ -11,6 +11,7 @@ const BRANDS = [
   'Hollywood Bowl',
   'Tokyo 2020',
   'Katy Perry',
+  'John Williams',
   'New Kids on the Block',
   'Shaw',
   'Insomniac',
