@@ -8,11 +8,11 @@ import { ViewBeacon } from '@/components/ViewBeacon';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'Your Name — Backend Engineer',
+  title: 'Aaron Wylie - Backend Engineer',
   description:
     'Backend & full-stack engineer. Builder of APPIX. This portfolio is powered by its own documented API.',
   openGraph: {
-    title: 'Your Name — Backend Engineer',
+    title: 'Aaron Wylie - Backend Engineer',
     description: 'Backend engineer. Builder of APPIX. Portfolio powered by its own API.',
     type: 'website',
   },

@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import { apiUrl } from '@/lib/api';
 
 export const metadata: Metadata = {
-  title: 'Architecture — How this site works',
+  title: 'Architecture - How this site works',
   description: 'The system design behind this portfolio: Fastify API, Postgres, Docker, CI/CD.',
 };
 
 const layers = [
   {
-    title: 'Web — Next.js (App Router)',
+    title: 'Web - Next.js (App Router)',
     points: [
       'Server Components fetch from the API at request time, so pages render from live data.',
       'Tailwind for styling; ships as a minimal standalone server in Docker.',
@@ -16,7 +16,7 @@ const layers = [
     ],
   },
   {
-    title: 'API — Fastify + TypeScript',
+    title: 'API - Fastify + TypeScript',
     points: [
       'Zod schemas are the single source of truth: they validate input, serialize output, and generate the OpenAPI docs.',
       'Rate limiting, Helmet security headers and CORS are configured per environment.',
@@ -25,20 +25,20 @@ const layers = [
     ],
   },
   {
-    title: 'Data — Postgres via Drizzle ORM',
+    title: 'Data - Postgres via Drizzle ORM',
     points: [
-      'Type-safe, SQL-first schema and queries — no hidden magic, migrations are plain SQL in version control.',
+      'Type-safe, SQL-first schema and queries - no hidden magic, migrations are plain SQL in version control.',
       'Projects, contact messages and page-view analytics each get a purpose-built table and indexes.',
       'Aggregates (visitor stats) are computed in SQL, not in application code.',
     ],
   },
   {
-    title: 'Infra — Docker + CI/CD',
+    title: 'Infra - Docker + CI/CD',
     points: [
       'Multi-stage Dockerfiles produce small production images for both apps.',
       'docker-compose runs API, web and Postgres together; an nginx reverse proxy terminates TLS.',
       'GitHub Actions runs typecheck, tests (against a real Postgres) and builds on every push.',
-      'Deployable to any Docker host — DigitalOcean, Hetzner, Fly, or bare metal — with no code changes.',
+      'Deployable to any Docker host - DigitalOcean, Hetzner, Fly, or bare metal - with no code changes.',
     ],
   },
 ];

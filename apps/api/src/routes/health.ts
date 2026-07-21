@@ -4,8 +4,8 @@ import { sql } from '../db/client.js';
 
 /**
  * Liveness and readiness endpoints.
- *   - /health  : cheap liveness — is the process up?
- *   - /ready   : readiness — can we actually reach the database?
+ *   - /health  : cheap liveness - is the process up?
+ *   - /ready   : readiness - can we actually reach the database?
  * Kubernetes/DO health checks and uptime monitors hit these.
  */
 export async function healthRoutes(app: FastifyInstance) {

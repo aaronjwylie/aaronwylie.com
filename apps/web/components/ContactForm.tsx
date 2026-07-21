@@ -36,7 +36,7 @@ export function ContactForm() {
   if (status === 'success') {
     return (
       <div className="card text-center">
-        <p className="text-lg font-semibold text-white">Thanks — message received. ✅</p>
+        <p className="text-lg font-semibold text-white">Thanks - message received. ✅</p>
         <p className="mt-2 text-sm text-slate-400">
           It was stored by the portfolio API and I&apos;ll get back to you soon.
         </p>

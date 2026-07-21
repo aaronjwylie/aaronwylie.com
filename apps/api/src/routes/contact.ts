@@ -21,7 +21,7 @@ export async function contactRoutes(fastify: FastifyInstance) {
           email: z.string().email().max(254),
           message: z.string().min(10).max(5000),
           // Honeypot: real users leave this empty; bots tend to fill every field.
-          // Accept any value here so the handler can silently drop it — a 400 would
+          // Accept any value here so the handler can silently drop it - a 400 would
           // tell the bot it was detected.
           website: z.string().max(200).optional(),
         }),
@@ -34,7 +34,7 @@ export async function contactRoutes(fastify: FastifyInstance) {
     async (request, reply) => {
       const { name, email, message, website } = request.body;
       if (website) {
-        // Honeypot tripped — pretend success, store nothing.
+        // Honeypot tripped - pretend success, store nothing.
         return reply.code(201).send({ ok: true as const, id: 0 });
       }
       const [row] = await db

@@ -6,7 +6,7 @@ import { apiUrl } from '@/lib/api';
 
 /**
  * Fire-and-forget page-view beacon. Records each visit in the API so the "live
- * visitor stats" on the homepage reflect real traffic. Failures are ignored —
+ * visitor stats" on the homepage reflect real traffic. Failures are ignored -
  * analytics must never break the page.
  */
 export function ViewBeacon() {

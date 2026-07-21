@@ -21,12 +21,12 @@ export default async function HomePage() {
           <div className="flex-1">
             <p className="section-label mb-4">Backend &amp; Full-Stack Engineer</p>
             <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-6xl">
-              I build backends that ship — and this site runs on one of them.
+              I build backends that ship - and this site runs on one of them.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-slate-400">
               I&apos;m a backend engineer who cares about clean APIs, reliable data models and real
               infrastructure. The projects, stats and contact form below are all served by an API I
-              built in TypeScript &amp; Postgres — you can{' '}
+              built in TypeScript &amp; Postgres - you can{' '}
               <a href={`${apiUrl}/docs`} target="_blank" rel="noreferrer" className="text-accent hover:underline">
                 browse its live docs
               </a>
@@ -53,7 +53,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Live stats strip — proof it's backed by a real DB. */}
+        {/* Live stats strip - proof it's backed by a real DB. */}
         {stats && (
           <dl className="mt-12 grid max-w-lg grid-cols-3 gap-4">
             <Stat label="Page views" value={stats.totalViews} />
@@ -81,7 +81,7 @@ export default async function HomePage() {
         </div>
         {projects.length === 0 && (
           <p className="text-slate-400">
-            The API isn&apos;t reachable right now — start it with{' '}
+            The API isn&apos;t reachable right now - start it with{' '}
             <code className="font-mono text-accent">npm run dev</code>.
           </p>
         )}
@@ -91,7 +91,7 @@ export default async function HomePage() {
       <section id="contact" className="container-page py-16 scroll-mt-20">
         <p className="section-label mb-4">Get in touch</p>
         <h2 className="mb-6 max-w-xl text-2xl font-bold text-white">
-          Hiring for a backend or full-stack role? Send a message — it goes straight into the API.
+          Hiring for a backend or full-stack role? Send a message - it goes straight into the API.
         </h2>
         <div className="max-w-2xl">
           <ContactForm />

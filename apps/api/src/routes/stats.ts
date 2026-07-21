@@ -31,7 +31,7 @@ export async function statsRoutes(fastify: FastifyInstance) {
       schema: {
         tags: ['stats'],
         summary: 'Aggregate visitor stats',
-        description: 'Live totals computed in SQL — proof the site is backed by a real database.',
+        description: 'Live totals computed in SQL - proof the site is backed by a real database.',
         response: {
           200: z.object({
             totalViews: z.number(),

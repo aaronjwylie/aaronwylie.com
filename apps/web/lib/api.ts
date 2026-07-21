@@ -3,8 +3,8 @@
  * request/build time, so the site is genuinely rendered from live API data.
  *
  * Two URLs on purpose:
- *  - PUBLIC_API_URL   — what the browser uses (baked into client bundles at build).
- *  - SERVER_API_URL   — what Server Components use at runtime. In Docker/behind a
+ *  - PUBLIC_API_URL   - what the browser uses (baked into client bundles at build).
+ *  - SERVER_API_URL   - what Server Components use at runtime. In Docker/behind a
  *                       proxy the API is reachable at an internal host (e.g.
  *                       http://api:4000) that the browser can't see, so server-side
  *                       fetches prefer API_INTERNAL_URL when set.
@@ -42,7 +42,7 @@ export interface Stats {
   topPaths: { path: string; views: number }[];
 }
 
-// The home page is `force-dynamic`, so fetch fresh each request — no data cache.
+// The home page is `force-dynamic`, so fetch fresh each request - no data cache.
 // Content edits (re-seeding projects) then show up immediately. Traffic is low
 // and payloads tiny, so this is cheap.
 async function get<T>(path: string): Promise<T> {
@@ -68,5 +68,5 @@ export async function getStats(): Promise<Stats | null> {
   }
 }
 
-// Exported for building links the *browser* follows — always the public URL.
+// Exported for building links the *browser* follows - always the public URL.
 export const apiUrl = PUBLIC_API_URL;

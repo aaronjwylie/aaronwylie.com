@@ -12,7 +12,7 @@ import {
 
 /**
  * Projects shown on the portfolio. The website renders this straight from the
- * API, so the API — not a hardcoded array in the frontend — is the source of truth.
+ * API, so the API - not a hardcoded array in the frontend - is the source of truth.
  */
 export const projects = pgTable(
   'projects',
@@ -53,7 +53,7 @@ export const contactMessages = pgTable('contact_messages', {
 });
 
 /**
- * One row per page view — powers the live "visitor stats" widget that
+ * One row per page view - powers the live "visitor stats" widget that
  * demonstrates the site is backed by a real, queryable database.
  */
 export const pageViews = pgTable(

@@ -12,14 +12,14 @@ const seedProjects: NewProject[] = [
     slug: 'appix',
     title: 'APPIX',
     tagline:
-      'A patented live-experience broadcast platform — shipped to the App Store & Google Play, ' +
+      'A patented live-experience broadcast platform - shipped to the App Store & Google Play, ' +
       'seen by 1M+ people at events for UFC, Disney/Pixar, Red Bull and more.',
     description:
       'APPIX is a patented live-experience platform I co-founded that broadcasts real-time, ' +
-      'synchronized content to an audience’s smartphones during live events — turning a crowd’s ' +
+      'synchronized content to an audience’s smartphones during live events - turning a crowd’s ' +
       'phones into a coordinated second screen (synced light shows, live stats, exclusive content), ' +
       'even without cellular data or WiFi, so it keeps working in congested venues or during outages. ' +
-      'What I built: the control station — in Python, running on dedicated on-site hardware — that ' +
+      'What I built: the control station - in Python, running on dedicated on-site hardware - that ' +
       'drives a network of Eddystone BLE beacons (I chose Eddystone so identical signals reach iOS ' +
       'and Android natively, with no network dependency); plus the phone-side receiver logic in ' +
       'native Objective-C (iOS) and Java (Android) that detects the beacons and fires synchronized ' +
@@ -41,11 +41,11 @@ const seedProjects: NewProject[] = [
       playStore: 'https://play.google.com/store/apps/details?id=com.appix.appix&hl=en',
       videos: [
         { title: 'APPIX Anywhere', vimeoId: '521999610' },
-        { title: 'APPIX at LA Phil 100 — Hollywood Bowl', vimeoId: '375579793' },
+        { title: 'APPIX at LA Phil 100 - Hollywood Bowl', vimeoId: '375579793' },
       ],
       press: [
         {
-          outlet: 'AiThority — official launch',
+          outlet: 'AiThority - official launch',
           url: 'https://aithority.com/news/appix-officially-launches-incredible-broadcast-technology-that-creates-immersive-experiences-and-audience-engagement-at-concerts-and-events/',
         },
         {
@@ -53,11 +53,11 @@ const seedProjects: NewProject[] = [
           url: 'https://appdevelopermagazine.com/business/appix/',
         },
         {
-          outlet: 'Nerds and Beyond — Disney/Pixar “Coco”',
+          outlet: 'Nerds and Beyond - Disney/Pixar “Coco”',
           url: 'https://www.nerdsandbeyond.com/2019/12/14/appix-teamed-up-with-disney-pixar-for-coco-live-event/',
         },
         {
-          outlet: 'NAI500 — special coverage',
+          outlet: 'NAI500 - special coverage',
           url: 'https://nai500.com/blog/2020/11/whats-the-future-of-advertising-technology-nai500-special-coverage-on-appix-technologies/',
         },
       ],
@@ -68,13 +68,13 @@ const seedProjects: NewProject[] = [
   {
     slug: 'portfolio-api',
     title: 'This Portfolio API',
-    tagline: 'The backend serving this very site — Fastify, Postgres, OpenAPI, metrics.',
+    tagline: 'The backend serving this very site - Fastify, Postgres, OpenAPI, metrics.',
     description:
       'The site you are looking at is powered by a REST API I built in TypeScript with ' +
       'Fastify and Drizzle/Postgres. It ships interactive OpenAPI docs, Prometheus-style ' +
       'metrics, health checks, rate limiting and a full test suite, and is deployed with ' +
       'Docker and CI/CD. The projects, contact form and live visitor stats you see are ' +
-      'all served by it — the portfolio is itself the demo.',
+      'all served by it - the portfolio is itself the demo.',
     techStack: ['TypeScript', 'Fastify', 'Drizzle ORM', 'Postgres', 'Docker', 'OpenAPI', 'Vitest'],
     role: 'Backend Engineer',
     links: {
@@ -88,10 +88,10 @@ const seedProjects: NewProject[] = [
   {
     slug: 'add-your-next-project',
     title: 'Your Next Project',
-    tagline: 'A placeholder — clone this row in seed.ts to add another showcase project.',
+    tagline: 'A placeholder - clone this row in seed.ts to add another showcase project.',
     description:
       'Add a standalone backend showcase here: an auth service, a rate-limited public API, ' +
-      'a real-time system, a data pipeline — anything that demonstrates depth. Include the ' +
+      'a real-time system, a data pipeline - anything that demonstrates depth. Include the ' +
       'problem, your design decisions, and links to the code and a live demo.',
     techStack: ['TypeScript', 'Node.js'],
     role: 'Backend Engineer',
