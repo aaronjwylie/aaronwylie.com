@@ -2,6 +2,7 @@ import Fastify, { type FastifyInstance } from 'fastify';
 import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
+import websocket from '@fastify/websocket';
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 import {
@@ -19,6 +20,7 @@ import { statsRoutes } from './routes/stats.js';
 import { inspectRoutes } from './routes/inspect.js';
 import { breachRoutes } from './routes/breach.js';
 import { monitorRoutes } from './routes/monitors.js';
+import { webhookRoutes } from './routes/webhooks.js';
 
 /**
  * Build a fully-configured Fastify instance. Kept separate from `index.ts` so
@@ -58,6 +60,7 @@ export async function buildApp(): Promise<FastifyInstance> {
     allowList: (req) => req.url.startsWith('/docs') || req.url === '/metrics',
   });
   await app.register(metricsPlugin);
+  await app.register(websocket);
 
   // ---- OpenAPI docs ----
   await app.register(swagger, {
@@ -92,6 +95,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(inspectRoutes);
   await app.register(breachRoutes);
   await app.register(monitorRoutes);
+  await app.register(webhookRoutes);
 
   app.get('/', { schema: { hide: true } }, async () => ({
     name: 'portfolio-api',

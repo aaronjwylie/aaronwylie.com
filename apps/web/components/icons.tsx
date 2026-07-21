@@ -83,6 +83,13 @@ export const StarIcon = (p: IconProps) => (
   </Svg>
 );
 
+// Lightning — real-time / webhooks.
+export const ZapIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" />
+  </Svg>
+);
+
 // Shield — security / password.
 export const ShieldIcon = (p: IconProps) => (
   <Svg {...p}>

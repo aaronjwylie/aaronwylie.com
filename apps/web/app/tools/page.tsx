@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { SVGProps } from 'react';
-import { TerminalIcon, ShieldIcon, ActivityIcon } from '@/components/icons';
+import { TerminalIcon, ShieldIcon, ActivityIcon, ZapIcon } from '@/components/icons';
 
 export const metadata: Metadata = {
   title: 'Developer Tools',
@@ -40,6 +40,13 @@ const TOOLS: Tool[] = [
     desc: 'A real uptime monitor - endpoints checked every 60s with uptime % and response-time history. Add any URL to watch it live for 24h.',
     Icon: ActivityIcon,
     gradient: 'from-amber-500 to-orange-600',
+  },
+  {
+    href: '/tools/webhook',
+    title: 'Webhook / Request Inspector',
+    desc: 'Get a unique URL and watch incoming HTTP requests land in real time over a WebSocket - method, headers, query and body.',
+    Icon: ZapIcon,
+    gradient: 'from-fuchsia-500 to-purple-600',
   },
 ];
 

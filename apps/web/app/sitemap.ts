@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/inspector',
     '/tools/password-check',
     '/tools/status',
+    '/tools/webhook',
   ];
   return routes.map((path) => ({
     url: `${SITE_URL}${path}`,
