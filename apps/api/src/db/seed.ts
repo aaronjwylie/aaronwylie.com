@@ -87,6 +87,37 @@ const seedProjects: NewProject[] = [
     sortOrder: 90,
   },
   {
+    slug: 'live-streaming-platform',
+    title: 'Real-Time Live Streaming Platform',
+    tagline:
+      'In progress - a low-latency, many-to-many live video platform with map-based ' +
+      'geo-discovery, built on a WebRTC SFU.',
+    description:
+      'An in-progress platform for live video at scale. On the backend I am building the media ' +
+      'and services layer: a WebRTC SFU that fans out low-latency broadcasts to many concurrent ' +
+      'viewers, server-side recording and HLS pipelines for replay, and a geo-spatial, map-based ' +
+      'discovery system that places live streams on an interactive map in real time over ' +
+      'WebSockets. It is TypeScript across a Node.js API and React Native + web clients, backed ' +
+      'by Postgres, with containerized media servers and RTMP ingest for external broadcasters. ' +
+      'The interesting work has been in real-time media: connection resilience and reconnection, ' +
+      'video orientation and codec correctness across devices, and keeping viewer fan-out ' +
+      'performant as concurrency grows.',
+    techStack: [
+      'TypeScript',
+      'WebRTC / SFU',
+      'Real-time Media',
+      'Node.js',
+      'WebSockets',
+      'PostgreSQL',
+      'React Native',
+      'Docker',
+    ],
+    role: 'Founder & Engineer',
+    links: {},
+    featured: false,
+    sortOrder: 85,
+  },
+  {
     slug: 'dynatrace-observability-lab',
     title: 'Dynatrace Observability Lab',
     tagline:
