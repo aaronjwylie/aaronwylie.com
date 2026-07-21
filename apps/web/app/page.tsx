@@ -17,26 +17,40 @@ export default async function HomePage() {
     <>
       {/* ---------- Hero ---------- */}
       <section className="container-page pt-20 pb-16">
-        <p className="section-label mb-4">Backend &amp; Full-Stack Engineer</p>
-        <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-6xl">
-          I build backends that ship — and this site runs on one of them.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-slate-400">
-          I&apos;m a backend engineer who cares about clean APIs, reliable data models and real
-          infrastructure. The projects, stats and contact form below are all served by an API I
-          built in TypeScript &amp; Postgres — you can{' '}
-          <a href={`${apiUrl}/docs`} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-            browse its live docs
-          </a>
-          .
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Link href="#projects" className="btn-primary">
-            See my work
-          </Link>
-          <a href={`${apiUrl}/docs`} target="_blank" rel="noreferrer" className="btn-ghost">
-            Explore the API ↗
-          </a>
+        <div className="flex flex-col-reverse items-start gap-10 md:flex-row md:items-center md:justify-between">
+          <div className="flex-1">
+            <p className="section-label mb-4">Backend &amp; Full-Stack Engineer</p>
+            <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-6xl">
+              I build backends that ship — and this site runs on one of them.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-slate-400">
+              I&apos;m a backend engineer who cares about clean APIs, reliable data models and real
+              infrastructure. The projects, stats and contact form below are all served by an API I
+              built in TypeScript &amp; Postgres — you can{' '}
+              <a href={`${apiUrl}/docs`} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+                browse its live docs
+              </a>
+              .
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="#projects" className="btn-primary">
+                See my work
+              </Link>
+              <a href={`${apiUrl}/docs`} target="_blank" rel="noreferrer" className="btn-ghost">
+                Explore the API ↗
+              </a>
+            </div>
+          </div>
+          <div className="shrink-0 md:pl-6">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/headshot.jpg"
+              alt="Aaron Wylie"
+              width={288}
+              height={288}
+              className="h-44 w-44 rounded-full object-cover object-top shadow-2xl ring-4 ring-accent/30 sm:h-56 sm:w-56 md:h-72 md:w-72"
+            />
+          </div>
         </div>
 
         {/* Live stats strip — proof it's backed by a real DB. */}

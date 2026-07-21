@@ -28,3 +28,4 @@ coverage/
 
 # docker volumes
 pgdata/
+design-assets/

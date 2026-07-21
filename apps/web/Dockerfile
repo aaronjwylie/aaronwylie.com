@@ -23,6 +23,8 @@ RUN addgroup -S app && adduser -S app -G app
 # Next.js "standalone" output bundles a minimal server + only the deps it needs.
 COPY --from=build /repo/apps/web/.next/standalone ./
 COPY --from=build /repo/apps/web/.next/static ./apps/web/.next/static
+# standalone does NOT include public/ — copy it so static assets (headshot) are served.
+COPY --from=build /repo/apps/web/public ./apps/web/public
 
 USER app
 EXPOSE 3000
