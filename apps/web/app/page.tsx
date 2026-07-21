@@ -135,9 +135,8 @@ export default async function HomePage() {
           <BriefcaseIcon className="h-4 w-4" /> How I can help
         </p>
         <p className="mb-6 max-w-2xl text-slate-400">
-          Available for freelance and full-time work, remotely worldwide. A few of the ways I can
-          help:
-        </p>
+          Available for freelance and full-time work, remotely worldwide. A few of the ways I
+          <span className="whitespace-nowrap">can help:</span>        </p>
         <Services />
       </section>
 
