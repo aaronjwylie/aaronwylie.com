@@ -11,6 +11,7 @@ import {
   GlobeIcon,
   QrIcon,
 } from '@/components/icons';
+import { ContactCallout } from '@/components/ContactCallout';
 
 export const metadata: Metadata = {
   title: 'Developer Tools',
@@ -96,6 +97,10 @@ export default function ToolsPage() {
         A small suite of free tools, each served by my own API. Built to be genuinely useful - and
         to show the backend behind them.
       </p>
+
+      <div className="mb-10">
+        <ContactCallout />
+      </div>
 
       <div className="grid gap-6 sm:grid-cols-2">
         {TOOLS.map((t) => (

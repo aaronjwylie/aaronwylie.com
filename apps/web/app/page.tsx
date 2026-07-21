@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getProjects, getStats, apiUrl } from '@/lib/api';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ContactForm } from '@/components/ContactForm';
+import { ContactCallout } from '@/components/ContactCallout';
 import { StarIcon, LayersIcon, MailIcon, TerminalIcon, ShieldIcon } from '@/components/icons';
 
 // Render on every request so live visitor stats and project edits are always
@@ -77,6 +78,11 @@ export default async function HomePage() {
           )}
         </div>
       </section>
+
+      {/* ---------- Contact callout ---------- */}
+      <div className="container-page pb-4 pt-2">
+        <ContactCallout />
+      </div>
 
       {/* ---------- Flagship ---------- */}
       {flagship && (
