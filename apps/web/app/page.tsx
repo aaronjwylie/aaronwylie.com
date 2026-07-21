@@ -112,7 +112,7 @@ export default async function HomePage() {
 
       {/* ---------- Flagship ---------- */}
       {flagship && (
-        <section className="container-page py-10">
+        <section id="projects" className="container-page py-10 scroll-mt-20">
           <p className="section-label mb-4 flex items-center gap-2">
             <StarIcon className="h-4 w-4" /> Flagship project
           </p>
@@ -121,7 +121,9 @@ export default async function HomePage() {
       )}
 
       {/* ---------- Other projects ---------- */}
-      <section id="projects" className="container-page py-10 scroll-mt-20">
+      {/* Anchor lives on the Flagship section above; fall back to here only if
+          there's no flagship (e.g. the API is unreachable) so #projects still lands. */}
+      <section id={flagship ? undefined : 'projects'} className="container-page py-10 scroll-mt-20">
         <p className="section-label mb-4 flex items-center gap-2">
           <LayersIcon className="h-4 w-4" /> More projects
         </p>
