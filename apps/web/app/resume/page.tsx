@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { PrintButton } from '@/components/PrintButton';
+import { LinkedInIcon } from '@/components/icons';
+
+const LINKEDIN = 'https://www.linkedin.com/in/aaronwylie';
 
 const EXPERIENCE = [
   {
@@ -9,7 +12,8 @@ const EXPERIENCE = [
     points: [
       'Build web and mobile apps, clean APIs, and the real-time and cloud infrastructure behind them for clients worldwide.',
       'Currently building a real-time live-streaming platform (WebRTC/WebSockets) shipping to iOS, Android and web with an admin portal.',
-      'Hands-on observability and reliability with Dynatrace - distributed tracing, Kubernetes, and incident investigation.',
+      'Design and ship documented REST APIs on Fastify/Node and Postgres, containerized with Docker and deployed with nginx, TLS and CI/CD.',
+      'Hands-on observability and reliability with Dynatrace - distributed tracing, Kubernetes, and incident-style root-cause investigation.',
     ],
   },
   {
@@ -18,8 +22,9 @@ const EXPERIENCE = [
     org: 'APPIX Technologies',
     points: [
       'Invented APPIX and built its first iterations, helping architect a distributed system across mobile apps, cloud infrastructure (DigitalOcean, AWS) and backend services.',
-      'Delivered synchronized, real-time mobile experiences at live events for Disney, UFC, Red Bull, Universal, the Cleveland Cavaliers and the Hollywood Bowl.',
+      'Delivered synchronized, real-time mobile experiences at live events for Disney, UFC, Red Bull, Universal, the Cleveland Cavaliers and the Hollywood Bowl - reaching over a million people.',
       'Led product strategy, technical coordination and production event operations in high-visibility, time-sensitive environments.',
+      'Documented software specifications and aligned technical and business requirements across a cross-functional team.',
     ],
   },
   {
@@ -29,7 +34,8 @@ const EXPERIENCE = [
     points: [
       'Founded and led a custom software development consultancy for 13 years.',
       'Led a distributed development team delivering tailored applications end to end for clients across many industries - owning architecture, delivery and quality assurance.',
-      'Translated business needs into scalable technical solutions and supported production software environments.',
+      'Managed technical requirements, system performance and delivery timelines, translating business needs into scalable technical solutions.',
+      'Ran client-facing consulting, solution planning and long-term partnerships.',
     ],
   },
 ];
@@ -42,6 +48,9 @@ const SKILLS: { label: string; items: string }[] = [
   { label: 'DevOps & Cloud', items: 'Docker, Kubernetes, nginx, CI/CD, AWS, DigitalOcean, Hetzner, Linux' },
   { label: 'Observability', items: 'Dynatrace, distributed tracing, metrics, incident investigation' },
 ];
+
+const CLIENTS =
+  'Disney · UFC · Red Bull · Universal · NBC · NBA · Cleveland Cavaliers · Hollywood Bowl · Tokyo 2020 · Shaw · Insomniac · Herbalife';
 
 export default function ResumePage() {
   return (
@@ -56,22 +65,52 @@ export default function ResumePage() {
 
       {/* The résumé sheet — light, so it prints cleanly */}
       <article className="mx-auto max-w-3xl bg-white px-10 py-10 text-slate-800 shadow-2xl sm:rounded-lg print:shadow-none">
-        <header className="border-b-2 border-slate-800 pb-4">
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">Aaron Wylie</h1>
-          <p className="text-lg font-medium text-sky-700">Full-Stack Developer &amp; Technical Founder</p>
-          <p className="mt-2 text-sm text-slate-600">
-            Vancouver, Canada · Remote worldwide · aaronwyliework@gmail.com ·{' '}
-            linkedin.com/in/aaronwylie · aaronwylie.com
-          </p>
+        <header className="flex items-center gap-6 border-b-2 border-slate-800 pb-5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/headshot.jpg"
+            alt="Aaron Wylie"
+            width={96}
+            height={96}
+            className="h-24 w-24 shrink-0 rounded-full object-cover object-top ring-2 ring-slate-200"
+          />
+          <div>
+            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">Aaron Wylie</h1>
+            <p className="text-lg font-medium text-sky-700">
+              Full-Stack Developer &amp; Technical Founder
+            </p>
+            <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-600">
+              <span>Vancouver, Canada · Remote worldwide</span>
+              <span className="text-slate-300">|</span>
+              <a href="mailto:aaronwyliework@gmail.com" className="hover:text-sky-700 hover:underline">
+                aaronwyliework@gmail.com
+              </a>
+              <span className="text-slate-300">|</span>
+              <a href="https://aaronwylie.com" className="hover:text-sky-700 hover:underline">
+                aaronwylie.com
+              </a>
+              <a
+                href={LINKEDIN}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 font-medium text-[#0A66C2] hover:underline"
+                aria-label="LinkedIn profile"
+              >
+                <LinkedInIcon className="h-4 w-4" /> LinkedIn
+              </a>
+            </div>
+          </div>
         </header>
 
         <section className="mt-5">
           <p className="text-sm leading-relaxed text-slate-700">
             Full-stack developer and technical founder with 20+ years building software - from a
             13-year custom development consultancy to inventing and shipping APPIX, a live-experience
-            platform used by Disney, UFC and Red Bull. I build web and mobile apps, clean APIs, and
-            the real-time and cloud infrastructure behind them, with a strong side in observability
-            and system reliability.
+            platform used by Disney, UFC and Red Bull and seen by over a million people. I build web
+            and mobile apps, clean APIs, and the real-time and cloud infrastructure behind them, with
+            a strong side in observability and system reliability. I work remotely with clients
+            worldwide and care about shipping software that is fast, maintainable and genuinely
+            useful.
           </p>
         </section>
 
@@ -97,6 +136,13 @@ export default function ResumePage() {
         </section>
 
         <section className="mt-6">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-slate-900">
+            Selected Clients
+          </h2>
+          <p className="text-sm text-slate-700">{CLIENTS}</p>
+        </section>
+
+        <section className="mt-6">
           <h2 className="mb-3 text-sm font-bold uppercase tracking-widest text-slate-900">Skills &amp; Technologies</h2>
           <dl className="space-y-1.5 text-sm">
             {SKILLS.map((s) => (
@@ -108,13 +154,21 @@ export default function ResumePage() {
           </dl>
         </section>
 
-        <section className="mt-6">
-          <h2 className="mb-3 text-sm font-bold uppercase tracking-widest text-slate-900">Education</h2>
-          <p className="text-sm text-slate-700">
-            <span className="font-semibold text-slate-900">BCIT</span> - Software Systems Development
-            (2000-2003) · <span className="font-semibold text-slate-900">CDIS</span> - Web
-            Programming Track (1999-2000)
-          </p>
+        <section className="mt-6 grid gap-6 sm:grid-cols-2">
+          <div>
+            <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-slate-900">Education</h2>
+            <p className="text-sm text-slate-700">
+              <span className="font-semibold text-slate-900">BCIT</span> - Software Systems
+              Development (2000-2003)
+              <br />
+              <span className="font-semibold text-slate-900">CDIS</span> - Web Programming Track
+              (1999-2000)
+            </p>
+          </div>
+          <div>
+            <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-slate-900">Languages</h2>
+            <p className="text-sm text-slate-700">English (fluent) · Spanish (basic)</p>
+          </div>
         </section>
       </article>
     </div>
