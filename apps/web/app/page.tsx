@@ -18,6 +18,7 @@ import {
   CodeIcon,
   QrIcon,
   BriefcaseIcon,
+  LinkedInIcon,
 } from '@/components/icons';
 
 // Technologies used across past and current work.
@@ -309,6 +310,16 @@ export default async function HomePage() {
             Read the FAQ →
           </Link>
         </p>
+        <div className="mb-6">
+          <a
+            href="https://www.linkedin.com/in/aaronwylie/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-ghost"
+          >
+            <LinkedInIcon className="h-4 w-4" /> Connect on LinkedIn
+          </a>
+        </div>
         <div className="max-w-2xl">
           <ContactForm />
         </div>

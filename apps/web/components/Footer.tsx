@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { apiUrl } from '@/lib/api';
+import { LinkedInIcon } from '@/components/icons';
+
+const LINKEDIN = 'https://www.linkedin.com/in/aaronwylie/';
 
 export function Footer() {
   return (
@@ -12,7 +15,17 @@ export function Footer() {
             <br />
             Site built with TypeScript, Fastify, Next.js &amp; Postgres, rendered from a live API.
           </p>
-          <div className="flex gap-4">
+          <div className="flex items-center gap-4">
+            <a
+              href={LINKEDIN}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Aaron Wylie on LinkedIn"
+              className="text-slate-400 transition hover:text-accent"
+            >
+              <LinkedInIcon className="h-5 w-5" />
+            </a>
+            <span className="text-white/15">|</span>
             <a href={`${apiUrl}/health`} target="_blank" rel="noreferrer" className="hover:text-accent">
               /health
             </a>

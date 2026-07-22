@@ -98,7 +98,7 @@ const jsonLd = {
         'Observability',
         'REST APIs',
       ],
-      sameAs: ['https://github.com/aaronjwylie'],
+      sameAs: ['https://github.com/aaronjwylie', 'https://www.linkedin.com/in/aaronwylie/'],
     },
     {
       '@type': 'WebSite',
