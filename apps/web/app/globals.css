@@ -185,10 +185,12 @@ html {
   }
 }
 
-/* Print: drop the site chrome so the résumé sheet prints clean. */
+/* Print: drop the site chrome so the résumé sheet prints clean. Scope to the
+   site nav/footer only (direct children of body) so a page's own <header>
+   (e.g. the résumé's name block, nested in <main>) still prints. */
 @media print {
-  header,
-  footer,
+  body > header,
+  body > footer,
   .no-print {
     display: none !important;
   }
