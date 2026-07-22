@@ -13,11 +13,12 @@ html {
 body {
   @apply bg-ink-950 text-slate-200 antialiased;
   /* Lifted, colourful aurora background — cyan + violet glows on a deep base,
-     plus a fine grid texture. All CSS, no image files (keeps the CSP tight). */
+     with a soft vignette for depth. All CSS, no image files (keeps the CSP tight). */
   background-image:
-    radial-gradient(60rem 45rem at 82% -8%, rgba(56, 189, 248, 0.16), transparent 60%),
-    radial-gradient(55rem 45rem at 8% 4%, rgba(139, 92, 246, 0.15), transparent 55%),
-    radial-gradient(40rem 40rem at 50% 110%, rgba(34, 211, 238, 0.08), transparent 60%),
+    radial-gradient(60rem 45rem at 82% -8%, rgba(56, 189, 248, 0.18), transparent 60%),
+    radial-gradient(55rem 45rem at 8% 4%, rgba(139, 92, 246, 0.17), transparent 55%),
+    radial-gradient(45rem 40rem at 50% 112%, rgba(34, 211, 238, 0.1), transparent 60%),
+    radial-gradient(90rem 70rem at 50% 40%, transparent 55%, rgba(3, 7, 18, 0.5)),
     linear-gradient(180deg, #101a30 0%, #0d1526 40%);
   background-attachment: fixed;
 }
@@ -27,7 +28,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
   background-image:
     linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
@@ -36,41 +37,116 @@ body::before {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 75%);
 }
 
+/* Faint film grain for a premium, less-flat finish (inline SVG, CSP-safe). */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-5xl px-6;
   }
+  /* Cards: soft glass panels that lift and pick up a gradient hairline on hover. */
   .card {
-    @apply rounded-2xl border border-white/10 bg-ink-900/70 p-6 backdrop-blur transition duration-300
-           hover:-translate-y-0.5 hover:border-accent/40 hover:bg-ink-800/70 hover:shadow-glow;
+    @apply relative rounded-2xl border border-white/10 bg-ink-900/70 p-6 backdrop-blur transition duration-300
+           hover:-translate-y-1 hover:border-accent/40 hover:bg-ink-800/70 hover:shadow-glow;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 1px;
+    border-radius: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(56, 189, 248, 0.55),
+      rgba(139, 92, 246, 0.55),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .card:hover::before {
+    opacity: 1;
   }
   .chip {
     @apply inline-flex items-center rounded-full border border-white/10 bg-white/[0.06]
-           px-3 py-1 text-xs font-medium text-slate-200;
+           px-3 py-1 text-xs font-medium text-slate-200 transition
+           hover:border-white/25 hover:bg-white/[0.1];
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm
            font-semibold transition focus:outline-none focus:ring-2 focus:ring-accent/50;
   }
+  /* Primary button gets a soft glow and a light sheen that sweeps across on hover. */
   .btn-primary {
-    @apply btn bg-gradient-to-r from-accent-cyan to-accent-violet text-ink-950
-           shadow-[0_6px_24px_-8px_rgba(56,189,248,0.6)] hover:brightness-110;
+    @apply btn relative overflow-hidden bg-gradient-to-r from-accent-cyan to-accent-violet text-ink-950
+           shadow-[0_6px_24px_-8px_rgba(56,189,248,0.6)] hover:-translate-y-0.5 hover:brightness-110
+           hover:shadow-[0_10px_30px_-8px_rgba(99,102,241,0.7)];
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+  .btn-primary:hover::after {
+    left: 140%;
   }
   .btn-ghost {
     @apply btn border border-white/15 bg-white/[0.02] text-slate-200
-           hover:border-accent/50 hover:bg-white/[0.05] hover:text-white;
+           hover:-translate-y-0.5 hover:border-accent/50 hover:bg-white/[0.05] hover:text-white;
   }
   .section-label {
     @apply text-xs font-semibold uppercase tracking-[0.2em] text-accent-cyan;
   }
-  /* Cyan → violet gradient text for headline accents. */
+  /* Cyan → violet gradient text for headline accents, with a slow shimmer. */
   .gradient-text {
     @apply bg-gradient-to-r from-accent-cyan via-accent to-accent-violet bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: shimmer 8s linear infinite;
   }
   /* Soft decorative glow blob for hero / section backdrops. */
   .glow-blob {
     @apply pointer-events-none absolute -z-10 rounded-full blur-3xl;
   }
+}
+
+/* Slim accent scrollbar (WebKit) + Firefox. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.5), rgba(139, 92, 246, 0.5));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.8), rgba(139, 92, 246, 0.8));
+  background-clip: padding-box;
+}
+html {
+  scrollbar-color: rgba(99, 102, 241, 0.6) transparent;
 }
 
 /* Slow drift to give the aurora glows a bit of life. */
@@ -86,9 +162,21 @@ body::before {
 .animate-drift {
   animation: drift 16s ease-in-out infinite;
 }
+
+/* Gradient headline shimmer. */
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-drift {
+  .animate-drift,
+  .gradient-text {
     animation: none;
+  }
+  .btn-primary::after {
+    transition: none;
   }
 }
 
