@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { POSTS } from '@/lib/posts';
+import { POSTS, allTags } from '@/lib/posts';
 import { CASE_STUDIES } from '@/lib/caseStudies';
 
 const SITE_URL = 'https://aaronwylie.com';
@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/status',
     '/faq',
     '/uses',
+    '/privacy',
     '/tools',
     '/tools/inspector',
     '/tools/password-check',
@@ -39,5 +40,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
-  return [...pages, ...posts, ...caseStudies];
+  const tags: MetadataRoute.Sitemap = allTags().map((t) => ({
+    url: `${SITE_URL}/blog/tag/${t.slug}`,
+    changeFrequency: 'monthly',
+    priority: 0.4,
+  }));
+  return [...pages, ...posts, ...caseStudies, ...tags];
 }

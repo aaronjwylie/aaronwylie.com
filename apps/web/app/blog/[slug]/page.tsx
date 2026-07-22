@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import fs from 'node:fs';
 import path from 'node:path';
 import { marked } from 'marked';
-import { POSTS, getPost } from '@/lib/posts';
+import { POSTS, getPost, tagSlug } from '@/lib/posts';
+import { readingTimeMinutes } from '@/lib/reading';
 
 const SITE_URL = 'https://aaronwylie.com';
 
@@ -73,15 +74,17 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       </Link>
 
       <article className="mt-6">
-        <p className="section-label mb-3">{fmtDate(post.date)}</p>
+        <p className="section-label mb-3">
+          {fmtDate(post.date)} · {readingTimeMinutes(post.slug)} min read
+        </p>
         <h1 className="mb-4 max-w-3xl text-3xl font-extrabold leading-tight text-white sm:text-4xl">
           {post.title}
         </h1>
         <div className="mb-8 flex flex-wrap gap-2">
           {post.tags.map((t) => (
-            <span key={t} className="chip">
+            <Link key={t} href={`/blog/tag/${tagSlug(t)}`} className="chip hover:border-accent/40 hover:text-accent">
               {t}
-            </span>
+            </Link>
           ))}
         </div>
         <div

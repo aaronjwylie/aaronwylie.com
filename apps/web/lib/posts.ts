@@ -6,6 +6,40 @@ export interface PostMeta {
   tags: string[];
 }
 
+/** URL-safe slug for a tag, e.g. "Next.js" -> "next-js". */
+export function tagSlug(tag: string): string {
+  return tag
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/** All distinct tags with their post counts, most-used first. */
+export function allTags(): { tag: string; slug: string; count: number }[] {
+  const counts = new Map<string, { tag: string; count: number }>();
+  for (const p of POSTS) {
+    for (const tag of p.tags) {
+      const key = tagSlug(tag);
+      const entry = counts.get(key);
+      if (entry) entry.count += 1;
+      else counts.set(key, { tag, count: 1 });
+    }
+  }
+  return [...counts.entries()]
+    .map(([slug, { tag, count }]) => ({ slug, tag, count }))
+    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+}
+
+/** Posts carrying a given tag slug (newest first, as POSTS is ordered). */
+export function postsByTag(slug: string): PostMeta[] {
+  return POSTS.filter((p) => p.tags.some((t) => tagSlug(t) === slug));
+}
+
+/** The display name of a tag from its slug (first match wins). */
+export function tagFromSlug(slug: string): string | undefined {
+  return allTags().find((t) => t.slug === slug)?.tag;
+}
+
 // Newest first. The article body for each lives in content/blog/<slug>.md
 export const POSTS: PostMeta[] = [
   {

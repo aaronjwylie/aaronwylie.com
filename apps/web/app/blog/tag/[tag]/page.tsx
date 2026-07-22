@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { POSTS, allTags } from '@/lib/posts';
+import { notFound } from 'next/navigation';
+import { allTags, postsByTag, tagFromSlug } from '@/lib/posts';
 import { readingTimeMinutes } from '@/lib/reading';
 
-export const metadata: Metadata = {
-  title: 'Writing',
-  description:
-    'Articles on full-stack development, backend, real-time systems, security and observability - by Aaron Wylie, a Vancouver-based full-stack developer.',
-  alternates: { canonical: '/blog' },
-};
+export function generateStaticParams() {
+  return allTags().map((t) => ({ tag: t.slug }));
+}
+
+export function generateMetadata({ params }: { params: { tag: string } }): Metadata {
+  const tag = tagFromSlug(params.tag);
+  if (!tag) return {};
+  return {
+    title: `${tag} - Writing`,
+    description: `Articles tagged ${tag} by Aaron Wylie, a Vancouver-based full-stack developer.`,
+    alternates: { canonical: `/blog/tag/${params.tag}` },
+  };
+}
 
 function fmtDate(iso: string) {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-CA', {
@@ -19,28 +27,24 @@ function fmtDate(iso: string) {
   });
 }
 
-export default function BlogPage() {
+export default function TagPage({ params }: { params: { tag: string } }) {
+  const tag = tagFromSlug(params.tag);
+  const posts = postsByTag(params.tag);
+  if (!tag || posts.length === 0) notFound();
+
   return (
     <div className="container-page py-16">
-      <p className="section-label mb-4">Writing</p>
-      <h1 className="mb-3 text-4xl font-extrabold text-white">Articles</h1>
-      <p className="mb-8 max-w-2xl text-lg text-slate-400">
-        Notes on full-stack development, backend, real-time systems, security and observability -
-        drawn from real projects.
+      <Link href="/blog" className="text-sm text-slate-400 hover:text-accent">
+        ← All writing
+      </Link>
+      <p className="section-label mb-3 mt-6">Topic</p>
+      <h1 className="mb-3 text-4xl font-extrabold text-white">{tag}</h1>
+      <p className="mb-10 max-w-2xl text-slate-400">
+        {posts.length} article{posts.length === 1 ? '' : 's'} tagged {tag}.
       </p>
 
-      {/* Browse by topic */}
-      <div className="mb-10 flex flex-wrap items-center gap-2">
-        <span className="section-label mr-1">Browse by topic</span>
-        {allTags().map((t) => (
-          <Link key={t.slug} href={`/blog/tag/${t.slug}`} className="chip hover:border-accent/40 hover:text-accent">
-            {t.tag} <span className="text-slate-500">{t.count}</span>
-          </Link>
-        ))}
-      </div>
-
       <div className="space-y-4">
-        {POSTS.map((p) => (
+        {posts.map((p) => (
           <Link key={p.slug} href={`/blog/${p.slug}`} className="card group block">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h2 className="text-xl font-bold text-white group-hover:text-accent">{p.title}</h2>

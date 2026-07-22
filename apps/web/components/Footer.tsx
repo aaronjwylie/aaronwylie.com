@@ -31,6 +31,7 @@ export function Footer() {
           <Link href="/faq" className="hover:text-accent">FAQ</Link>
           <Link href="/uses" className="hover:text-accent">Uses</Link>
           <Link href="/resume" className="hover:text-accent">Résumé</Link>
+          <Link href="/privacy" className="hover:text-accent">Privacy</Link>
           <a href="/rss.xml" className="hover:text-accent">RSS</a>
         </nav>
       </div>

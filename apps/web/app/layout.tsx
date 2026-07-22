@@ -37,7 +37,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Aaron Wylie', url: SITE_URL }],
   creator: 'Aaron Wylie',
-  alternates: { canonical: '/' },
+  alternates: {
+    canonical: '/',
+    types: { 'application/rss+xml': `${SITE_URL}/rss.xml` },
+  },
   robots: {
     index: true,
     follow: true,
