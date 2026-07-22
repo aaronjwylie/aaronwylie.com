@@ -115,10 +115,15 @@ body::after {
   .section-label {
     @apply text-xs font-semibold uppercase tracking-[0.2em] text-accent-cyan;
   }
-  /* Cyan → violet gradient text for headline accents, with a slow shimmer. */
+  /* Headline accent: a seamless cyan⇄violet gradient that flows back and forth.
+     The palette is a palindrome (cyan → violet → cyan) so the repeating tile
+     joins cyan-to-cyan — no hard seam at any animation frame. */
   .gradient-text {
-    @apply bg-gradient-to-r from-accent-cyan via-accent to-accent-violet bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, #22d3ee, #8b5cf6, #22d3ee);
     background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     animation: shimmer 8s linear infinite;
   }
   /* Soft decorative glow blob for hero / section backdrops. */
