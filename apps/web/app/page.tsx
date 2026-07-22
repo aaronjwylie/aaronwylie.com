@@ -154,6 +154,9 @@ export default async function HomePage() {
 
       {/* ---------- Services ---------- */}
       <section id="services" className="container-page py-10 scroll-mt-20">
+        {/* Real h2 (visually hidden) so the heading outline is h1 -> h2 -> h3,
+            not h1 -> h3. The eyebrow below is styled text, not a heading. */}
+        <h2 className="sr-only">How I can help</h2>
         <p className="section-label mb-4 flex items-center gap-2">
           <BriefcaseIcon className="h-4 w-4" /> How I can help
         </p>
