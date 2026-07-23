@@ -103,11 +103,7 @@ export default async function HomePage() {
                 I&apos;m a Vancouver-based full-stack developer working remotely with clients
                 worldwide - comfortable across the front end, the back end, and the infrastructure
                 in between - with a soft spot for clean APIs and reliable data models. The projects, stats and contact form below are all served by an API I built
-                in TypeScript &amp; Postgres - you can{' '}
-                <a href={`${apiUrl}/docs`} target="_blank" rel="noreferrer" className="text-accent hover:underline">
-                  browse its live docs
-                </a>
-                .
+                in TypeScript &amp; Postgres.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link href="#projects" className="btn-primary">
