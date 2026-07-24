@@ -23,10 +23,7 @@ export const metadata: Metadata = {
 export default function MockApiPage() {
   return (
     <div className="container-page py-16">
-      <Link href="/tools" className="text-sm text-slate-400 hover:text-accent">
-        ← All tools
-      </Link>
-      <h1 className="mb-3 mt-6 text-3xl font-extrabold text-white sm:text-4xl">Instant Mock API</h1>
+      <h1 className="mb-3 text-3xl font-extrabold text-white sm:text-4xl">Instant Mock API</h1>
       <p className="mb-8 max-w-2xl text-lg text-slate-400">
         Design a resource, get a <span className="text-white">live REST endpoint</span> in seconds -
         serving realistic fake data with pagination, filtering, sorting and search. Perfect for
