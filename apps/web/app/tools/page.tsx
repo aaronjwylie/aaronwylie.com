@@ -34,11 +34,11 @@ type Tool = {
 
 const TOOLS: Tool[] = [
   {
-    href: '/tools/mock-api',
-    title: 'Instant Mock API',
-    desc: 'Design a resource and get a live REST endpoint serving realistic, deterministic fake data - with pagination, filtering, sorting, search and simulated writes. Prototype a front end before the backend exists.',
-    Icon: DatabaseIcon,
-    gradient: 'from-violet-500 to-indigo-600',
+    href: '/tools/lorem',
+    title: 'Lorem Ipsum Generator',
+    desc: 'Generate placeholder text by paragraphs, sentences, words, characters or list items - as plain text or ready-to-paste HTML, with an optional classic "Lorem ipsum" start.',
+    Icon: TextIcon,
+    gradient: 'from-slate-500 to-slate-700',
   },
   {
     href: '/tools/room',
@@ -62,11 +62,11 @@ const TOOLS: Tool[] = [
     gradient: 'from-teal-500 to-emerald-600',
   },
   {
-    href: '/tools/lorem',
-    title: 'Lorem Ipsum Generator',
-    desc: 'Generate placeholder text by paragraphs, sentences, words, characters or list items - as plain text or ready-to-paste HTML, with an optional classic "Lorem ipsum" start.',
-    Icon: TextIcon,
-    gradient: 'from-slate-500 to-slate-700',
+    href: '/tools/mock-api',
+    title: 'Instant Mock API',
+    desc: 'Design a resource and get a live REST endpoint serving realistic, deterministic fake data - with pagination, filtering, sorting, search and simulated writes. Prototype a front end before the backend exists.',
+    Icon: DatabaseIcon,
+    gradient: 'from-violet-500 to-indigo-600',
   },
   {
     href: '/tools/dns',
