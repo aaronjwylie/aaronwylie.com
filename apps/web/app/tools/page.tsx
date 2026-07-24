@@ -10,6 +10,7 @@ import {
   LockIcon,
   GlobeIcon,
   QrIcon,
+  DatabaseIcon,
 } from '@/components/icons';
 import { ContactCallout } from '@/components/ContactCallout';
 
@@ -30,6 +31,13 @@ type Tool = {
 };
 
 const TOOLS: Tool[] = [
+  {
+    href: '/tools/mock-api',
+    title: 'Instant Mock API',
+    desc: 'Design a resource and get a live REST endpoint serving realistic, deterministic fake data - with pagination, filtering, sorting, search and simulated writes. Prototype a front end before the backend exists.',
+    Icon: DatabaseIcon,
+    gradient: 'from-violet-500 to-indigo-600',
+  },
   {
     href: '/tools/shortener',
     title: 'URL Shortener',

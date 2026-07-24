@@ -25,6 +25,7 @@ import { shortenerRoutes } from './routes/shortener.js';
 import { secretRoutes } from './routes/secrets.js';
 import { dnsRoutes } from './routes/dns.js';
 import { qrRoutes } from './routes/qr.js';
+import { mockRoutes } from './routes/mock.js';
 
 /**
  * Build a fully-configured Fastify instance. Kept separate from `index.ts` so
@@ -53,9 +54,11 @@ export async function buildApp(): Promise<FastifyInstance> {
 
   // ---- Security & infra plugins ----
   await app.register(helmet, { contentSecurityPolicy: false });
+  // Public developer-tools API: reflect any origin and allow the REST verbs so
+  // the Mock API can be called from users' own apps (localhost, CodeSandbox…).
   await app.register(cors, {
-    origin: env.CORS_ORIGIN,
-    methods: ['GET', 'POST', 'OPTIONS'],
+    origin: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   });
   await app.register(rateLimit, {
     max: 120,
@@ -109,6 +112,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(secretRoutes);
   await app.register(dnsRoutes);
   await app.register(qrRoutes);
+  await app.register(mockRoutes);
 
   app.get('/', { schema: { hide: true } }, async () => ({
     name: 'portfolio-api',

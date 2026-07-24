@@ -147,6 +147,22 @@ export const secrets = pgTable(
   (t) => ({ expiresIdx: index('secrets_expires_idx').on(t.expiresAt) }),
 );
 
+/** Instant Mock APIs — we store only the compact config; the data itself is
+ *  generated deterministically from a per-resource seed, never persisted. */
+export const mockApis = pgTable(
+  'mock_apis',
+  {
+    id: varchar('id', { length: 16 }).primaryKey(),
+    config: jsonb('config').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+    lastAccessedAt: timestamp('last_accessed_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({ expiresIdx: index('mock_apis_expires_idx').on(t.expiresAt) }),
+);
+
+export type MockApi = typeof mockApis.$inferSelect;
+
 export type Project = typeof projects.$inferSelect;
 export type NewProject = typeof projects.$inferInsert;
 export type ContactMessage = typeof contactMessages.$inferSelect;
