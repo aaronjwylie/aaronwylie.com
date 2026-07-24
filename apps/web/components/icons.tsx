@@ -169,6 +169,48 @@ export const TextIcon = (p: IconProps) => (
   </Svg>
 );
 
+// Paper plane — HTTP request builder.
+export const SendIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M22 2 11 13" />
+    <path d="M22 2 15 22l-4-9-9-4 20-7z" />
+  </Svg>
+);
+
+// Key — JWT.
+export const KeyIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="7.5" cy="15.5" r="3.5" />
+    <path d="M10 13 20 3M17 6l2 2M14 9l2 2" />
+  </Svg>
+);
+
+// Repeat / schedule — cron.
+export const RepeatIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M17 2l3 3-3 3" />
+    <path d="M4 11V9a4 4 0 0 1 4-4h12" />
+    <path d="M7 22l-3-3 3-3" />
+    <path d="M20 13v2a4 4 0 0 1-4 4H4" />
+  </Svg>
+);
+
+// Clock — timestamp / epoch.
+export const ClockIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </Svg>
+);
+
+// Envelope check — email validator.
+export const EnvelopeIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="m3 7 9 6 9-6" />
+  </Svg>
+);
+
 // Users / live room (group presence).
 export const UsersIcon = (p: IconProps) => (
   <Svg {...p}>

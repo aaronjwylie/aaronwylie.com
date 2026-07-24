@@ -13,6 +13,11 @@ import {
   DatabaseIcon,
   UsersIcon,
   TextIcon,
+  SendIcon,
+  KeyIcon,
+  RepeatIcon,
+  ClockIcon,
+  EnvelopeIcon,
 } from '@/components/icons';
 import { ContactCallout } from '@/components/ContactCallout';
 
@@ -67,6 +72,41 @@ const TOOLS: Tool[] = [
     desc: 'Design a resource and get a live REST endpoint serving realistic, deterministic fake data - with pagination, filtering, sorting, search and simulated writes. Prototype a front end before the backend exists.',
     Icon: DatabaseIcon,
     gradient: 'from-violet-500 to-indigo-600',
+  },
+  {
+    href: '/tools/http',
+    title: 'HTTP Request Builder',
+    desc: 'A mini Postman: build any request (method, headers, body), send it server-side, and inspect the full response - status, headers, timing and body. SSRF-safe.',
+    Icon: SendIcon,
+    gradient: 'from-indigo-500 to-blue-600',
+  },
+  {
+    href: '/tools/jwt',
+    title: 'JWT Decoder & Verifier',
+    desc: 'Decode a JSON Web Token to inspect its header and payload, check expiry, and verify the signature (HS* with a secret, RS*/ES* with a public key). Decoding stays in your browser.',
+    Icon: KeyIcon,
+    gradient: 'from-amber-500 to-orange-600',
+  },
+  {
+    href: '/tools/cron',
+    title: 'Cron Expression Explainer',
+    desc: 'Paste a cron expression to get a plain-English description and the next five run times in any timezone.',
+    Icon: RepeatIcon,
+    gradient: 'from-sky-500 to-indigo-600',
+  },
+  {
+    href: '/tools/timestamp',
+    title: 'Unix Timestamp Converter',
+    desc: 'Convert a Unix timestamp (seconds or milliseconds) to a readable date and back - ISO, UTC, local and relative time, plus a live current epoch.',
+    Icon: ClockIcon,
+    gradient: 'from-cyan-500 to-teal-600',
+  },
+  {
+    href: '/tools/email',
+    title: 'Email Validator',
+    desc: 'Check an email address: valid syntax, a live MX-record lookup to see if the domain accepts mail, and disposable/role-based flags.',
+    Icon: EnvelopeIcon,
+    gradient: 'from-rose-500 to-red-600',
   },
   {
     href: '/tools/dns',
