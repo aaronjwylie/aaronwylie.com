@@ -4,6 +4,9 @@ import { z } from 'zod';
 import { sql as dsql } from 'drizzle-orm';
 import { db } from '../db/client.js';
 import { pageViews } from '../db/schema.js';
+import { env } from '../env.js';
+import { clientIp, geolocate } from '../lib/geo.js';
+import { runDigest } from '../services/digestService.js';
 
 // Starting baselines for the homepage counters.
 const BASELINE_VIEWS = 1000;
@@ -24,8 +27,44 @@ export async function statsRoutes(fastify: FastifyInstance) {
     },
     async (request, reply) => {
       const day = new Date().toISOString().slice(0, 10);
-      await db.insert(pageViews).values({ path: request.body.path.slice(0, 512), day });
+      const path = request.body.path.slice(0, 512);
+      const ip = clientIp(request.headers, request.ip);
+      // Fire-and-forget so the beacon never waits on the geo lookup. We store
+      // only the coarse city/country - never the IP itself.
+      void (async () => {
+        const geo = await geolocate(ip);
+        await db.insert(pageViews).values({
+          path,
+          day,
+          country: geo?.country ?? null,
+          countryCode: geo?.countryCode ?? null,
+          city: geo?.city ?? null,
+        });
+      })().catch((err) => request.log.error(err, 'page view insert failed'));
       return reply.code(202).send({ ok: true as const });
+    },
+  );
+
+  // Trigger the usage digest immediately (admin-only). Defaults to today so
+  // there's fresh data to preview; the scheduled job summarises yesterday.
+  app.post(
+    '/stats/digest/run',
+    {
+      schema: {
+        tags: ['stats'],
+        summary: 'Send the usage digest now (admin)',
+        description: 'Requires the `x-admin-token` header. Optional `?day=YYYY-MM-DD`.',
+        headers: z.object({ 'x-admin-token': z.string().optional() }),
+        querystring: z.object({ day: z.string().optional() }),
+      },
+    },
+    async (request, reply) => {
+      if (request.headers['x-admin-token'] !== env.ADMIN_TOKEN) {
+        return reply.code(401).send({ error: 'unauthorized' });
+      }
+      const day = request.query.day ?? new Date().toISOString().slice(0, 10);
+      const result = await runDigest(request.log, day, { force: true });
+      return reply.send({ sent: result.sent, summary: result.summary });
     },
   );
 

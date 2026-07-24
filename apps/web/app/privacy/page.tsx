@@ -40,6 +40,12 @@ export default function PrivacyPage() {
             you are.
           </li>
           <li>
+            <strong>Approximate location.</strong> For each page view, the site derives a coarse
+            city and country from your IP address at the time of the request, so I can see where
+            visitors come from (shown only in an aggregate daily summary). The IP address itself is
+            not stored - only the city and country.
+          </li>
+          <li>
             <strong>Server logs.</strong> Like any web server, the infrastructure records requests
             (IP address, timestamp, path) transiently for security and reliability.
           </li>
@@ -73,6 +79,10 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong>Google Analytics</strong> - aggregate traffic analytics.
+          </li>
+          <li>
+            <strong>ip-api.com</strong> - looks up the approximate city/country for a visitor&apos;s
+            IP address. The IP is sent for the lookup only; I don&apos;t retain it.
           </li>
         </ul>
         <p>

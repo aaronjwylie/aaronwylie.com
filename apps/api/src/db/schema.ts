@@ -65,6 +65,11 @@ export const pageViews = pgTable(
     path: varchar('path', { length: 512 }).notNull(),
     // Coarse day bucket (YYYY-MM-DD) for cheap grouping.
     day: varchar('day', { length: 10 }).notNull(),
+    // Coarse geo derived from the caller IP at ingest. The IP itself is never
+    // stored - only city/country, for the daily usage digest.
+    country: varchar('country', { length: 64 }),
+    countryCode: varchar('country_code', { length: 2 }),
+    city: varchar('city', { length: 128 }),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => ({

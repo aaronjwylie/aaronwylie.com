@@ -3,6 +3,7 @@ import { env } from './env.js';
 import { sql } from './db/client.js';
 import { startMonitorLoop } from './services/monitorService.js';
 import { startWebhookCleanup } from './services/webhookService.js';
+import { startDigestScheduler } from './services/digestService.js';
 
 /**
  * Process entrypoint. Boots the HTTP server and wires graceful shutdown so
@@ -33,6 +34,8 @@ async function main() {
     startMonitorLoop(app.log);
     // Webhook bin cleanup (request-inspector tool).
     startWebhookCleanup();
+    // Daily aggregate usage digest email.
+    startDigestScheduler(app.log);
   } catch (err) {
     app.log.error(err, 'failed to start');
     process.exit(1);
