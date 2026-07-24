@@ -4,10 +4,16 @@ Most portfolios *describe* what someone can build. I wanted mine to let you *use
 
 ## The tools
 
-There are ten, and no two lean on the same part of the stack:
+There are sixteen, and no two lean on the same part of the stack:
 
 - **Instant Mock API** - design a resource and get a live REST endpoint serving realistic, **deterministic** fake data (pagination, filtering, sorting, search, simulated writes). The server stores only the schema; every response is generated on demand from a per-resource seed.
 - **Live Collaboration Room** - a real-time, many-to-many room: presence, live cursors, a shared notepad and reactions, fanned out to everyone over **WebSockets** with ephemeral in-memory state.
+- **HTTP Request Builder** - a mini-Postman that executes arbitrary requests server-side (method, headers, body) and returns the full response. Reuses the same **SSRF guard** as the inspector.
+- **JWT Decoder & Verifier** - decodes a token in the browser and verifies its signature server-side (HMAC secret or PEM public key), reporting expiry separately from signature validity.
+- **Cron Expression Explainer** - turns a cron string into plain English and the next five run times, timezone-aware.
+- **Unix Timestamp Converter** - two-way epoch/date conversion (seconds or milliseconds) with a live clock, entirely client-side.
+- **Email Validator** - syntax plus a live **MX-record lookup** and disposable/role-based detection.
+- **Lorem Ipsum Generator** - placeholder text by paragraphs, sentences, words, characters or list items, as text or HTML.
 - **Endpoint Inspector** - checks any URL's HTTP status, response time, redirect chain, TLS certificate and security-header grade. It makes outbound requests on user input, so it's carefully **SSRF-safe**.
 - **Password Breach Checker** - tells you if a password appears in a known breach using **k-anonymity**: the password is hashed in your browser and only a 5-character prefix is sent.
 - **Live Status Monitor** - a real uptime monitor with a **background worker** that checks endpoints every 60 seconds and stores time-series data, computing uptime and response-time history.
