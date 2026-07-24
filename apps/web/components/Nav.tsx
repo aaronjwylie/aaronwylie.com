@@ -15,14 +15,14 @@ export function Nav() {
           <Link href="/resume" className="text-slate-300 hover:text-white">
             Résumé
           </Link>
+          <Link href="/tools" className="text-slate-300 hover:text-white">
+            Tools
+          </Link>
           <Link href="/blog" className="text-slate-300 hover:text-white">
             Writing
           </Link>
           <Link href="/architecture" className="text-slate-300 hover:text-white">
             Architecture
-          </Link>
-          <Link href="/tools" className="text-slate-300 hover:text-white">
-            Tools
           </Link>
           <a
             href={`${apiUrl}/docs`}
