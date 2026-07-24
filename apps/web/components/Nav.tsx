@@ -12,11 +12,11 @@ export function Nav() {
           <Link href="/#projects" className="text-slate-300 hover:text-white">
             Projects
           </Link>
-          <Link href="/resume" className="text-slate-300 hover:text-white">
-            Résumé
-          </Link>
           <Link href="/tools" className="text-slate-300 hover:text-white">
             Tools
+          </Link>
+          <Link href="/resume" className="text-slate-300 hover:text-white">
+            Résumé
           </Link>
           <Link href="/blog" className="text-slate-300 hover:text-white">
             Writing
