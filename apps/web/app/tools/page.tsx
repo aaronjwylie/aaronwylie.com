@@ -11,6 +11,7 @@ import {
   GlobeIcon,
   QrIcon,
   DatabaseIcon,
+  UsersIcon,
 } from '@/components/icons';
 import { ContactCallout } from '@/components/ContactCallout';
 
@@ -37,6 +38,13 @@ const TOOLS: Tool[] = [
     desc: 'Design a resource and get a live REST endpoint serving realistic, deterministic fake data - with pagination, filtering, sorting, search and simulated writes. Prototype a front end before the backend exists.',
     Icon: DatabaseIcon,
     gradient: 'from-violet-500 to-indigo-600',
+  },
+  {
+    href: '/tools/room',
+    title: 'Live Collaboration Room',
+    desc: 'Create a room, share the link, and everyone sees live cursors, a shared notepad and reactions in real time over WebSockets. A small demo of the real-time systems I build.',
+    Icon: UsersIcon,
+    gradient: 'from-fuchsia-500 to-pink-600',
   },
   {
     href: '/tools/shortener',

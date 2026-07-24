@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/tools',
     '/tools/mock-api',
+    '/tools/room',
     '/tools/inspector',
     '/tools/password-check',
     '/tools/status',

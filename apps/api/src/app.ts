@@ -26,6 +26,7 @@ import { secretRoutes } from './routes/secrets.js';
 import { dnsRoutes } from './routes/dns.js';
 import { qrRoutes } from './routes/qr.js';
 import { mockRoutes } from './routes/mock.js';
+import { roomRoutes } from './routes/room.js';
 
 /**
  * Build a fully-configured Fastify instance. Kept separate from `index.ts` so
@@ -113,6 +114,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(dnsRoutes);
   await app.register(qrRoutes);
   await app.register(mockRoutes);
+  await app.register(roomRoutes);
 
   app.get('/', { schema: { hide: true } }, async () => ({
     name: 'portfolio-api',

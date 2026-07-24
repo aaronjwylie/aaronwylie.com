@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     'Get a unique URL and watch incoming HTTP requests in real time over a WebSocket - method, ' +
     'headers, query and body. A free tool for testing webhooks and integrations, by Aaron Wylie.',
+  keywords: ['webhook tester', 'request inspector', 'webhook debugger', 'request bin', 'test webhooks', 'inspect HTTP requests', 'webhook.site alternative'],
   alternates: { canonical: '/tools/webhook' },
 };
 

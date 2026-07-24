@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     'Check whether a password appears in a known data breach, privately. Your password is hashed ' +
     'in the browser and never sent (k-anonymity via HaveIBeenPwned). A free tool by Aaron Wylie.',
+  keywords: ['password breach checker', 'have i been pwned', 'pwned password', 'k-anonymity', 'password leak check', 'is my password safe'],
   alternates: { canonical: '/tools/password-check' },
 };
 

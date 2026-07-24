@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     'Look up a domain’s DNS records (A, AAAA, CNAME, MX, NS, TXT) and registration details ' +
     '(registrar, created, expiry) via RDAP. A free developer tool by Aaron Wylie.',
+  keywords: ['DNS lookup', 'WHOIS lookup', 'RDAP', 'MX records', 'domain records', 'DNS checker', 'nslookup online'],
   alternates: { canonical: '/tools/dns' },
 };
 
