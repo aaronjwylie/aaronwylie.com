@@ -12,6 +12,7 @@ import {
   QrIcon,
   DatabaseIcon,
   UsersIcon,
+  TextIcon,
 } from '@/components/icons';
 import { ContactCallout } from '@/components/ContactCallout';
 
@@ -59,6 +60,13 @@ const TOOLS: Tool[] = [
     desc: 'Turn any URL or text into a crisp QR code, generated server-side. Download as SVG or PNG.',
     Icon: QrIcon,
     gradient: 'from-teal-500 to-emerald-600',
+  },
+  {
+    href: '/tools/lorem',
+    title: 'Lorem Ipsum Generator',
+    desc: 'Generate placeholder text by paragraphs, sentences, words, characters or list items - as plain text or ready-to-paste HTML, with an optional classic "Lorem ipsum" start.',
+    Icon: TextIcon,
+    gradient: 'from-slate-500 to-slate-700',
   },
   {
     href: '/tools/dns',

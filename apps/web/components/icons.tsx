@@ -162,6 +162,13 @@ export const ShieldIcon = (p: IconProps) => (
   </Svg>
 );
 
+// Text / lorem ipsum (paragraph lines).
+export const TextIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M4 6h16M4 10h16M4 14h12M4 18h8" />
+  </Svg>
+);
+
 // Users / live room (group presence).
 export const UsersIcon = (p: IconProps) => (
   <Svg {...p}>
