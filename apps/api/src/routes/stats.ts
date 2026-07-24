@@ -5,7 +5,7 @@ import { sql as dsql } from 'drizzle-orm';
 import { db } from '../db/client.js';
 import { pageViews } from '../db/schema.js';
 import { env } from '../env.js';
-import { clientIp, geolocate } from '../lib/geo.js';
+import { clientIp, geolocate, visitorHash } from '../lib/geo.js';
 import { runDigest } from '../services/digestService.js';
 
 // Starting baselines for the homepage counters.
@@ -29,8 +29,11 @@ export async function statsRoutes(fastify: FastifyInstance) {
       const day = new Date().toISOString().slice(0, 10);
       const path = request.body.path.slice(0, 512);
       const ip = clientIp(request.headers, request.ip);
+      const ua = (request.headers['user-agent'] as string | undefined) ?? '';
+      const visitor = visitorHash(ip, ua, day, env.ADMIN_TOKEN);
       // Fire-and-forget so the beacon never waits on the geo lookup. We store
-      // only the coarse city/country - never the IP itself.
+      // only the coarse city/country and a non-reversible visitor hash - never
+      // the IP itself.
       void (async () => {
         const geo = await geolocate(ip);
         await db.insert(pageViews).values({
@@ -39,6 +42,7 @@ export async function statsRoutes(fastify: FastifyInstance) {
           country: geo?.country ?? null,
           countryCode: geo?.countryCode ?? null,
           city: geo?.city ?? null,
+          visitorHash: visitor,
         });
       })().catch((err) => request.log.error(err, 'page view insert failed'));
       return reply.code(202).send({ ok: true as const });

@@ -43,7 +43,9 @@ export default function PrivacyPage() {
             <strong>Approximate location.</strong> For each page view, the site derives a coarse
             city and country from your IP address at the time of the request, so I can see where
             visitors come from (shown only in an aggregate daily summary). The IP address itself is
-            not stored - only the city and country.
+            not stored - only the city and country. To estimate unique visitors, the site also
+            stores a daily-rotating, non-reversible hash derived from your IP and browser; it
+            cannot be reversed to your IP or linked to you across days.
           </li>
           <li>
             <strong>Server logs.</strong> Like any web server, the infrastructure records requests

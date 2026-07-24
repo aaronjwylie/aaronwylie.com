@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+
 /**
  * Coarse IP geolocation for the daily usage digest. Best-effort: on any error
  * or a private/local IP we return null and the view is still counted. Results
@@ -52,6 +54,17 @@ export async function geolocate(ip: string): Promise<Geo | null> {
   }
   cache.set(ip, result);
   return result;
+}
+
+/**
+ * A privacy-preserving per-visitor token for counting daily uniques. It's a
+ * non-reversible hash of the day + a server secret + IP + browser. Because the
+ * day is mixed in, the same visitor hashes differently each day (unlinkable),
+ * and without the secret it can't be reversed to an IP.
+ */
+export function visitorHash(ip: string, userAgent: string, day: string, secret: string): string | null {
+  if (!ip) return null;
+  return createHash('sha256').update(`${day}:${secret}:${ip}:${userAgent}`).digest('hex').slice(0, 16);
 }
 
 /** Best client IP behind nginx (which sets X-Real-IP). */

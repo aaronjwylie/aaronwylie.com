@@ -19,6 +19,7 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
   const [totals] = await db
     .select({
       total: count,
+      unique: dsql<number>`count(distinct ${pageViews.visitorHash})::int`,
       tools: dsql<number>`count(*) filter (where ${pageViews.path} like '/tools%')::int`,
       located: dsql<number>`count(*) filter (where ${pageViews.country} is not null)::int`,
     })
@@ -60,6 +61,7 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
   return {
     day,
     totalViews: totals?.total ?? 0,
+    uniqueVisitors: totals?.unique ?? 0,
     toolViews: totals?.tools ?? 0,
     locatedViews: totals?.located ?? 0,
     topTools: topTools.map((t) => ({ path: t.path, views: t.views })),

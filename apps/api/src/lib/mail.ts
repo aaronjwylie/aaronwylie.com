@@ -35,6 +35,7 @@ function esc(s: string): string {
 export interface UsageDigest {
   day: string;
   totalViews: number;
+  uniqueVisitors: number;
   toolViews: number;
   locatedViews: number;
   topTools: { path: string; views: number }[];
@@ -68,7 +69,8 @@ export async function sendUsageDigest(d: UsageDigest, log: FastifyBaseLogger): P
     `<div style="font-family:system-ui,-apple-system,sans-serif;line-height:1.5;color:#111;max-width:560px">` +
     `<h2 style="margin:0 0 4px">Portfolio daily digest</h2>` +
     `<p style="margin:0 0 16px;color:#666">${esc(d.day)} (UTC)</p>` +
-    `<p style="margin:0;font-size:15px"><strong>${d.totalViews}</strong> page views · ` +
+    `<p style="margin:0;font-size:15px"><strong>${d.uniqueVisitors}</strong> unique visitors · ` +
+    `<strong>${d.totalViews}</strong> page views · ` +
     `<strong>${d.toolViews}</strong> on tools · ${d.locatedViews} geo-located</p>` +
     section('Top tools', d.topTools.map((t) => ({ label: t.path, views: t.views }))) +
     section('Top pages', d.topPages.map((t) => ({ label: t.path, views: t.views }))) +
@@ -80,7 +82,7 @@ export async function sendUsageDigest(d: UsageDigest, log: FastifyBaseLogger): P
 
   const text =
     `Portfolio daily digest - ${d.day} (UTC)\n\n` +
-    `${d.totalViews} page views, ${d.toolViews} on tools, ${d.locatedViews} geo-located\n\n` +
+    `${d.uniqueVisitors} unique visitors, ${d.totalViews} page views, ${d.toolViews} on tools, ${d.locatedViews} geo-located\n\n` +
     `Top tools:\n${d.topTools.map((t) => `  ${t.path}: ${t.views}`).join('\n') || '  -'}\n\n` +
     `Top countries:\n${d.topCountries.map((t) => `  ${t.country}: ${t.views}`).join('\n') || '  -'}\n\n` +
     `Top cities:\n${d.topCities.map((t) => `  ${t.label}: ${t.views}`).join('\n') || '  -'}\n`;

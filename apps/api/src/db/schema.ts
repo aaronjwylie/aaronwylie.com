@@ -70,11 +70,15 @@ export const pageViews = pgTable(
     country: varchar('country', { length: 64 }),
     countryCode: varchar('country_code', { length: 2 }),
     city: varchar('city', { length: 128 }),
+    // Daily-rotating, non-reversible hash of IP+browser for counting unique
+    // visitors. Cannot be reversed to an IP or linked across days.
+    visitorHash: varchar('visitor_hash', { length: 16 }),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => ({
     dayIdx: index('page_views_day_idx').on(t.day),
     pathIdx: index('page_views_path_idx').on(t.path),
+    visitorIdx: index('page_views_visitor_idx').on(t.day, t.visitorHash),
   }),
 );
 
