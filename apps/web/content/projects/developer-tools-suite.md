@@ -4,8 +4,9 @@ Most portfolios *describe* what someone can build. I wanted mine to let you *use
 
 ## The tools
 
-There are eight, and no two lean on the same part of the stack:
+There are nine, and no two lean on the same part of the stack:
 
+- **Instant Mock API** - design a resource and get a live REST endpoint serving realistic, **deterministic** fake data (pagination, filtering, sorting, search, simulated writes). The server stores only the schema; every response is generated on demand from a per-resource seed.
 - **Endpoint Inspector** - checks any URL's HTTP status, response time, redirect chain, TLS certificate and security-header grade. It makes outbound requests on user input, so it's carefully **SSRF-safe**.
 - **Password Breach Checker** - tells you if a password appears in a known breach using **k-anonymity**: the password is hashed in your browser and only a 5-character prefix is sent.
 - **Live Status Monitor** - a real uptime monitor with a **background worker** that checks endpoints every 60 seconds and stores time-series data, computing uptime and response-time history.
