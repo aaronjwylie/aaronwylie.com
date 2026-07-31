@@ -4,7 +4,8 @@ export const metadata: Metadata = {
   title: 'Résumé - Aaron Wylie, Full-Stack Developer',
   description:
     'Résumé of Aaron Wylie - Vancouver-based full-stack developer and technical founder. 20+ years ' +
-    'building software, founder of APPIX and DigiCoyote Software.',
+    'building software, inventor of APPIX live-experience and public safety alerting, founder of ' +
+    'DigiCoyote Software.',
   alternates: { canonical: '/resume' },
 };
 

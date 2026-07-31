@@ -10,7 +10,7 @@ const EXPERIENCE = [
     role: 'Full-Stack Developer & Technical Founder',
     org: 'Independent · Remote worldwide',
     points: [
-      'Build web and mobile apps, clean APIs, and the real-time and cloud infrastructure behind them for clients worldwide.',
+      'Build web and mobile apps, clean APIs, and the real-time and cloud infrastructure behind them for clients worldwide, working in short iterative cycles with prioritized backlogs, regular demos and written specs.',
       'Currently building a real-time live-streaming platform (WebRTC/WebSockets) shipping to iOS, Android and web with an admin portal.',
       'Design and ship documented REST APIs on Fastify/Node and Postgres, containerized with Docker and deployed with nginx, TLS and CI/CD.',
       'Hands-on observability and reliability with Dynatrace - distributed tracing, Kubernetes, and incident-style root-cause investigation.',
@@ -23,7 +23,8 @@ const EXPERIENCE = [
     points: [
       'Invented APPIX and built its first iterations, helping architect a distributed system across mobile apps, cloud infrastructure (DigitalOcean, AWS) and backend services.',
       'Delivered synchronized, real-time mobile experiences at live events for Disney, UFC, Red Bull, Universal, the Cleveland Cavaliers and the Hollywood Bowl - reaching over a million people.',
-      'Led product strategy, technical coordination and production event operations in high-visibility, time-sensitive environments.',
+      'Built APPIX APSA, a public safety alerting system delivering site-specific emergency notifications without reliance on cellular or WiFi, engineered to keep working through network congestion and power loss. The Event Safety Alliance named APPIX the official app of its Event Safety Summit, and the alerting system was committed free to ESA member events over 5,000 attendees.',
+      'Led product strategy, technical coordination and production event operations in high-visibility, time-sensitive environments, tracking the build in Jira across sprint planning, cross-functional coordination and retrospectives.',
       'Documented software specifications and aligned technical and business requirements across a cross-functional team.',
     ],
   },
@@ -33,7 +34,7 @@ const EXPERIENCE = [
     org: 'DigiCoyote Software',
     points: [
       'Founded and led a custom software development consultancy for 13 years.',
-      'Led a distributed development team delivering tailored applications end to end for clients across many industries - owning architecture, delivery and quality assurance.',
+      'Led a distributed development team delivering tailored applications end to end for clients across many industries, running Scrum and Kanban delivery in Jira with prioritized backlogs, sprint planning and regular client demos, and owning architecture, delivery and quality assurance.',
       'Managed technical requirements, system performance and delivery timelines, translating business needs into scalable technical solutions.',
       'Ran client-facing consulting, solution planning and long-term partnerships.',
     ],
@@ -41,12 +42,19 @@ const EXPERIENCE = [
 ];
 
 const SKILLS: { label: string; items: string }[] = [
-  { label: 'Languages', items: 'TypeScript, JavaScript, Python, PHP, Java, Kotlin, Objective-C, Swift, SQL' },
+  {
+    label: 'Languages',
+    items: 'TypeScript, JavaScript, Python, PHP, Java, Kotlin, Objective-C, Swift, C++, C#, SQL',
+  },
   { label: 'Frontend', items: 'React, React Native, Next.js, HTML, CSS, Tailwind CSS' },
-  { label: 'Backend', items: 'Node.js, Fastify, Django, REST APIs, WebSockets, WebRTC' },
+  { label: 'Backend', items: 'Node.js, Fastify, Django, .NET, REST APIs, WebSockets, WebRTC' },
   { label: 'Data', items: 'PostgreSQL, MySQL, SQL Server, MongoDB, Redis' },
   { label: 'DevOps & Cloud', items: 'Docker, Kubernetes, nginx, CI/CD, AWS, DigitalOcean, Hetzner, Linux' },
   { label: 'Observability', items: 'Dynatrace, distributed tracing, metrics, incident investigation' },
+  {
+    label: 'Practices',
+    items: 'Agile (Scrum, Kanban), Jira, CI/CD, code review, technical writing and documentation',
+  },
 ];
 
 const CLIENTS =
@@ -106,11 +114,12 @@ export default function ResumePage() {
           <p className="text-sm leading-relaxed text-slate-700">
             Full-stack developer and technical founder with 20+ years building software - from a
             13-year custom development consultancy to inventing and shipping APPIX, a live-experience
-            platform used by Disney, UFC and Red Bull and seen by over a million people. I build web
-            and mobile apps, clean APIs, and the real-time and cloud infrastructure behind them, with
-            a strong side in observability and system reliability. I work remotely with clients
-            worldwide and care about shipping software that is fast, maintainable and genuinely
-            useful.
+            and public safety alerting platform used by Disney, UFC and Red Bull, seen by over a
+            million people and named official app of the Event Safety Alliance&rsquo;s Event Safety
+            Summit. I build web and mobile apps, clean APIs, and the real-time and cloud
+            infrastructure behind them, with a strong side in observability and system reliability. I
+            work remotely with clients worldwide, am at home in an agile team, and care about
+            shipping software that is fast, maintainable and genuinely useful.
           </p>
         </section>
 
@@ -159,7 +168,7 @@ export default function ResumePage() {
             <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-slate-900">Education</h2>
             <p className="text-sm text-slate-700">
               <span className="font-semibold text-slate-900">BCIT</span> - Software Systems
-              Development (2000-2003)
+              Development (2000-2003), C++ and .NET focus
               <br />
               <span className="font-semibold text-slate-900">CDIS</span> - Web Programming Track
               (1999-2000)
