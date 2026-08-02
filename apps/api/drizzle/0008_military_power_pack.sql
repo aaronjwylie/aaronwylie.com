@@ -1,0 +1,14 @@
+-- Metadata realignment. Intentionally does nothing.
+--
+-- Snapshots 0004-0007 were never committed, so `drizzle-kit generate` diffed
+-- the schema against snapshot 0003 and re-emitted everything those migrations
+-- had already applied. CI runs generate before the tests, so every run wrote a
+-- duplicate migration and the test step then failed applying it:
+--
+--   column "budget" of relation "contact_messages" already exists
+--
+-- The accompanying meta/0008_snapshot.json records the true current schema, so
+-- generate now sees no drift. The SQL itself is a no-op because every object it
+-- would create already exists - in production via 0004-0007, and on a fresh
+-- database via those same migrations running first.
+SELECT 1;

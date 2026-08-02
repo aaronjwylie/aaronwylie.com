@@ -21,6 +21,7 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
+      remoteAddress: '10.0.0.1',
       payload: {
         name: 'Jane',
         email: 'jane@example.com',
@@ -37,6 +38,7 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
+      remoteAddress: '10.0.0.2',
       payload: {
         name: 'Casey',
         email: 'casey@example.com',
@@ -60,6 +62,7 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
+      remoteAddress: '10.0.0.3',
       payload: {
         name: 'Jane',
         email: 'jane@example.com',
@@ -75,6 +78,7 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
+      remoteAddress: '10.0.0.4',
       payload: {
         name: 'Jane',
         email: 'jane@example.com',
@@ -88,6 +92,7 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
+      remoteAddress: '10.0.0.5',
       payload: {
         name: 'Jane',
         email: 'not-an-email',
@@ -102,6 +107,7 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
+      remoteAddress: '10.0.0.6',
       payload: { name: 'Jane', email: 'jane@example.com', message: 'hi', notARobot: true },
     });
     expect(res.statusCode).toBe(400);
@@ -111,6 +117,7 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
+      remoteAddress: '10.0.0.7',
       payload: {
         name: 'Bot',
         email: 'bot@example.com',

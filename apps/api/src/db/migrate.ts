@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
 import postgres from 'postgres';
@@ -13,7 +14,11 @@ async function main() {
   const migrationClient = postgres(env.DATABASE_URL, { max: 1 });
   const dbm = drizzle(migrationClient);
   console.log('▶ running migrations…');
-  await migrate(dbm, { migrationsFolder: new URL('../../drizzle', import.meta.url).pathname });
+  // fileURLToPath, not .pathname: on Windows the latter yields "/C:/..." which
+  // is not a usable path, so migrations are not found.
+  await migrate(dbm, {
+    migrationsFolder: fileURLToPath(new URL('../../drizzle', import.meta.url)),
+  });
   console.log('✔ migrations complete');
   await migrationClient.end();
 }
