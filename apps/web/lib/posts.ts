@@ -43,6 +43,14 @@ export function tagFromSlug(slug: string): string | undefined {
 // Newest first. The article body for each lives in content/blog/<slug>.md
 export const POSTS: PostMeta[] = [
   {
+    slug: 'realtime-transport-polling-sse-websockets',
+    title: 'Polling, SSE or WebSockets: Picking a Transport for Live Updates',
+    description:
+      'Two tools on this site push live updates, and only one of them warranted a socket. How to choose between polling, Server-Sent Events and WebSockets.',
+    date: '2026-08-02',
+    tags: ['Real-time', 'WebSockets', 'Node.js', 'Architecture'],
+  },
+  {
     slug: 'wordpress-to-modern-stack-nextjs-api',
     title: 'From WordPress to a Modern Stack: Rebuilding with Next.js & a Real API',
     description:
