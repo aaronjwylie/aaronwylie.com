@@ -1,4 +1,4 @@
-Picture a stadium: 20,000 people, and the venue wants every phone to flash a color on cue, in sync, as part of the show. Now picture the cellular network in that stadium - congested to the point of uselessness. How do you push a signal to thousands of phones when the network is saturated and you can't rely on the internet at all? For APPIX, the answer was Bluetooth Low Energy beacons.
+Picture a stadium: 20,000 people, and the venue wants every phone to flash a color on cue, in sync, as part of the show. Now picture the cellular network in that stadium - congested to the point of uselessness. How do you push a signal to thousands of phones when the network is saturated and you can't rely on the internet at all? The answer is Bluetooth Low Energy beacons.
 
 ## Beacons broadcast, they don't connect
 
@@ -26,7 +26,7 @@ On the phones, native code did the listening - Objective-C on iOS, Java on Andro
 
 ## The lessons that transfer
 
-BLE beacons are a niche technology, but the ideas behind APPIX generalize:
+BLE beacons are a niche technology, but the ideas behind them generalize:
 
 - **Match the transport to the constraint.** The constraint was "no reliable network in a packed venue," and broadcast RF was the honest answer - not a cleverer use of the network that would still fail.
 - **Broadcast beats connections at scale.** Anytime you need one-to-many and connections would explode, look for a broadcast primitive.

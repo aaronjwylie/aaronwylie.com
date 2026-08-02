@@ -70,7 +70,7 @@ export const POSTS: PostMeta[] = [
     slug: 'eddystone-ble-beacons-broadcast-to-phones',
     title: "Broadcasting to a Crowd's Phones with Eddystone BLE Beacons",
     description:
-      'How BLE beacons push signals to thousands of phones with no network - the tech behind APPIX, and why broadcast beats connections at scale.',
+      'How BLE beacons push signals to thousands of phones with no network, and why broadcast beats connections at scale.',
     date: '2026-05-12',
     tags: ['BLE', 'Eddystone', 'Real-time', 'Mobile'],
   },
