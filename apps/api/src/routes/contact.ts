@@ -29,6 +29,10 @@ export async function contactRoutes(fastify: FastifyInstance) {
           // Accept any value here so the handler can silently drop it - a 400 would
           // tell the bot it was detected.
           website: z.string().max(200).optional(),
+          // Explicit human confirmation from the form. Required, and checked
+          // here rather than only in the browser so the box cannot simply be
+          // deleted client-side.
+          notARobot: z.literal(true),
         }),
         response: {
           201: z.object({ ok: z.literal(true), id: z.number() }),

@@ -25,6 +25,7 @@ export function ContactForm() {
           ...(form.get('budget') ? { budget: form.get('budget') } : {}),
           message: form.get('message'),
           website: form.get('website'), // honeypot
+          notARobot: form.get('notARobot') === 'on',
         }),
       });
       if (!res.ok) throw new Error(`Request failed (${res.status})`);
@@ -105,6 +106,17 @@ export function ContactForm() {
           rows={4}
           className="w-full rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-white focus:border-accent focus:outline-none"
         />
+      </label>
+      {/* Explicit human confirmation. Re-checked by the API, so removing the
+          input in devtools does not get a submission through. */}
+      <label className="flex w-max cursor-pointer items-center gap-3 rounded-lg border border-white/10 bg-ink-950 px-3 py-2.5 text-sm text-slate-300 hover:border-accent">
+        <input
+          type="checkbox"
+          name="notARobot"
+          required
+          className="h-4 w-4 accent-accent"
+        />
+        <span>I am not a robot</span>
       </label>
       {error && <p className="text-sm text-red-400">{error}</p>}
       <button type="submit" disabled={status === 'submitting'} className="btn-primary w-full disabled:opacity-60">

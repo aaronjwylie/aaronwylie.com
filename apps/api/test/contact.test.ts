@@ -21,7 +21,12 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
-      payload: { name: 'Jane', email: 'jane@example.com', message: 'Hello there, I have a role for you!' },
+      payload: {
+        name: 'Jane',
+        email: 'jane@example.com',
+        message: 'Hello there, I have a role for you!',
+        notARobot: true,
+      },
     });
     expect(res.statusCode).toBe(201);
     expect(res.json().ok).toBe(true);
@@ -36,6 +41,7 @@ describe('contact', () => {
         name: 'Casey',
         email: 'casey@example.com',
         message: 'We have a project with a real budget.',
+        notARobot: true,
         budget: '50k_100k',
       },
     });
@@ -58,7 +64,21 @@ describe('contact', () => {
         name: 'Jane',
         email: 'jane@example.com',
         message: 'A long enough message here.',
+        notARobot: true,
         budget: 'a_zillion_dollars',
+      },
+    });
+    expect(res.statusCode).toBe(400);
+  });
+
+  it('rejects a submission without the human confirmation', async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/contact',
+      payload: {
+        name: 'Jane',
+        email: 'jane@example.com',
+        message: 'A long enough message here.',
       },
     });
     expect(res.statusCode).toBe(400);
@@ -68,7 +88,12 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
-      payload: { name: 'Jane', email: 'not-an-email', message: 'A long enough message here.' },
+      payload: {
+        name: 'Jane',
+        email: 'not-an-email',
+        message: 'A long enough message here.',
+        notARobot: true,
+      },
     });
     expect(res.statusCode).toBe(400);
   });
@@ -77,7 +102,7 @@ describe('contact', () => {
     const res = await app.inject({
       method: 'POST',
       url: '/contact',
-      payload: { name: 'Jane', email: 'jane@example.com', message: 'hi' },
+      payload: { name: 'Jane', email: 'jane@example.com', message: 'hi', notARobot: true },
     });
     expect(res.statusCode).toBe(400);
   });
@@ -91,6 +116,7 @@ describe('contact', () => {
         email: 'bot@example.com',
         message: 'Buy my stuff, buy my stuff!',
         website: 'http://spam.example',
+        notARobot: true,
       },
     });
     expect(res.statusCode).toBe(201);
