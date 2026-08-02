@@ -21,15 +21,15 @@ const seedProjects: NewProject[] = [
       'phones into a coordinated second screen (synced light shows, live stats, exclusive content), ' +
       'even without cellular data or WiFi, so it keeps working in congested venues or during outages. ' +
       'What I built: the control station - in Python, running on dedicated on-site hardware - that ' +
-      'drives a network of Eddystone BLE beacons (I chose Eddystone so identical signals reach iOS ' +
-      'and Android natively, with no network dependency); plus the phone-side receiver logic in ' +
+      'drives a network of BLE beacons (the broadcast format was chosen so identical signals reach ' +
+      'iOS and Android natively, with no network dependency); plus the phone-side receiver logic in ' +
       'native Objective-C (iOS) and Java (Android) that detects the beacons and fires synchronized ' +
       'in-app moments in real time. Since coming out of stealth in 2019, APPIX has reached over a ' +
       'million people, powering experiences for the UFC (a custom “UFC In Action” app), Disney/Pixar’s ' +
       'Coco live event, Red Bull, Shaw, and a 55-date New Kids on the Block tour. Rated 4.0★ on the App Store.',
     techStack: [
       'Python',
-      'BLE (Eddystone)',
+      'BLE Beacons',
       'Objective-C (iOS)',
       'Java (Android)',
       'Embedded Hardware',

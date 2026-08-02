@@ -6,7 +6,7 @@ Live events - stadiums, arenas, festivals - are exactly where phones stop workin
 
 The insight was to stop treating the phone as a device you *connect to* and start treating it as a device that *listens*. Instead of thousands of network connections, APPIX broadcasts - using Bluetooth Low Energy beacons that any nearby phone can receive without pairing or a data connection.
 
-I chose Google's **Eddystone** beacon format for one decisive reason: it's open and both iOS and Android can receive it natively, so a single broadcast system reaches every phone in the venue rather than requiring two.
+The broadcast format was chosen for one decisive reason: both iOS and Android can receive it natively, so a single broadcast system reaches every phone in the venue rather than requiring two.
 
 The engineering split into two halves:
 
@@ -22,5 +22,3 @@ APPIX grew from a prototype I built into a distributed platform - spanning mobil
 ## What it demonstrates
 
 The core lesson generalizes well beyond beacons: **when you need one-to-many at scale, reach for a primitive that's already one-to-many** instead of forcing a one-to-one tool to do the job. Matching the transport to the real constraint - "no usable network in a packed venue" - was what made the impossible-looking version actually work.
-
-*I wrote more about the beacon tech in [Broadcasting to a Crowd's Phones with Eddystone BLE Beacons](/blog/eddystone-ble-beacons-broadcast-to-phones).*
