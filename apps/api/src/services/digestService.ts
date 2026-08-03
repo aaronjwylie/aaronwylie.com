@@ -104,7 +104,11 @@ export function startDigestScheduler(log: FastifyBaseLogger): void {
     setTimeout(
       () => {
         const yesterday = new Date(Date.now() - 86_400_000);
-        void runDigest(log, ymd(yesterday)).catch((err) => log.error(err, 'usage digest run failed'));
+        // Forced: a quiet day is itself information, and skipping the send
+        // makes "no traffic" look identical to "the digest is broken".
+        void runDigest(log, ymd(yesterday), { force: true }).catch((err) =>
+          log.error(err, 'usage digest run failed'),
+        );
         schedule();
       },
       msUntilNext(),
