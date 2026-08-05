@@ -319,6 +319,23 @@ export default async function HomePage() {
         <div className="max-w-2xl">
           <ContactForm />
         </div>
+
+        {/* Bigger than one contractor: hand it to the firm rather than let it
+            go nowhere. New tab, since the visitor may still want to send this
+            form. */}
+        <p className="mt-8 max-w-2xl text-slate-400">
+          Have a larger project?{' '}
+          <a
+            href="https://digicoyote.com"
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-accent hover:underline"
+          >
+            Consider DigiCoyote Software
+          </a>{' '}
+          - my software development firm in Vancouver, for work that needs a team rather than one
+          pair of hands.
+        </p>
       </section>
     </>
   );
