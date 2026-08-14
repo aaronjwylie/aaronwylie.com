@@ -11,6 +11,20 @@ function ymd(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
+/** "Vancouver, British Columbia, Canada", dropping blanks and repeats. */
+function dedupeParts(parts: (string | null)[]): string {
+  const seen = new Set<string>();
+  return parts
+    .filter((p): p is string => Boolean(p))
+    .filter((p) => {
+      const key = p.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .join(', ');
+}
+
 /** Aggregate a single day's page views into the digest shape (no IPs involved). */
 export async function buildSummary(day: string): Promise<UsageDigest> {
   const onDay = eq(pageViews.day, day);
@@ -51,10 +65,15 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
     .limit(10);
 
   const topCitiesRaw = await db
-    .select({ city: pageViews.city, country: pageViews.country, views: count })
+    .select({
+      city: pageViews.city,
+      region: pageViews.region,
+      country: pageViews.country,
+      views: count,
+    })
     .from(pageViews)
     .where(and(onDay, isNotNull(pageViews.city)))
-    .groupBy(pageViews.city, pageViews.country)
+    .groupBy(pageViews.city, pageViews.region, pageViews.country)
     .orderBy(dsql`count(*) desc`)
     .limit(10);
 
@@ -68,7 +87,9 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
     topPages: topPages.map((t) => ({ path: t.path, views: t.views })),
     topCountries: topCountries.map((t) => ({ country: t.country ?? 'Unknown', views: t.views })),
     topCities: topCitiesRaw.map((t) => ({
-      label: [t.city, t.country].filter(Boolean).join(', '),
+      // City-states report the same name as city, region and country, which
+      // would otherwise render "Singapore, Singapore, Singapore".
+      label: dedupeParts([t.city, t.region, t.country]),
       views: t.views,
     })),
   };

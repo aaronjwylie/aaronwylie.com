@@ -64,6 +64,13 @@
       "when": 1785710747066,
       "tag": "0008_military_power_pack",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1786734966670,
+      "tag": "0009_groovy_weapon_omega",
+      "breakpoints": true
     }
   ]
 }

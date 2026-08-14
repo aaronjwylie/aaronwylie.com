@@ -5,10 +5,12 @@ import { createHash } from 'node:crypto';
  * or a private/local IP we return null and the view is still counted. Results
  * are cached in-memory so we hit the provider at most once per distinct IP.
  *
- * We resolve only city/country and never persist the IP itself.
+ * We resolve only city/region/country and never persist the IP itself.
  */
 export interface Geo {
   city: string | null;
+  /** Province or state, spelled out ("British Columbia"), not the code. */
+  region: string | null;
   country: string | null;
   countryCode: string | null;
 }
@@ -36,13 +38,20 @@ export async function geolocate(ip: string): Promise<Geo | null> {
     const timer = setTimeout(() => ctrl.abort(), 2500);
     // ip-api free tier (non-commercial): http only, 45 req/min - fine with caching.
     const res = await fetch(
-      `http://ip-api.com/json/${encodeURIComponent(ip)}?fields=status,country,countryCode,city`,
+      `http://ip-api.com/json/${encodeURIComponent(ip)}?fields=status,country,countryCode,regionName,city`,
       { signal: ctrl.signal },
     );
     clearTimeout(timer);
-    const d = (await res.json()) as { status?: string; country?: string; countryCode?: string; city?: string };
+    const d = (await res.json()) as {
+      status?: string; country?: string; countryCode?: string; regionName?: string; city?: string;
+    };
     if (d.status === 'success') {
-      result = { city: d.city || null, country: d.country || null, countryCode: d.countryCode || null };
+      result = {
+        city: d.city || null,
+        region: d.regionName || null,
+        country: d.country || null,
+        countryCode: d.countryCode || null,
+      };
     }
   } catch {
     result = null;

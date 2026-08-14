@@ -66,9 +66,11 @@ export const pageViews = pgTable(
     // Coarse day bucket (YYYY-MM-DD) for cheap grouping.
     day: varchar('day', { length: 10 }).notNull(),
     // Coarse geo derived from the caller IP at ingest. The IP itself is never
-    // stored - only city/country, for the daily usage digest.
+    // stored - only city/region/country, for the daily usage digest.
     country: varchar('country', { length: 64 }),
     countryCode: varchar('country_code', { length: 2 }),
+    // Province or state, spelled out ("British Columbia"), not the code.
+    region: varchar('region', { length: 96 }),
     city: varchar('city', { length: 128 }),
     // Daily-rotating, non-reversible hash of IP+browser for counting unique
     // visitors. Cannot be reversed to an IP or linked across days.

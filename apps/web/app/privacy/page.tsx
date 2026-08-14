@@ -41,9 +41,9 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong>Approximate location.</strong> For each page view, the site derives a coarse
-            city and country from your IP address at the time of the request, so I can see where
-            visitors come from (shown only in an aggregate daily summary). The IP address itself is
-            not stored - only the city and country. To estimate unique visitors, the site also
+            city, province or state, and country from your IP address at the time of the request, so
+            I can see where visitors come from (shown only in an aggregate daily summary). The IP
+            address itself is not stored - only those three. To estimate unique visitors, the site also
             stores a daily-rotating, non-reversible hash derived from your IP and browser; it
             cannot be reversed to your IP or linked to you across days.
           </li>
@@ -83,8 +83,9 @@ export default function PrivacyPage() {
             <strong>Google Analytics</strong> - aggregate traffic analytics.
           </li>
           <li>
-            <strong>ip-api.com</strong> - looks up the approximate city/country for a visitor&apos;s
-            IP address. The IP is sent for the lookup only; I don&apos;t retain it.
+            <strong>ip-api.com</strong> - looks up the approximate city, province or state, and
+            country for a visitor&apos;s IP address. The IP is sent for the lookup only; I
+            don&apos;t retain it.
           </li>
         </ul>
         <p>
