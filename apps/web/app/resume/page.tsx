@@ -22,6 +22,7 @@ const EXPERIENCE = [
     org: 'APPIX Technologies',
     points: [
       'Invented APPIX and built its first iterations, helping architect a distributed system across mobile apps, cloud infrastructure (DigitalOcean, AWS) and backend services.',
+      'Named inventor on US Patent 11,838,834 - "Systems and Methods for Displaying Images Across Multiple Devices" - granted 2023, covering the synchronized multi-device display technology behind APPIX.',
       'Delivered synchronized, real-time mobile experiences at live events for Disney, UFC, Red Bull, Universal, the Cleveland Cavaliers and the Hollywood Bowl - reaching over a million people.',
       'Built APPIX APSA, a public safety alerting system delivering site-specific emergency notifications without reliance on cellular or WiFi, engineered to keep working through network congestion and power loss. The Event Safety Alliance named APPIX the official app of its Event Safety Summit, and the alerting system was committed free to ESA member events over 5,000 attendees.',
       'Led product strategy, technical coordination and production event operations in high-visibility, time-sensitive environments, tracking the build in Jira across sprint planning, cross-functional coordination and retrospectives.',

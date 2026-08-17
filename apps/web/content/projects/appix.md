@@ -15,6 +15,8 @@ The engineering split into two halves:
 
 Because the platform is a broadcast system rather than a set of connections, it keeps working when the network is completely underwater - which is the whole point.
 
+The approach was novel enough to be patentable: I'm a named inventor on US Patent [11,838,834](https://patents.google.com/patent/US11838834B2/en) - *Systems and Methods for Displaying Images Across Multiple Devices* - granted in 2023 and assigned to Appix Project Inc, covering the beacon-driven synchronized display system and the device self-positioning that lets effects move across a crowd.
+
 ## The outcome
 
 APPIX grew from a prototype I built into a distributed platform - spanning mobile apps, cloud infrastructure across DigitalOcean and AWS, and backend services - and has reached over a million people. It has powered live experiences for Disney, UFC, Red Bull, Universal, the Cleveland Cavaliers and the Hollywood Bowl, and has been covered in the tech press.
