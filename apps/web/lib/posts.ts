@@ -43,6 +43,14 @@ export function tagFromSlug(slug: string): string | undefined {
 // Newest first. The article body for each lives in content/blog/<slug>.md
 export const POSTS: PostMeta[] = [
   {
+    slug: 'what-a-software-patent-actually-covers',
+    title: 'What a Software Patent Actually Covers: Claims vs. Description',
+    description:
+      'Most of a patent grants you nothing - only the claims draw the legal fence line. What I learned reading my own, and how it changes the way you read every patent after it.',
+    date: '2026-09-08',
+    tags: ['Patents', 'APPIX', 'Engineering'],
+  },
+  {
     slug: 'realtime-transport-polling-sse-websockets',
     title: 'Polling, SSE or WebSockets: Picking a Transport for Live Updates',
     description:
