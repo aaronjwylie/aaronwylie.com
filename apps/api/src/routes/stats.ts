@@ -6,6 +6,7 @@ import { db } from '../db/client.js';
 import { pageViews } from '../db/schema.js';
 import { env } from '../env.js';
 import { clientIp, geolocate, visitorHash } from '../lib/geo.js';
+import { detectBot } from '../lib/bots.js';
 import { runDigest } from '../services/digestService.js';
 
 // Starting baselines for the homepage counters.
@@ -31,6 +32,7 @@ export async function statsRoutes(fastify: FastifyInstance) {
       const ip = clientIp(request.headers, request.ip);
       const ua = (request.headers['user-agent'] as string | undefined) ?? '';
       const visitor = visitorHash(ip, ua, day, env.ADMIN_TOKEN);
+      const bot = detectBot(ua);
       // Fire-and-forget so the beacon never waits on the geo lookup. We store
       // only the coarse city/region/country and a non-reversible visitor hash -
       // never the IP itself.
@@ -44,6 +46,8 @@ export async function statsRoutes(fastify: FastifyInstance) {
           region: geo?.region ?? null,
           city: geo?.city ?? null,
           visitorHash: visitor,
+          isBot: bot !== null,
+          botName: bot,
         });
       })().catch((err) => request.log.error(err, 'page view insert failed'));
       return reply.code(202).send({ ok: true as const });

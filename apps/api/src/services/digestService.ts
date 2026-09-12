@@ -28,14 +28,20 @@ function dedupeParts(parts: (string | null)[]): string {
 /** Aggregate a single day's page views into the digest shape (no IPs involved). */
 export async function buildSummary(day: string): Promise<UsageDigest> {
   const onDay = eq(pageViews.day, day);
+  // Every breakdown is people only. Rows from before bot classification existed
+  // (is_bot null) are kept out of them too and reported as unclassified.
+  const human = and(onDay, eq(pageViews.isBot, false));
   const count = dsql<number>`count(*)::int`;
 
   const [totals] = await db
     .select({
       total: count,
-      unique: dsql<number>`count(distinct ${pageViews.visitorHash})::int`,
-      tools: dsql<number>`count(*) filter (where ${pageViews.path} like '/tools%')::int`,
-      located: dsql<number>`count(*) filter (where ${pageViews.country} is not null)::int`,
+      humanViews: dsql<number>`count(*) filter (where ${pageViews.isBot} = false)::int`,
+      humanVisitors: dsql<number>`count(distinct ${pageViews.visitorHash}) filter (where ${pageViews.isBot} = false)::int`,
+      botViews: dsql<number>`count(*) filter (where ${pageViews.isBot} = true)::int`,
+      unclassified: dsql<number>`count(*) filter (where ${pageViews.isBot} is null)::int`,
+      tools: dsql<number>`count(*) filter (where ${pageViews.isBot} = false and ${pageViews.path} like '/tools%')::int`,
+      located: dsql<number>`count(*) filter (where ${pageViews.isBot} = false and ${pageViews.country} is not null)::int`,
     })
     .from(pageViews)
     .where(onDay);
@@ -43,7 +49,7 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
   const topTools = await db
     .select({ path: pageViews.path, views: count })
     .from(pageViews)
-    .where(and(onDay, like(pageViews.path, '/tools/%')))
+    .where(and(human, like(pageViews.path, '/tools/%')))
     .groupBy(pageViews.path)
     .orderBy(dsql`count(*) desc`)
     .limit(12);
@@ -51,7 +57,7 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
   const topPages = await db
     .select({ path: pageViews.path, views: count })
     .from(pageViews)
-    .where(onDay)
+    .where(human)
     .groupBy(pageViews.path)
     .orderBy(dsql`count(*) desc`)
     .limit(10);
@@ -59,7 +65,7 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
   const topCountries = await db
     .select({ country: pageViews.country, views: count })
     .from(pageViews)
-    .where(and(onDay, isNotNull(pageViews.country)))
+    .where(and(human, isNotNull(pageViews.country)))
     .groupBy(pageViews.country)
     .orderBy(dsql`count(*) desc`)
     .limit(10);
@@ -72,15 +78,26 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
       views: count,
     })
     .from(pageViews)
-    .where(and(onDay, isNotNull(pageViews.city)))
+    .where(and(human, isNotNull(pageViews.city)))
     .groupBy(pageViews.city, pageViews.region, pageViews.country)
+    .orderBy(dsql`count(*) desc`)
+    .limit(10);
+
+  const topBots = await db
+    .select({ name: pageViews.botName, views: count })
+    .from(pageViews)
+    .where(and(onDay, eq(pageViews.isBot, true)))
+    .groupBy(pageViews.botName)
     .orderBy(dsql`count(*) desc`)
     .limit(10);
 
   return {
     day,
     totalViews: totals?.total ?? 0,
-    uniqueVisitors: totals?.unique ?? 0,
+    humanViews: totals?.humanViews ?? 0,
+    humanVisitors: totals?.humanVisitors ?? 0,
+    botViews: totals?.botViews ?? 0,
+    unclassifiedViews: totals?.unclassified ?? 0,
     toolViews: totals?.tools ?? 0,
     locatedViews: totals?.located ?? 0,
     topTools: topTools.map((t) => ({ path: t.path, views: t.views })),
@@ -92,6 +109,7 @@ export async function buildSummary(day: string): Promise<UsageDigest> {
       label: dedupeParts([t.city, t.region, t.country]),
       views: t.views,
     })),
+    topBots: topBots.map((b) => ({ name: b.name ?? 'Unknown bot', views: b.views })),
   };
 }
 

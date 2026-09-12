@@ -75,6 +75,10 @@ export const pageViews = pgTable(
     // Daily-rotating, non-reversible hash of IP+browser for counting unique
     // visitors. Cannot be reversed to an IP or linked across days.
     visitorHash: varchar('visitor_hash', { length: 16 }),
+    // Crawler classification from the user-agent at ingest (see lib/bots.ts).
+    // Null on rows recorded before classification existed: unknown, not human.
+    isBot: boolean('is_bot'),
+    botName: varchar('bot_name', { length: 64 }),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => ({

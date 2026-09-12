@@ -71,6 +71,13 @@
       "when": 1786734966670,
       "tag": "0009_groovy_weapon_omega",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1789248569102,
+      "tag": "0010_page_view_bot",
+      "breakpoints": true
     }
   ]
 }
