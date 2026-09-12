@@ -14,6 +14,8 @@ const CHROME =
 const BOT_PATH = '/__test-bot-view';
 const HUMAN_PATH = '/__test-human-view';
 const DAY = '2000-01-01';
+// Its own day, so the counter test can watch activeDays change.
+const COUNTER_DAY = '1999-12-31';
 
 /** The beacon inserts fire-and-forget, so wait for the row to land. */
 async function waitForView(path: string) {
@@ -31,11 +33,11 @@ describe('stats', () => {
     app = await buildApp();
     await app.ready();
     await db.delete(pageViews).where(inArray(pageViews.path, [BOT_PATH, HUMAN_PATH]));
-    await db.delete(pageViews).where(eq(pageViews.day, DAY));
+    await db.delete(pageViews).where(inArray(pageViews.day, [DAY, COUNTER_DAY]));
   });
   afterAll(async () => {
     await db.delete(pageViews).where(inArray(pageViews.path, [BOT_PATH, HUMAN_PATH]));
-    await db.delete(pageViews).where(eq(pageViews.day, DAY));
+    await db.delete(pageViews).where(inArray(pageViews.day, [DAY, COUNTER_DAY]));
     await app.close();
   });
 
@@ -61,6 +63,27 @@ describe('stats', () => {
     });
     expect(res.statusCode).toBe(202);
     expect(await waitForView(HUMAN_PATH)).toMatchObject({ isBot: false, botName: null });
+  });
+
+  it('leaves bot views out of the public counters but keeps unclassified history', async () => {
+    const counters = async () => (await app.inject({ method: 'GET', url: '/stats' })).json();
+    const before = await counters();
+
+    // A day with only bot traffic adds nothing - not even an active day.
+    await db.insert(pageViews).values({ path: '/__test-counter', day: COUNTER_DAY, isBot: true, botName: 'Applebot' });
+    const afterBot = await counters();
+    expect(afterBot.totalViews).toBe(before.totalViews);
+    expect(afterBot.activeDays).toBe(before.activeDays);
+    expect(afterBot.topPaths).toEqual(before.topPaths);
+
+    // Pre-classification rows and people both count.
+    await db.insert(pageViews).values([
+      { path: '/__test-counter', day: COUNTER_DAY, isBot: null },
+      { path: '/__test-counter', day: COUNTER_DAY, isBot: false },
+    ]);
+    const afterPeople = await counters();
+    expect(afterPeople.totalViews).toBe(before.totalViews + 2);
+    expect(afterPeople.activeDays).toBe(before.activeDays + 1);
   });
 
   it('keeps bots and unclassified views out of the digest breakdowns', async () => {

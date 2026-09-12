@@ -94,12 +94,17 @@ export async function statsRoutes(fastify: FastifyInstance) {
       },
     },
     async () => {
+      // Leave out views tagged as bots. Rows from before bot classification
+      // existed (is_bot null) still count, so the public history doesn't drop.
+      const notBot = dsql`${pageViews.isBot} is not true`;
+
       const [totals] = await db
         .select({
           totalViews: dsql<number>`count(*)::int`,
           activeDays: dsql<number>`count(distinct ${pageViews.day})::int`,
         })
-        .from(pageViews);
+        .from(pageViews)
+        .where(notBot);
 
       const topPaths = await db
         .select({
@@ -107,6 +112,7 @@ export async function statsRoutes(fastify: FastifyInstance) {
           views: dsql<number>`count(*)::int`,
         })
         .from(pageViews)
+        .where(notBot)
         .groupBy(pageViews.path)
         .orderBy(dsql`count(*) desc`)
         .limit(5);
